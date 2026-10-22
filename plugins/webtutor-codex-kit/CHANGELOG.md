@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.2.1] - Unreleased
+
+### Added
+
+- `webtutor_run_script_file(relative_path)` for project-relative WebTutor file execution, including production `web/agents/` and development-only `tools/`.
+- Matching Bridge `run_script_file` action. Load server-agent `wvars` only for `web/agents/` paths; diagnostic scripts do not automatically load them.
+
+### Compatibility
+
+- Keep legacy `webtutor_run_agent_file` and existing `agents/` execution route.
+- No directory traversal restrictions were added in this iteration; use only on the trusted local development instance.
+
 ## [0.2.0] - Unreleased
 
 ### Added
