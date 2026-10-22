@@ -1,7 +1,7 @@
 ﻿<%
 Request.RespContentType = "application/json";
 
-var BRIDGE_VERSION = "1.0.0";
+var BRIDGE_VERSION = "1.1.0";
 
 function makeResponse(okValue, errorsValue, logsValue, assertionsValue, resultValue)
 {
@@ -101,8 +101,27 @@ function copyAgentWvars(param, agentTopElem)
 function runAgentFile(customRoot, agentPath)
 {
     var codeUrl = "x-local://wt/web/" + customRoot + "/agents/" + agentPath;
-    var agentCode = getAgentCode(agentPath);
-    var agentElem = findServerAgent(agentCode);
+    return runCodeFile(codeUrl, agentPath, true);
+}
+
+function runScriptFile(customRoot, relativePath)
+{
+    var pathParts = String(relativePath).split("/");
+    var loadWvars = pathParts[0] == "web" && pathParts[1] == "agents";
+    var codeUrl = "x-local://wt/web/" + customRoot + "/" + relativePath;
+    return runCodeFile(codeUrl, relativePath, loadWvars);
+}
+
+function runCodeFile(codeUrl, filePath, loadWvars)
+{
+    var agentCode = "";
+    var agentElem;
+
+    if (loadWvars)
+    {
+        agentCode = getAgentCode(filePath);
+        agentElem = findServerAgent(agentCode);
+    }
     var agentId = "";
     var errors = [];
     var logs = [];
@@ -151,6 +170,7 @@ function handleRequest(body)
     var tableName;
     var rawObjectId;
     var agentPath;
+    var relativePath;
 
     if (action == "ping")
         return makeResponse(true, [], [], [], {status: "ready"});
@@ -179,6 +199,16 @@ function handleRequest(body)
         if (agentPath == "")
             throw new Error("agent_path is required");
         return runAgentFile(customRoot, agentPath);
+    }
+
+    if (action == "run_script_file")
+    {
+        relativePath = String(body.GetOptProperty("relative_path", ""));
+        if (customRoot == "")
+            throw new Error("custom_root is required");
+        if (relativePath == "")
+            throw new Error("relative_path is required");
+        return runScriptFile(customRoot, relativePath);
     }
 
     throw new Error("unsupported action [" + action + "]");
