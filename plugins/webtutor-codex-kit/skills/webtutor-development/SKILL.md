@@ -35,7 +35,7 @@ description: Implement, modify, review, or explain server-side WebTutor/SP-XML c
    declared by the current project.
 8. When the active project contains `webtutor-codex.json` and the requested
    operation is supported, prefer the packaged MCP Bridge. Treat
-   `webtutor_run_agent_file` as potentially state-changing and use it only
+   `webtutor_run_agent_file` and `webtutor_run_script_file` as potentially state-changing and use it only
    after the project's verification approval.
 9. For executable WebTutor agents, ASP pages, and remote actions, create or
    preserve UTF-8 with BOM and verify the first bytes are `EF BB BF` before
@@ -54,7 +54,7 @@ description: Implement, modify, review, or explain server-side WebTutor/SP-XML c
 - Unknown table structure: use the project's declared table-inspection
   capability before writing SQL.
 - Local Bridge available: use `webtutor_ping` to establish connectivity and
-  `webtutor_run_agent_file` for approved synchronous file execution. If the
+  `webtutor_run_script_file` for approved project-relative execution under `web/agents/` or `tools/`. Keep `webtutor_run_agent_file` for legacy `agents/` projects. If the
   Bridge is absent, keep using the repository-declared fallback.
 
 ## Boundaries
