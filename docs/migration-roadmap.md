@@ -89,7 +89,7 @@ The following stays in each client repository:
 
 Create the portable manifest, local marketplace catalog, changelogs,
 dependency-free validator, and evaluation inventory before assembling the
-complete four-skill package.
+four workflow skills and the setup skill.
 
 ### Phase 1: reference core
 
@@ -133,7 +133,8 @@ legacy test scripts and ASP endpoints until both clients succeed.
 
 ## Release criteria for 0.2.0
 
-- All four expected skills are present with unique valid frontmatter.
+- All four workflow skills and the setup skill are present with unique valid
+  frontmatter.
 - Packaged references contain no client endpoint, secret, client-owned object
   ID, or absolute workstation path.
 - The five named core items have confirmed source material and preserved

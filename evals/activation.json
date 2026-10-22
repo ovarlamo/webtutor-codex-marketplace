@@ -2,6 +2,14 @@
   "schema_version": 1,
   "cases": [
     {
+      "id": "setup-new-client",
+      "prompt": "Подключи webtutor-codex-kit к новому локальному проекту WebTutor.",
+      "should_activate_plugin": true,
+      "expected_primary_skill": "setup",
+      "expected_supporting_skills": [],
+      "expected_behavior": "Reads the active repository contract, creates only client-local configuration and a copied Bridge, preserves fallbacks, and waits for approval before runtime verification."
+    },
+    {
       "id": "development-direct",
       "prompt": "Создай серверный агент WebTutor, который обновляет объект по документированной схеме.",
       "should_activate_plugin": true,

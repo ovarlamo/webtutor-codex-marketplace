@@ -11,6 +11,7 @@
   ],
   "extensions": {
     "com.openai": {
+      "onboardingSkill": "./skills/setup/SKILL.md",
       "requires_local_executor": true
     }
   }

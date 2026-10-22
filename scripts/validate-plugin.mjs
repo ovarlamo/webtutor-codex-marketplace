@@ -12,6 +12,7 @@ const expectedPluginName = "webtutor-codex-kit";
 const expectedVersion = "0.2.0";
 const expectedSourcePath = "./plugins/webtutor-codex-kit";
 const expectedSkills = [
+  "setup",
   "webtutor-reference",
   "webtutor-development",
   "webtutor-sql-report",

@@ -6,7 +6,8 @@ when developing and diagnosing WebTutor/SP-XML solutions.
 ## Current state
 
 This staging tree contains the marketplace and portable local-executor plugin
-`webtutor-codex-kit` version `0.2.0`. The package contains four focused skills,
+`webtutor-codex-kit` version `0.2.0`. The package contains four focused
+WebTutor workflow skills, one setup skill,
 the migrated client-neutral reference core, and a local stdio MCP server for a
 thin WebTutor Bridge. Release readiness still depends on separately approved
 validation and client runtime checks.
@@ -40,6 +41,7 @@ Packaged skills live below:
 
 ```text
 plugins/webtutor-codex-kit/skills/
+  setup/
   webtutor-reference/
   webtutor-development/
   webtutor-sql-report/
@@ -78,7 +80,7 @@ npm run validate
 ```
 
 This checks the portable manifest, marketplace catalog, evaluation documents,
-package boundaries, and all four skill directories. For the release gate, use:
+package boundaries, and all five skill directories. For the release gate, use:
 
 ```powershell
 npm run validate:release
@@ -90,10 +92,40 @@ approval contract.
 
 ## Local marketplace use
 
-After the package is release-ready, add this repository as a local marketplace,
-install `webtutor-codex-kit`, restart or refresh the desktop app, and validate
-the skills in a new conversation. Installed local plugins are loaded from the
-Codex plugin cache rather than directly from this source tree.
+### New machine
+
+Prerequisites: Git, Node.js 18 or newer, Codex, and GitHub access to this
+private repository.
+
+```powershell
+codex plugin marketplace add ovarlamo/webtutor-codex-marketplace --ref main
+codex plugin marketplace list
+```
+
+Restart the ChatGPT desktop app, open the Plugins Directory, select
+`WebTutor Codex Marketplace`, and install `webtutor-codex-kit`. Start a new
+conversation after installation. Until an immutable release tag exists,
+`main` is a pilot source rather than a production pin.
+
+### New client
+
+1. Open the client's custom WebTutor directory as the active Codex project.
+2. Add a client-specific `AGENTS.md` with its test and verification contract.
+3. Run the plugin setup/onboarding action, or ask:
+   `Подключи webtutor-codex-kit к этому проекту`.
+4. Confirm the requested `base_url` and `custom_root`. Setup creates only
+   `webtutor-codex.json` and a copied `codex_bridge/api.asp` in that project.
+5. Approve the separately proposed verification plan, then check the Bridge
+   in a fresh conversation.
+
+Do not copy `webtutor-codex.json`, project documentation, IDs, endpoints, or
+runtime evidence between clients. Existing `agents/tests/*.js` and `api/*.asp`
+remain available as fallbacks until both client pilots pass.
+
+Installed local plugins are loaded from the Codex plugin cache rather than
+directly from this source tree. After marketplace updates, run
+`codex plugin marketplace upgrade webtutor-codex-marketplace`, refresh the
+desktop app, and confirm the installed plugin version before use.
 
 ## Versioning
 

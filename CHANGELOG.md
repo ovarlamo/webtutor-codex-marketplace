@@ -7,6 +7,8 @@ separately in `plugins/webtutor-codex-kit/CHANGELOG.md`.
 
 ### Added
 
+- Guided setup skill and concise onboarding flows for a new workstation and a
+  new client project.
 - Version 0.2.0 local MCP and thin WebTutor Bridge MVP with four tools:
   ping, table metadata, object XML, and synchronous agent-file execution.
 - Client-local `webtutor-codex.json` contract and manual two-client pilot.

@@ -4,6 +4,8 @@
 
 ### Added
 
+- Guided setup skill for creating client-local Bridge configuration without
+  copying data or evidence between clients.
 - Portable `mcp.json` and self-contained local stdio MCP runtime.
 - Universal WebTutor Bridge template version `1.0.0`.
 - `webtutor_ping`, `webtutor_get_table_info`,
