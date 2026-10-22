@@ -42,7 +42,8 @@ The Bridge accepts JSON POST requests selected by `action`:
 | `ping` | none | Bridge readiness |
 | `get_table_info` | `table_name` | Ordered field names and SQL types |
 | `get_object_info` | string `object_id` | String ID and `TopElem.Xml` |
-| `run_agent_file` | `custom_root`, `agent_path` | Agent metadata and output |
+| `run_agent_file` | `custom_root`, `agent_path` | Legacy agent execution under `agents/` |
+| `run_script_file` | `custom_root`, `relative_path` | Execute a file relative to the active WebTutor custom root |
 
 Every response contains:
 
@@ -65,6 +66,8 @@ it derives the server-agent code from the file name. When a matching
 `server_agents` record exists, its `wvars` are copied into `Param`, preserving
 the compatible behavior of the existing local test harness. The Bridge does
 not call `tools.start_agent()`.
+
+`run_script_file` executes project-relative files, including `web/agents/*.js` and `tools/*.js`. It loads matching `server_agents` WVars only for paths starting with `web/agents/`; diagnostics in `tools/` execute without that lookup. This is for the trusted local WebTutor development instance; path restrictions have not been added. The legacy `run_agent_file` API remains supported.
 
 ## Pilot and fallback
 
