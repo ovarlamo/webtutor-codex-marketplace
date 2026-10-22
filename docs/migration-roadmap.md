@@ -145,7 +145,7 @@ legacy test scripts and ASP endpoints until both clients succeed.
 - Approved activation, negative, and isolation cases pass in a fresh
   conversation.
 - The installed plugin uses only the active client's repository capabilities.
-- The bundled MCP exposes exactly the four approved Bridge tools.
+- For the 0.2.0 baseline, the bundled MCP exposed exactly four Bridge tools; 0.2.1 adds a fifth project-relative file runner while preserving the original four.
 - Manual Bridge pilots succeed first on WebTutor 2021.1.3.297 and then on
   2025.2.1403 before any fallback endpoint is removed.
 - Verified and not-verified results are recorded separately.
