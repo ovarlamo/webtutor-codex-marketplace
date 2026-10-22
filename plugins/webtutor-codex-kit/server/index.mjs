@@ -21556,8 +21556,8 @@ var StdioServerTransport = class {
 
 // src/mcp-server/index.mjs
 var SERVER_NAME = "webtutor-codex-kit";
-var SERVER_VERSION = "0.2.0";
-var BRIDGE_VERSION = "1.0.0";
+var SERVER_VERSION = "0.2.1";
+var BRIDGE_VERSION = "1.1.0";
 var CONFIG_FILE = "webtutor-codex.json";
 var REQUEST_TIMEOUT_MS = 1e4;
 async function fileExists(filePath) {
@@ -21751,6 +21751,22 @@ server.registerTool(
     }
   },
   async ({ agent_path }) => toolResult(await callBridge("run_agent_file", { agent_path }))
+);
+server.registerTool(
+  "webtutor_run_script_file",
+  {
+    title: "Run a WebTutor project script file",
+    description: "Synchronously execute a WebTutor script from a path relative to the active project root (for example web/agents/example.js or tools/inspect.js).",
+    inputSchema: {
+      relative_path: external_exports.string().min(1)
+    },
+    annotations: {
+      readOnlyHint: false,
+      destructiveHint: true,
+      openWorldHint: false
+    }
+  },
+  async ({ relative_path }) => toolResult(await callBridge("run_script_file", { relative_path }))
 );
 var transport = new StdioServerTransport();
 await server.connect(transport);
