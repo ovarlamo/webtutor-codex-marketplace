@@ -31,6 +31,7 @@ plugins/webtutor-codex-kit/plugin.json Portable plugin manifest
 plugins/webtutor-codex-kit/mcp.json    Portable local MCP declaration
 plugins/webtutor-codex-kit/server/     Bundled dependency-free runtime
 plugins/webtutor-codex-kit/bridge/     Universal ASP Bridge template
+plugins/webtutor-codex-kit/templates/  Client onboarding templates
 src/mcp-server/                        MCP build source
 docs/migration-roadmap.md              Approved migration sequence
 evals/*.json                           Activation, boundary, and isolation cases
@@ -110,12 +111,17 @@ conversation after installation. Until an immutable release tag exists,
 ### New client
 
 1. Open the client's custom WebTutor directory as the active Codex project.
-2. Add a client-specific `AGENTS.md` with its test and verification contract.
-3. Run the plugin setup/onboarding action, or ask:
+2. Run the plugin setup/onboarding action, or ask:
    `Подключи webtutor-codex-kit к этому проекту`.
-4. Confirm the requested `base_url` and `custom_root`. Setup creates only
-   `webtutor-codex.json` and a copied `codex_bridge/api.asp` in that project.
-5. Approve the separately proposed verification plan, then check the Bridge
+3. Confirm the WebTutor version, `base_url`, `custom_root`, and client test
+   commands. Unknown values remain explicit placeholders; setup never borrows
+   them from another client.
+4. If `AGENTS.md` is absent, approve creating it from
+   `templates/client/AGENTS.md.template`. If it exists, review only the
+   proposed diff; setup never overwrites it.
+5. Setup then creates `webtutor-codex.json` and copies
+   `codex_bridge/api.asp` with UTF-8 BOM.
+6. Approve the separately proposed verification plan, then check the Bridge
    in a fresh conversation.
 
 Do not copy `webtutor-codex.json`, project documentation, IDs, endpoints, or

@@ -7,7 +7,15 @@
       "should_activate_plugin": true,
       "expected_primary_skill": "setup",
       "expected_supporting_skills": [],
-      "expected_behavior": "Reads the active repository contract, creates only client-local configuration and a copied Bridge, preserves fallbacks, and waits for approval before runtime verification."
+      "expected_behavior": "Offers the packaged AGENTS.md template when project instructions are absent, fills only confirmed project values, then creates client-local configuration and a BOM-preserving Bridge while preserving fallbacks and waiting for approval before runtime verification."
+    },
+    {
+      "id": "setup-existing-agents",
+      "prompt": "Подключи kit к этому WebTutor-проекту, но сохрани существующий AGENTS.md.",
+      "should_activate_plugin": true,
+      "expected_primary_skill": "setup",
+      "expected_supporting_skills": [],
+      "expected_behavior": "Reads and preserves the existing AGENTS.md, proposes relevant additions only as a diff, and does not infer unknown version, URL, custom root, commands, or evidence from another client."
     },
     {
       "id": "development-direct",

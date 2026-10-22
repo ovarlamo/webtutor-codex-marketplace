@@ -365,6 +365,7 @@ const requiredInfrastructure = [
   "evals/isolation.json",
   "plugins/webtutor-codex-kit/plugin.json",
   "plugins/webtutor-codex-kit/mcp.json",
+  "plugins/webtutor-codex-kit/templates/client/AGENTS.md.template",
   "plugins/webtutor-codex-kit/server/index.mjs",
   "plugins/webtutor-codex-kit/bridge/api.asp.template",
   "plugins/webtutor-codex-kit/README.md",
@@ -399,6 +400,7 @@ if (pluginDocument !== null) {
   assertCondition(/^\d+\.\d+\.\d+$/.test(pluginDocument.version ?? ""), "plugin.json: version must be semantic x.y.z");
   assertCondition(typeof pluginDocument.description === "string" && pluginDocument.description.length > 0, "plugin.json: description is required");
   assertCondition(pluginDocument.extensions?.["com.openai"]?.requires_local_executor === true, "plugin.json: extensions.com.openai.requires_local_executor must be true");
+  assertCondition(pluginDocument.extensions?.["com.openai"]?.onboardingSkill === "./skills/setup/SKILL.md", "plugin.json: onboardingSkill must point to ./skills/setup/SKILL.md");
   assertCondition(pluginDocument.skills === undefined, "plugin.json: portable packages discover root skills automatically; omit skills");
 }
 
@@ -463,6 +465,21 @@ if (fs.existsSync(bridgeTemplate)) {
     bridgeBytes.length >= 3 && bridgeBytes[0] === 0xef && bridgeBytes[1] === 0xbb && bridgeBytes[2] === 0xbf,
     `${relativePath(bridgeTemplate)}: UTF-8 BOM is required`
   );
+}
+
+const clientAgentsTemplate = path.join(pluginDir, "templates", "client", "AGENTS.md.template");
+if (fs.existsSync(clientAgentsTemplate)) {
+  const contents = fs.readFileSync(clientAgentsTemplate, "utf8");
+  for (const placeholder of [
+    "{{WEBTUTOR_VERSION}}",
+    "{{CUSTOM_ROOT}}",
+    "{{BASE_URL}}",
+    "{{CLIENT_TEST_COMMANDS}}"
+  ]) {
+    assertCondition(contents.includes(placeholder), `${relativePath(clientAgentsTemplate)}: missing placeholder ${placeholder}`);
+  }
+  assertCondition(contents.includes("EF BB BF"), `${relativePath(clientAgentsTemplate)}: executable BOM rule is required`);
+  assertCondition(contents.includes("64-bit"), `${relativePath(clientAgentsTemplate)}: 64-bit ID rule is required`);
 }
 
 validateMarkdownLinks(pluginDir);

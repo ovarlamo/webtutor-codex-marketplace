@@ -1,0 +1,64 @@
+# WebTutor client project
+
+## Project passport
+
+- WebTutor version: `{{WEBTUTOR_VERSION}}`
+- Custom web root: `{{CUSTOM_ROOT}}`
+- WebTutor base URL: `{{BASE_URL}}`
+
+Keep an unresolved placeholder unchanged until the value is confirmed from
+this client project or its running instance. Do not infer it from another
+client.
+
+## Project boundaries
+
+- Treat this repository as one isolated client project.
+- Keep client configuration, object IDs, domain knowledge, documentation,
+  tests, endpoints, and runtime evidence inside this project.
+- Never copy those values or conclusions from another client repository.
+- Preserve existing behavior and fallback endpoints unless the user approves
+  a separate migration or removal.
+
+## WebTutor and SP-XML rules
+
+- Use only documented WebTutor/SP-XML APIs. Similar JavaScript behavior is not
+  evidence that an API or language feature exists in SP-XML.
+- Do not declare `var` anywhere inside a loop body, including nested branches
+  and error handlers. Declare working variables before the loop.
+- Wrap a ternary expression used as an object-literal property value in
+  parentheses.
+- Preserve every 64-bit identifier as a string across JavaScript, JSON, HTTP,
+  logging, and diagnostic boundaries.
+- Create and preserve executable WebTutor code, including ASP and agent files,
+  as UTF-8 with BOM. Before execution or handoff, verify the first bytes are
+  `EF BB BF`.
+
+## Verification contract
+
+Before running tests, browser checks, MCP calls, WebTutor execution, or SQL,
+show the user an exact verification plan with observable success criteria and
+obtain approval. If the plan changes materially, request approval again.
+
+After approval, run the available checks and report two explicit sections:
+`Verified` and `Not verified`. Static checks alone do not prove runtime,
+browser, WebTutor, or database behavior.
+
+## Local MCP Bridge
+
+- Read connection values only from this project's `webtutor-codex.json`.
+- Prefer the packaged MCP Bridge for supported operations after the approved
+  connectivity check.
+- Keep existing WebTutor endpoints and client tests as fallbacks until the
+  replacement workflow has been verified for this client.
+- Do not change a test endpoint merely to simplify diagnostics.
+
+## Client test commands
+
+Use only commands confirmed for this repository:
+
+```text
+{{CLIENT_TEST_COMMANDS}}
+```
+
+If no command is confirmed, leave the placeholder unchanged and ask the user
+before running a guessed command.

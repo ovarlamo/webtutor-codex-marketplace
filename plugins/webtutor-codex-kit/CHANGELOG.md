@@ -6,6 +6,8 @@
 
 - Guided setup skill for creating client-local Bridge configuration without
   copying data or evidence between clients.
+- Client `AGENTS.md` template and setup flow that creates missing instructions
+  by agreement or proposes additions to an existing file as a diff.
 - Portable `mcp.json` and self-contained local stdio MCP runtime.
 - Universal WebTutor Bridge template version `1.0.0`.
 - `webtutor_ping`, `webtutor_get_table_info`,

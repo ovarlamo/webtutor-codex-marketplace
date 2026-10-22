@@ -11,22 +11,35 @@ from another client.
 
 ## Preflight
 
-1. Read the active project's `AGENTS.md` and obey its verification contract.
-2. Confirm the project root, its WebTutor `custom_root`, and the local instance
-   base URL. Default the base URL to `http://127.0.0.1` only when the user does
-   not specify another address.
-3. Inspect existing `webtutor-codex.json` and `codex_bridge/api.asp` before
-   proposing changes. Preserve unrelated client files and legacy endpoints.
+1. Confirm the active client project root. Never inspect a sibling client to
+   fill gaps.
+2. Check whether the project already has `AGENTS.md`.
+   - If it exists, read and obey it. Never overwrite it. Compare it with the
+     packaged `templates/client/AGENTS.md.template` and offer only relevant
+     additions as a reviewable diff.
+   - If it is absent, offer to create it from that packaged template. Create it
+     only after the user agrees.
+3. Confirm `custom_root`, `base_url`, and the exact WebTutor version from this
+   project or its instance. Fill only confirmed values in a new template.
+   Leave an unknown placeholder unresolved and ask; do not guess, including
+   from the default base URL or another client.
+4. Ask for client test commands when they are not already confirmed. Preserve
+   the placeholder rather than inventing a command.
+5. Inspect existing `webtutor-codex.json` and `codex_bridge/api.asp` before
+   proposing changes. Preserve unrelated client files, tests, and endpoints.
 
 ## Bootstrap
 
-1. Create `<project-root>/webtutor-codex.json` with client-local values:
+After the `AGENTS.md` proposal is resolved:
+
+1. Create `<project-root>/webtutor-codex.json` with confirmed client-local
+   values. `bridge_url` is derived from the confirmed `custom_root`:
 
    ```json
    {
-     "base_url": "http://127.0.0.1",
-     "custom_root": "client_custom",
-     "bridge_url": "/client_custom/codex_bridge/api.asp"
+     "base_url": "<confirmed-base-url>",
+     "custom_root": "<confirmed-custom-root>",
+     "bridge_url": "/<confirmed-custom-root>/codex_bridge/api.asp"
    }
    ```
 
@@ -35,18 +48,21 @@ from another client.
 3. Preserve UTF-8 with BOM for the copied ASP file and verify its first three
    bytes are `EF BB BF`.
 4. Do not add authentication, tokens, an installer, extra MCP tools, or remove
-   fallback endpoints as part of setup.
+   fallback endpoints and tests as part of setup.
+5. Do not copy configuration, identifiers, documentation, test data, or
+   runtime evidence from any other client.
 
 ## Verification handoff
 
 Before executing checks, show the user an exact plan and obtain approval under
 the active project's `AGENTS.md`. A proportionate first check is:
 
-1. confirm both client-local files exist and the ASP BOM is correct;
+1. confirm `AGENTS.md`, `webtutor-codex.json`, and the Bridge are in the active
+   client only, and verify the ASP BOM;
 2. start or refresh Codex so it reloads the installed plugin and MCP server;
 3. call `webtutor_ping` in a fresh conversation;
-4. if approved, inspect `collaborators` and object ID
-   `6148914691236517121` with the read-only MCP tools;
+4. if approved, inspect `collaborators` and use object inspection only with an
+   ID confirmed for the active client;
 5. report `Verified` and `Not verified` separately.
 
 If the Bridge cannot be reached, stop after collecting the response and use
