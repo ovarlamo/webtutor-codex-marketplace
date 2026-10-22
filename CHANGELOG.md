@@ -5,6 +5,11 @@ separately in `plugins/webtutor-codex-kit/CHANGELOG.md`.
 
 ## [Unreleased]
 
+### Changed in 0.2.1
+
+- Add project-relative script execution to the MCP server and Bridge while retaining the legacy agent runner.
+- Distinguish production agent sources from local-only development tools.
+
 ### Added
 
 - Guided setup skill and concise onboarding flows for a new workstation and a
