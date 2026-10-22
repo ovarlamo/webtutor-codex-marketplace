@@ -1,0 +1,4 @@
+interface:
+  display_name: "WebTutor SQL Reports"
+  short_description: "SQL и отчёты WebTutor с проверкой схемы"
+  default_prompt: "Use $webtutor-sql-report to implement and verify this WebTutor report query."

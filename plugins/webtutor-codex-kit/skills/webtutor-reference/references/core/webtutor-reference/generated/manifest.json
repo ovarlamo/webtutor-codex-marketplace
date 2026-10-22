@@ -1,0 +1,56 @@
+{
+  "generated_at": "2026-07-22T14:07:56.729Z",
+  "source": "http://docs.datex.ru",
+  "entries": 525,
+  "functions": 465,
+  "objects": 60,
+  "missing_descriptions": 7,
+  "name_conflicts": [
+    {
+      "kind": "function",
+      "name": "ReplaceUrlPathSuffix()",
+      "article_ids": [
+        "5620276892448878739",
+        "7172076235998782827"
+      ]
+    }
+  ],
+  "files": [
+    "generated/functions/01-funkcii-dlya-raboty-s-obektami.md",
+    "generated/functions/02-preobrazovanie-tipov-dannyh.md",
+    "generated/functions/03-preobrazovanie-formatov-i-kodirovok.md",
+    "generated/functions/04-rabota-so-strokami.md",
+    "generated/functions/05-rabota-s-datami.md",
+    "generated/functions/06-rabota-s-massivami.md",
+    "generated/functions/07-rabota-s-faylovoy-sistemoy.md",
+    "generated/functions/08-rabota-s-url.md",
+    "generated/functions/09-obrabotka-html.md",
+    "generated/functions/10-rabota-s-formami-dannyh.md",
+    "generated/functions/11-rabota-s-bazoy-dannyh-prilozheniya.md",
+    "generated/functions/12-rabota-s-dokumentami-xml.md",
+    "generated/functions/13-rabota-s-elementami-xml.md",
+    "generated/functions/14-rabota-s-ekranami.md",
+    "generated/functions/15-rabota-s-reestrom-windows.md",
+    "generated/functions/16-vypolnenie-koda.md",
+    "generated/functions/17-funkcii-web-servera.md",
+    "generated/functions/18-upravlenie-serverom-prilozheniya.md",
+    "generated/functions/19-sistemnye-funkcii.md",
+    "generated/functions/20-prochie-funkcii.md",
+    "generated/functions/21-eksperementalnye-i-uzkospecializirovannye-funkcii.md",
+    "generated/functions/22-ustarevshie-funkcii.md",
+    "generated/functions.md",
+    "generated/objects/01-bazovye-obekty-yazyka.md",
+    "generated/objects/02-globalnye-staticheskie-obekty.md",
+    "generated/objects/03-obekty-xml-dokumenta.md",
+    "generated/objects/04-obekty-xml-formy.md",
+    "generated/objects/05-obekty-bazy-dannyh-prilozheniya.md",
+    "generated/objects/06-ekrannye-obekty.md",
+    "generated/objects/07-obekty-web-servera.md",
+    "generated/objects/08-obekty-dlya-vyzova-vneshnih-komponentov.md",
+    "generated/objects/09-obekty-dlya-raboty-s-lotus-notes.md",
+    "generated/objects/10-prochie-obekty.md",
+    "generated/objects.md",
+    "generated/catalog.jsonl"
+  ]
+}
+

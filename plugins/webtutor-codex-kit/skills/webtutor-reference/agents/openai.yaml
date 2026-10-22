@@ -1,0 +1,4 @@
+interface:
+  display_name: "WebTutor Reference"
+  short_description: "Portable WebTutor and SP-XML reference"
+  default_prompt: "Use $webtutor-reference to verify the exact WebTutor/SP-XML API and compatibility constraints for this task."

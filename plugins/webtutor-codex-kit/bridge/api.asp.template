@@ -1,0 +1,196 @@
+﻿<%
+Request.RespContentType = "application/json";
+
+var BRIDGE_VERSION = "1.0.0";
+
+function makeResponse(okValue, errorsValue, logsValue, assertionsValue, resultValue)
+{
+    return {
+        ok: okValue,
+        bridge_version: BRIDGE_VERSION,
+        errors: errorsValue,
+        logs: logsValue,
+        assertions: assertionsValue,
+        result: resultValue
+    };
+}
+
+function writeResponse(payload)
+{
+    Request.SetRespStatus(200, "OK");
+    Response.Write(EncodeJson(payload));
+}
+
+function appendValues(target, value)
+{
+    var item;
+
+    if (value == undefined || value == null || value == "")
+        return;
+
+    if (ObjectType(value) == "JsArray")
+    {
+        for (item in value)
+            target.push(item);
+        return;
+    }
+
+    target.push(value);
+}
+
+function getTableInfo(tableName)
+{
+    var fields = [];
+    var field;
+    var query = "sql:SELECT " +
+        "COLUMN_NAME AS field_name, " +
+        "DATA_TYPE AS data_type " +
+        "FROM INFORMATION_SCHEMA.COLUMNS " +
+        "WHERE TABLE_NAME = " + XQueryLiteral(tableName) + " " +
+        "ORDER BY ORDINAL_POSITION";
+
+    for (field in XQuery(query))
+    {
+        fields.push({
+            name: field.field_name,
+            data_type: field.data_type
+        });
+    }
+
+    return {
+        table_name: tableName,
+        fields: fields
+    };
+}
+
+function getObjectInfo(rawObjectId)
+{
+    var objectId = OptInt(rawObjectId);
+
+    if (objectId == undefined)
+        throw new Error("object_id must be a valid integer");
+
+    return {
+        object_id: String(objectId),
+        xml: String(tools.open_doc(objectId).TopElem.Xml)
+    };
+}
+
+function getAgentCode(agentPath)
+{
+    var pathParts = String(agentPath).split("/");
+    var fileName = pathParts[ArrayCount(pathParts) - 1];
+    return String(fileName).split(".")[0];
+}
+
+function findServerAgent(agentCode)
+{
+    var query = "for $elem in server_agents where $elem/code=" +
+        XQueryLiteral(agentCode) + " return $elem";
+    return ArrayOptFirstElem(XQuery(query));
+}
+
+function copyAgentWvars(param, agentTopElem)
+{
+    var wvar;
+
+    for (wvar in agentTopElem.wvars)
+        param.SetProperty(wvar.name, wvar.value.Value);
+}
+
+function runAgentFile(customRoot, agentPath)
+{
+    var codeUrl = "x-local://wt/web/" + customRoot + "/agents/" + agentPath;
+    var agentCode = getAgentCode(agentPath);
+    var agentElem = findServerAgent(agentCode);
+    var agentId = "";
+    var errors = [];
+    var logs = [];
+    var assertions = [];
+    var output = {};
+    var Param = {
+        log: "",
+        logs: [],
+        errors: [],
+        assertions: [],
+        result: {}
+    };
+
+    if (agentElem != undefined)
+    {
+        agentId = String(agentElem.id);
+        copyAgentWvars(Param, tools.open_doc(agentElem.id).TopElem);
+    }
+
+    EvalCodeUrl(codeUrl);
+
+    appendValues(errors, Param.GetOptProperty("errors", []));
+    appendValues(logs, Param.GetOptProperty("logs", []));
+    appendValues(logs, Param.GetOptProperty("log", ""));
+    appendValues(assertions, Param.GetOptProperty("assertions", []));
+    output = Param.GetOptProperty("result", {});
+
+    return makeResponse(
+        ArrayCount(errors) == 0,
+        errors,
+        logs,
+        assertions,
+        {
+            agent_id: agentId,
+            agent_code: agentCode,
+            code_url: codeUrl,
+            output: output
+        }
+    );
+}
+
+function handleRequest(body)
+{
+    var action = String(body.GetOptProperty("action", ""));
+    var customRoot = String(body.GetOptProperty("custom_root", ""));
+    var tableName;
+    var rawObjectId;
+    var agentPath;
+
+    if (action == "ping")
+        return makeResponse(true, [], [], [], {status: "ready"});
+
+    if (action == "get_table_info")
+    {
+        tableName = String(body.GetOptProperty("table_name", ""));
+        if (tableName == "")
+            throw new Error("table_name is required");
+        return makeResponse(true, [], [], [], getTableInfo(tableName));
+    }
+
+    if (action == "get_object_info")
+    {
+        rawObjectId = String(body.GetOptProperty("object_id", ""));
+        if (rawObjectId == "")
+            throw new Error("object_id is required");
+        return makeResponse(true, [], [], [], getObjectInfo(rawObjectId));
+    }
+
+    if (action == "run_agent_file")
+    {
+        agentPath = String(body.GetOptProperty("agent_path", ""));
+        if (customRoot == "")
+            throw new Error("custom_root is required");
+        if (agentPath == "")
+            throw new Error("agent_path is required");
+        return runAgentFile(customRoot, agentPath);
+    }
+
+    throw new Error("unsupported action [" + action + "]");
+}
+
+try
+{
+    var requestBody = tools.read_object(Request.Body);
+    writeResponse(handleRequest(requestBody));
+}
+catch (error)
+{
+    writeResponse(makeResponse(false, [String(error)], [], [], {}));
+}
+%>

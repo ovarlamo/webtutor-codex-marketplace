@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": "development-direct",
+      "prompt": "Создай серверный агент WebTutor, который обновляет объект по документированной схеме.",
+      "should_activate_plugin": true,
+      "expected_primary_skill": "webtutor-development",
+      "expected_supporting_skills": ["webtutor-reference"],
+      "expected_behavior": "Reads the active repository contract, confirms the execution context, and verifies every platform API before implementation."
+    },
+    {
+      "id": "development-indirect",
+      "prompt": "Нужно поправить логику remote_action.js в текущем WebTutor-проекте, сохранив существующий контракт входов и выходов.",
+      "should_activate_plugin": true,
+      "expected_primary_skill": "webtutor-development",
+      "expected_supporting_skills": [],
+      "expected_behavior": "Selects the development workflow and preserves the current execution-context contract."
+    },
+    {
+      "id": "sql-direct",
+      "prompt": "Проверь SQL отчета WebTutor, включая структуру таблицы, фильтры, сортировку и пагинацию.",
+      "should_activate_plugin": true,
+      "expected_primary_skill": "webtutor-sql-report",
+      "expected_supporting_skills": ["webtutor-reference"],
+      "expected_behavior": "Uses schema discovery before SQL assumptions and keeps full report verification separate from a read-only query check."
+    },
+    {
+      "id": "sql-indirect",
+      "prompt": "Remote collection возвращает пустой список; подозреваю JOIN и динамический WHERE.",
+      "should_activate_plugin": true,
+      "expected_primary_skill": "webtutor-sql-report",
+      "expected_supporting_skills": ["webtutor-troubleshooting"],
+      "expected_behavior": "Routes query construction to SQL review while retaining failure evidence for troubleshooting."
+    },
+    {
+      "id": "troubleshooting-direct",
+      "prompt": "Диагностируй ошибку unibridge в WebTutor: изучи errors, logs и assertions, но пока не исправляй код.",
+      "should_activate_plugin": true,
+      "expected_primary_skill": "webtutor-troubleshooting",
+      "expected_supporting_skills": [],
+      "expected_behavior": "Performs evidence-first diagnosis without implementing an unapproved fix."
+    },
+    {
+      "id": "troubleshooting-indirect",
+      "prompt": "После запуска агента 64-битный ID превратился в другое число. Найди причину.",
+      "should_activate_plugin": true,
+      "expected_primary_skill": "webtutor-troubleshooting",
+      "expected_supporting_skills": ["webtutor-reference"],
+      "expected_behavior": "Investigates serialization and scientific-notation risks without using a real client identifier."
+    },
+    {
+      "id": "reference-direct",
+      "prompt": "Найди документированную сигнатуру функции WebTutor и укажи, на какой версии подтверждено поведение.",
+      "should_activate_plugin": true,
+      "expected_primary_skill": "webtutor-reference",
+      "expected_supporting_skills": [],
+      "expected_behavior": "Reports the source, signature, evidence status, and exact verified version without generalizing."
+    },
+    {
+      "id": "reference-indirect",
+      "prompt": "Можно ли в SP-XML использовать этот JavaScript API, или у платформы другой эквивалент?",
+      "should_activate_plugin": true,
+      "expected_primary_skill": "webtutor-reference",
+      "expected_supporting_skills": [],
+      "expected_behavior": "Treats JavaScript similarity as insufficient evidence, searches the packaged reference core first, and uses a matching repository overlay only when one exists."
+    }
+  ]
+}

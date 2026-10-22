@@ -1,0 +1,17 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "webtutor-codex-kit",
+  "version": "0.2.0",
+  "description": "Local WebTutor and SP-XML engineering workflows with a portable MCP server and client-local Bridge configuration.",
+  "keywords": [
+    "webtutor",
+    "sp-xml",
+    "xquery",
+    "sql"
+  ],
+  "extensions": {
+    "com.openai": {
+      "requires_local_executor": true
+    }
+  }
+}

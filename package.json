@@ -1,0 +1,20 @@
+{
+  "name": "webtutor-codex-marketplace",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "description": "Private marketplace infrastructure for the WebTutor Codex kit.",
+  "scripts": {
+    "build:mcp": "esbuild ./src/mcp-server/index.mjs --bundle --platform=node --format=esm --target=node18 --outfile=./plugins/webtutor-codex-kit/server/index.mjs",
+    "validate": "node ./scripts/validate-plugin.mjs",
+    "validate:release": "node ./scripts/validate-plugin.mjs --release"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/sdk": "^1.22.0",
+    "esbuild": "^0.25.0",
+    "zod": "^3.25.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

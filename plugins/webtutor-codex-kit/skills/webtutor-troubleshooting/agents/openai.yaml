@@ -1,0 +1,4 @@
+interface:
+  display_name: "WebTutor Troubleshooting"
+  short_description: "Диагностика ошибок WebTutor по симптомам"
+  default_prompt: "Use $webtutor-troubleshooting to diagnose this WebTutor failure."

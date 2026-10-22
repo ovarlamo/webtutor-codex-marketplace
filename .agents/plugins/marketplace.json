@@ -1,0 +1,20 @@
+{
+  "name": "webtutor-codex-marketplace",
+  "interface": {
+    "displayName": "WebTutor Codex Marketplace"
+  },
+  "plugins": [
+    {
+      "name": "webtutor-codex-kit",
+      "source": {
+        "source": "local",
+        "path": "./plugins/webtutor-codex-kit"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

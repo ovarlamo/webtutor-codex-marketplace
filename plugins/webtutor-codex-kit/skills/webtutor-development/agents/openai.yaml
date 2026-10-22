@@ -1,0 +1,4 @@
+interface:
+  display_name: "WebTutor Development"
+  short_description: "Разработка и ревью кода WebTutor/SP-XML"
+  default_prompt: "Use $webtutor-development to implement or review this WebTutor change safely."

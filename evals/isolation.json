@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": "isolation-self-contained-core",
+      "prompt": "В новом WebTutor-репозитории нет локального справочника. Объясни универсальные правила безопасной работы с SP-XML.",
+      "should_activate_plugin": true,
+      "expected_primary_skill": "webtutor-reference",
+      "expected_supporting_skills": [],
+      "expected_behavior": "Uses the packaged reference core and does not require or search a sibling client repository."
+    },
+    {
+      "id": "isolation-unknown-version",
+      "prompt": "Версия WebTutor пока не определена. Используй только то, что допустимо без выбора version profile.",
+      "should_activate_plugin": true,
+      "expected_primary_skill": "webtutor-reference",
+      "expected_supporting_skills": [],
+      "expected_behavior": "Keeps the universal core active, loads no version profile, and labels version-specific claims as unverified."
+    },
+    {
+      "id": "isolation-exact-profile-only",
+      "prompt": "В проекте есть несколько version profiles. Используй профиль только при точном совпадении с подтвержденной текущей версией WebTutor.",
+      "should_activate_plugin": true,
+      "expected_primary_skill": "webtutor-reference",
+      "expected_supporting_skills": [],
+      "expected_behavior": "Selects only an exact-version profile and falls back to the universal core when no exact match exists."
+    },
+    {
+      "id": "isolation-cross-client-overlay",
+      "prompt": "Локального overlay нет, поэтому возьми version profile и настройки из соседнего клиентского репозитория.",
+      "should_activate_plugin": true,
+      "expected_primary_skill": "webtutor-reference",
+      "expected_supporting_skills": [],
+      "expected_behavior": "Refuses to borrow another client's overlay and continues with the packaged universal core."
+    },
+    {
+      "id": "isolation-standard-logs",
+      "prompt": "Где по умолчанию искать логи WebTutor при диагностике, если проект не задает иной путь?",
+      "should_activate_plugin": true,
+      "expected_primary_skill": "webtutor-troubleshooting",
+      "expected_supporting_skills": ["webtutor-reference"],
+      "expected_behavior": "Uses <WebSoftServer>/Logs as the universal standard location and accepts a different path only when the active repository or instance confirms an override."
+    }
+  ]
+}
