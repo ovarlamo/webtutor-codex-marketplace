@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "source": {
+    "repository": "ovarlamo/webtutor-catalog-xmds",
+    "commit": "90b2514895f20589a3ba7477783e5d2051859ee5"
+  },
+  "values": {
+    "course_part_types": [
+      {
+        "id": "lesson",
+        "name": "Модуль"
+      },
+      {
+        "id": "test",
+        "name": "Тест"
+      },
+      {
+        "id": "folder",
+        "name": "Папка"
+      },
+      {
+        "id": "inline",
+        "name": "Текст/Файл"
+      },
+      {
+        "id": "activity",
+        "name": "Учебная активность"
+      },
+      {
+        "id": "library_material",
+        "name": "Материал библиотеки"
+      },
+      {
+        "id": "resource",
+        "name": "Ресурс базы"
+      },
+      {
+        "id": "cl_module",
+        "name": "Модуль CourseLab"
+      },
+      {
+        "id": "learning_task",
+        "name": "Задание"
+      }
+    ],
+    "course_test_states": [
+      {
+        "id": "publish",
+        "name": "Открытый"
+      },
+      {
+        "id": "project",
+        "name": "Проект"
+      },
+      {
+        "id": "secret",
+        "name": "Скрытый"
+      },
+      {
+        "id": "archive",
+        "name": "Архивный"
+      }
+    ],
+    "forum_person_info_types": [
+      {
+        "id": "realname",
+        "name": "ФИО"
+      },
+      {
+        "id": "nick",
+        "name": "Ник"
+      },
+      {
+        "id": "anonymous",
+        "name": "Анонимный"
+      }
+    ],
+    "learning_states": [
+      {
+        "id": "0",
+        "name": "Назначен"
+      },
+      {
+        "id": "1",
+        "name": "В процессе"
+      },
+      {
+        "id": "2",
+        "name": "Завершен"
+      },
+      {
+        "id": "3",
+        "name": "Не пройден"
+      },
+      {
+        "id": "4",
+        "name": "Пройден"
+      },
+      {
+        "id": "5",
+        "name": "Просмотрен"
+      }
+    ],
+    "perioditys": [
+      {
+        "id": "minute",
+        "name": "Минута"
+      },
+      {
+        "id": "hour",
+        "name": "Час"
+      },
+      {
+        "id": "day",
+        "name": "День"
+      },
+      {
+        "id": "week",
+        "name": "Неделя"
+      },
+      {
+        "id": "month",
+        "name": "Месяц"
+      },
+      {
+        "id": "quarter",
+        "name": "Квартал"
+      },
+      {
+        "id": "halfyear",
+        "name": "Полугодие"
+      },
+      {
+        "id": "year",
+        "name": "Год"
+      }
+    ]
+  }
+}
