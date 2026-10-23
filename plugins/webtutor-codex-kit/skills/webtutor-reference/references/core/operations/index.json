@@ -2,7 +2,8 @@
   "schema_version": 1,
   "source": {
     "repository": "ovarlamo/webtutor-catalog-xmds",
-    "commit": "00ceb394f1b22aabd6b10b17e3791f68e6285e30"
+    "commit": "00ceb394f1b22aabd6b10b17e3791f68e6285e30",
+    "webtutor_version": "2025.2.1403"
   },
   "libraries": [
     "wtv_tools.xml",
