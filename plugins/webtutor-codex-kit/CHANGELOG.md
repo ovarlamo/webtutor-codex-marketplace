@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.2.2] - Unreleased
+
+### Fixed
+
+- Require an explicit absolute `project_root` on every MCP tool call instead
+  of assuming that a desktop plugin server inherits the active project
+  working directory.
+- Run the stdio server from the documented `${PLUGIN_ROOT}` directory and
+  resolve only `<project_root>/webtutor-codex.json`.
+- Bring the README, Bridge playbook, setup flow, and tool count in line with
+  the five-tool runtime.
+- Document direct catalog search as the fallback when the bundled reference
+  helper is blocked by the local sandbox.
+- Validate skill references to `.jsonl` files without truncating them to a
+  nonexistent `.json` path.
+- Document the core `alert(value)` function and its universal behavior:
+  output to the application console and the dated main server
+  `xhttp-YYYY-MM-DD.log`.
+
 ## [0.2.1] - Unreleased
 
 ### Added

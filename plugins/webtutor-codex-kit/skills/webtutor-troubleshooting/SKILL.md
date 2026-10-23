@@ -11,7 +11,8 @@ description: Diagnose WebTutor/SP-XML failures in agents, SQL/XQuery, remote act
 2. Define the observable reproduction and verification plan. Obtain user
    agreement before executing tests, runtime requests, log inspection, or SQL.
 3. If the active project contains `webtutor-codex.json`, use
-   `webtutor_ping` to distinguish MCP/config/HTTP failures from WebTutor action
+`webtutor_ping` with its absolute `project_root` to distinguish
+MCP/config/HTTP failures from WebTutor action
    failures. Use the common `errors`, `logs`, `assertions`, and `result`
    envelope when routing the symptom.
 4. Reproduce with the exact existing project test or request without changing

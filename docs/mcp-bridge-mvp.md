@@ -29,9 +29,11 @@ Minimal configuration:
 is used without a separate authorization mechanism. HTTP requests use a fixed
 timeout. `webtutor_version` is not required.
 
-The MCP server starts from its inherited working directory, finds the nearest
-ancestor `webtutor-codex.json`, and reads it again for each tool call. It does
-not inspect sibling projects or use another client's configuration.
+The MCP server starts from `${PLUGIN_ROOT}`. Every MCP tool receives an
+absolute `project_root` and reads
+`<project_root>/webtutor-codex.json` for that call. The server does not infer
+the client from its process working directory, search ancestors, inspect
+sibling projects, or reuse another client's configuration.
 
 ## Bridge contract
 
@@ -39,7 +41,7 @@ The Bridge accepts JSON POST requests selected by `action`:
 
 | Action | Parameters | Result |
 |---|---|---|
-| `ping` | none | Bridge readiness |
+| `ping` | `project_root` at the MCP boundary; none forwarded to the Bridge | Bridge readiness |
 | `get_table_info` | `table_name` | Ordered field names and SQL types |
 | `get_object_info` | string `object_id` | String ID and `TopElem.Xml` |
 | `run_agent_file` | `custom_root`, `agent_path` | Legacy agent execution under `agents/` |

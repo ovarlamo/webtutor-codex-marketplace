@@ -5,6 +5,17 @@ separately in `plugins/webtutor-codex-kit/CHANGELOG.md`.
 
 ## [Unreleased]
 
+### Fixed in 0.2.2
+
+- Replace unreliable inherited-CWD client discovery with an explicit absolute
+  `project_root` parameter on every WebTutor MCP tool.
+- Align the packaged skills, Bridge documentation, validator, and five-tool
+  inventory with the desktop plugin runtime.
+- Correct validator resolution of skill references ending in `.jsonl`.
+- Add explicit universal guidance for the core `alert(value)` function:
+  application-console output and the dated main server
+  `xhttp-YYYY-MM-DD.log`.
+
 ### Changed in 0.2.1
 
 - Add project-relative script execution to the MCP server and Bridge while retaining the legacy agent runner.

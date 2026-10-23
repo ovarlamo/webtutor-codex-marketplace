@@ -8,7 +8,7 @@
 | remote collection | playbook `debug-remote-collection` из `$webtutor-reference` |
 | ошибка выполнения | `$webtutor-troubleshooting` |
 | ASP/HTML-ресурс | подтверждённая карта публичных путей текущего проекта |
-| локальный Bridge | `webtutor_ping`, затем один из четырёх поддерживаемых MCP-инструментов |
+| локальный Bridge | `webtutor_ping` с абсолютным `project_root`, затем один из четырёх предметных MCP-инструментов с тем же корнем |
 | контракт параметров | клиентские contracts/schema текущего проекта |
 | новое устойчивое знание | playbook `capture-knowledge` из `$webtutor-reference` |
 

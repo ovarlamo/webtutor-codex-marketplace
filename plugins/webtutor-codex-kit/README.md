@@ -1,37 +1,67 @@
 # WebTutor Codex Kit
 
-Переносимый плагин для работы с WebTutor и SP-XML через локальный исполнитель Codex. Содержит универсальные навыки, локальный MCP-сервер и небольшой ASP Bridge для WebTutor.
+Portable local-executor plugin for WebTutor and SP-XML projects. It combines
+client-neutral skills with a local MCP server and a thin WebTutor ASP Bridge.
 
-## Как работает
+## Execution model
 
-Плагин объявляет `requires_local_executor: true`. MCP-сервер запускается в контексте активного проекта, ищет ближайший `webtutor-codex.json` в текущем или родительских каталогах, читает его перед каждым вызовом инструмента и отправляет HTTP-запрос в указанный Bridge с фиксированным тайм-аутом.
+The plugin declares `requires_local_executor: true`. The MCP server runs from
+`${PLUGIN_ROOT}`, as documented for desktop-only plugins. Every tool call
+requires an absolute `project_root` and reads
+`<project_root>/webtutor-codex.json` directly. It does not infer the active
+client from the MCP process working directory or search sibling projects.
+After resolving the client configuration, it sends one HTTP request to the
+configured Bridge with a fixed timeout.
 
-В актуальном исходном коде предусмотрены пять MCP-инструментов:
+The package contains exactly five MCP tools:
 
-- `webtutor_ping` — проверка связи с Bridge;
-- `webtutor_get_table_info` — структура таблицы;
-- `webtutor_get_object_info` — XML объекта;
-- `webtutor_run_agent_file` — запуск файла агента по прежнему интерфейсу;
-- `webtutor_run_script_file` — запуск файла по пути относительно корня проекта.
+- `webtutor_ping`;
+- `webtutor_get_table_info`;
+- `webtutor_get_object_info`;
+- `webtutor_run_agent_file`;
+- `webtutor_run_script_file`.
 
-Плагин не содержит клиентских адресов, учётных данных, идентификаторов объектов, бизнес-логики заказчика, обязательной версии WebTutor или автоматического механизма развёртывания. Он также не добавляет зарегистрированные приложения или обработчики жизненного цикла.
+All five tools require `project_root`. Object IDs remain string values.
 
-В текущей реализации Bridge нет аутентификации. По умолчанию `base_url` равен `http://127.0.0.1`, но его можно задать в конфигурации проекта. Bridge устанавливается вручную.
+The package does not contain:
 
-## Навыки
+- registered apps or lifecycle hooks;
+- client endpoints or credentials;
+- client-owned object IDs or client data;
+- business/domain knowledge;
+- a required WebTutor version;
+- automatic write or deployment behavior.
 
-- `webtutor-reference` — проверка сведений о платформе и источников;
-- `webtutor-development` — разработка кода WebTutor/SP-XML;
-- `webtutor-sql-report` — работа с SQL и отчётами;
-- `webtutor-troubleshooting` — диагностика ошибок.
+The Bridge has no authentication in this MVP. `base_url` defaults to
+`http://127.0.0.1`, but an explicit value in the client configuration is used
+as written. Bridge installation is manual.
 
-Эти навыки используют универсальную базу знаний и разграничивают подтверждённые сведения по версиям WebTutor. Сведения об их происхождении и сценариях проверки хранятся в дорожной карте репозитория.
+## Skills
 
-## Изоляция клиентских проектов
+- `webtutor-reference`
+- `webtutor-development`
+- `webtutor-sql-report`
+- `webtutor-troubleshooting`
 
-Каждый клиентский репозиторий отвечает за свои инструкции, настройки, адреса выполнения, структуры таблиц и объектов, команды тестирования, согласование проверок и предметные материалы. Если необходимых сведений нет, их нельзя заимствовать из другого проекта.
+Together they provide the migrated client-neutral reference core and focused
+development, SQL-reporting, and diagnostic workflows. Migration provenance and
+evaluation coverage are tracked in the repository roadmap.
 
-Локальные файлы интеграции:
+Public catalog and documentation identifiers may appear in reference material
+when they carry explicit provenance. They are not treated as client-owned
+runtime identifiers.
+
+## Client boundary
+
+Each consuming repository remains authoritative for its own instructions,
+runtime routes, table/object structures, test commands, verification
+approvals, domain/project documentation, and optional overlays. Missing local
+reference material does not block use of the packaged universal core. If a
+task specifically requires unavailable client context or an exact
+version-specific fact, ask or stop rather than falling back to data from
+another repository.
+
+Each client project owns:
 
 ```text
 <custom_root>/
@@ -40,6 +70,7 @@
 └── webtutor-codex.json
 ```
 
-Bridge возвращает единый формат ответа с полями `ok`, `bridge_version`, `errors`, `logs`, `assertions`, `result`. Поле `webtutor_version` пока необязательно.
-
-При выполнении скриптов Bridge может подставлять `wvars` соответствующего объекта `server_agents`. Для новой структуры `web/server_agents/` путь распознавания `wvars` ещё требует согласованной доработки и проверки.
+The Bridge returns a common `ok`, `bridge_version`, `errors`, `logs`,
+`assertions`, and `result` envelope. `webtutor_version` is optional until a
+portable automatic resolver is established. Agent-file execution preserves
+legacy `wvars` loading when a server agent with the matching code exists.

@@ -9,7 +9,7 @@ const errors = [];
 const warnings = [];
 
 const expectedPluginName = "webtutor-codex-kit";
-const expectedVersion = "0.2.1";
+const expectedVersion = "0.2.2";
 const expectedSourcePath = "./plugins/webtutor-codex-kit";
 const expectedSkills = [
   "setup",
@@ -344,7 +344,7 @@ function validateSkill(skillName, skillsDir) {
   assertCondition(descriptionMatch !== null && descriptionMatch[1].trim().length > 0, `${relativePath(skillFile)}: description is required`);
   assertCondition(!contents.includes("../"), `${relativePath(skillFile)}: parent-directory references are not allowed`);
 
-  const referencePattern = /references\/[A-Za-z0-9._/-]+\.(?:md|json|txt|xml|js|mjs)/g;
+  const referencePattern = /references\/[A-Za-z0-9._/-]+\.(?:md|jsonl|json|txt|xml|js|mjs)(?![A-Za-z0-9])/g;
   for (const reference of contents.match(referencePattern) ?? []) {
     const target = path.resolve(skillDir, reference);
     assertCondition(target.startsWith(`${skillDir}${path.sep}`), `${relativePath(skillFile)}: reference escapes the skill directory: ${reference}`);
@@ -381,6 +381,10 @@ const packageDocument = readJson("package.json");
 const pluginDocument = readJson("plugins/webtutor-codex-kit/plugin.json");
 const mcpDocument = readJson("plugins/webtutor-codex-kit/mcp.json");
 const marketplaceDocument = readJson(".agents/plugins/marketplace.json");
+const bundledServerPath = path.join(rootDir, "plugins", expectedPluginName, "server", "index.mjs");
+const bundledServerSource = fs.existsSync(bundledServerPath)
+  ? fs.readFileSync(bundledServerPath, "utf8")
+  : "";
 
 if (packageDocument !== null) {
   assertCondition(packageDocument.private === true, "package.json: private must be true");
@@ -414,9 +418,22 @@ if (mcpDocument !== null) {
     assertCondition(serverConfig?.type === "stdio", "mcp.json: server type must be stdio");
     assertCondition(serverConfig?.command === "node", "mcp.json: server command must be node");
     assertCondition(Array.isArray(serverConfig?.args) && serverConfig.args.length === 1 && serverConfig.args[0] === "${PLUGIN_ROOT}/server/index.mjs", "mcp.json: server args must point to the bundled runtime");
-    assertCondition(serverConfig?.cwd === undefined, "mcp.json: omit cwd so the active project working directory is inherited");
+    assertCondition(serverConfig?.cwd === "${PLUGIN_ROOT}", "mcp.json: cwd must be the explicit plugin root");
   }
 }
+
+assertCondition(
+  bundledServerSource.includes(`SERVER_VERSION = "${expectedVersion}"`),
+  `server/index.mjs: bundled server version must be ${expectedVersion}`
+);
+assertCondition(
+  bundledServerSource.includes("project_root is required"),
+  "server/index.mjs: every tool must require an explicit project_root"
+);
+assertCondition(
+  bundledServerSource.includes("project_root must be an absolute path"),
+  "server/index.mjs: project_root must be validated as an absolute path"
+);
 
 if (marketplaceDocument !== null) {
   assertCondition(marketplaceDocument.name === "webtutor-codex-marketplace", "marketplace.json: unexpected marketplace name");

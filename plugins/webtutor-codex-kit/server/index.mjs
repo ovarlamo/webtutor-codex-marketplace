@@ -21448,7 +21448,7 @@ var EMPTY_COMPLETION_RESULT = {
 };
 
 // node_modules/@modelcontextprotocol/sdk/dist/esm/server/stdio.js
-import process2 from "node:process";
+import process from "node:process";
 
 // node_modules/@modelcontextprotocol/sdk/dist/esm/shared/stdio.js
 var STDIO_DEFAULT_MAX_BUFFER_SIZE = 10 * 1024 * 1024;
@@ -21489,7 +21489,7 @@ function serializeMessage(message) {
 
 // node_modules/@modelcontextprotocol/sdk/dist/esm/server/stdio.js
 var StdioServerTransport = class {
-  constructor(_stdin = process2.stdin, _stdout = process2.stdout, options) {
+  constructor(_stdin = process.stdin, _stdout = process.stdout, options) {
     this._stdin = _stdin;
     this._stdout = _stdout;
     this._started = false;
@@ -21556,7 +21556,7 @@ var StdioServerTransport = class {
 
 // src/mcp-server/index.mjs
 var SERVER_NAME = "webtutor-codex-kit";
-var SERVER_VERSION = "0.2.1";
+var SERVER_VERSION = "0.2.2";
 var BRIDGE_VERSION = "1.1.0";
 var CONFIG_FILE = "webtutor-codex.json";
 var REQUEST_TIMEOUT_MS = 1e4;
@@ -21568,39 +21568,35 @@ async function fileExists(filePath) {
     return false;
   }
 }
-async function findClientConfig(startDirectory = process.cwd()) {
-  let currentDirectory = path.resolve(startDirectory);
-  while (true) {
-    const candidate = path.join(currentDirectory, CONFIG_FILE);
-    if (await fileExists(candidate)) {
-      const source = await fs.readFile(candidate, "utf8");
-      const document = JSON.parse(source);
-      const customRoot = String(document.custom_root ?? "").trim();
-      const bridgeUrl = String(document.bridge_url ?? "").trim();
-      if (customRoot === "") {
-        throw new Error(`${candidate}: custom_root is required`);
-      }
-      if (bridgeUrl === "") {
-        throw new Error(`${candidate}: bridge_url is required`);
-      }
-      return {
-        path: candidate,
-        baseUrl: String(document.base_url ?? "http://127.0.0.1").trim() || "http://127.0.0.1",
-        customRoot,
-        bridgeUrl
-      };
-    }
-    const gitBoundary = path.join(currentDirectory, ".git");
-    if (await fileExists(gitBoundary)) {
-      break;
-    }
-    const parentDirectory = path.dirname(currentDirectory);
-    if (parentDirectory === currentDirectory) {
-      break;
-    }
-    currentDirectory = parentDirectory;
+async function findClientConfig(projectRoot) {
+  const rawProjectRoot = String(projectRoot ?? "").trim();
+  if (rawProjectRoot === "") {
+    throw new Error("project_root is required");
   }
-  throw new Error(`${CONFIG_FILE} was not found from ${path.resolve(startDirectory)}`);
+  if (!path.isAbsolute(rawProjectRoot)) {
+    throw new Error("project_root must be an absolute path");
+  }
+  const resolvedProjectRoot = path.resolve(rawProjectRoot);
+  const candidate = path.join(resolvedProjectRoot, CONFIG_FILE);
+  if (!await fileExists(candidate)) {
+    throw new Error(`${CONFIG_FILE} was not found in project root ${resolvedProjectRoot}`);
+  }
+  const source = await fs.readFile(candidate, "utf8");
+  const document = JSON.parse(source);
+  const customRoot = String(document.custom_root ?? "").trim();
+  const bridgeUrl = String(document.bridge_url ?? "").trim();
+  if (customRoot === "") {
+    throw new Error(`${candidate}: custom_root is required`);
+  }
+  if (bridgeUrl === "") {
+    throw new Error(`${candidate}: bridge_url is required`);
+  }
+  return {
+    path: candidate,
+    baseUrl: String(document.base_url ?? "http://127.0.0.1").trim() || "http://127.0.0.1",
+    customRoot,
+    bridgeUrl
+  };
 }
 function arrayValue(value) {
   if (Array.isArray(value)) {
@@ -21632,9 +21628,9 @@ function errorEnvelope(error2) {
     errors: [error2 instanceof Error ? error2.message : String(error2)]
   });
 }
-async function callBridge(action, parameters = {}, startDirectory = process.cwd()) {
+async function callBridge(action, projectRoot, parameters = {}) {
   try {
-    const config2 = await findClientConfig(startDirectory);
+    const config2 = await findClientConfig(projectRoot);
     const endpoint = new URL(config2.bridgeUrl, config2.baseUrl);
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
@@ -21690,19 +21686,24 @@ var server = new McpServer({
   name: SERVER_NAME,
   version: SERVER_VERSION
 });
+var projectRootSchema = external_exports.string().min(1).describe(
+  "Absolute path to the active client project root containing webtutor-codex.json."
+);
 server.registerTool(
   "webtutor_ping",
   {
     title: "Ping local WebTutor Bridge",
-    description: "Check that the WebTutor Bridge configured by the active project responds.",
-    inputSchema: {},
+    description: "Check that the WebTutor Bridge configured by an explicit active project root responds.",
+    inputSchema: {
+      project_root: projectRootSchema
+    },
     annotations: {
       readOnlyHint: true,
       destructiveHint: false,
       openWorldHint: false
     }
   },
-  async () => toolResult(await callBridge("ping"))
+  async ({ project_root }) => toolResult(await callBridge("ping", project_root))
 );
 server.registerTool(
   "webtutor_get_table_info",
@@ -21710,6 +21711,7 @@ server.registerTool(
     title: "Get WebTutor table fields",
     description: "Read field names and SQL types for a WebTutor table.",
     inputSchema: {
+      project_root: projectRootSchema,
       table_name: external_exports.string().min(1)
     },
     annotations: {
@@ -21718,7 +21720,7 @@ server.registerTool(
       openWorldHint: false
     }
   },
-  async ({ table_name }) => toolResult(await callBridge("get_table_info", { table_name }))
+  async ({ project_root, table_name }) => toolResult(await callBridge("get_table_info", project_root, { table_name }))
 );
 server.registerTool(
   "webtutor_get_object_info",
@@ -21726,6 +21728,7 @@ server.registerTool(
     title: "Get WebTutor object XML",
     description: "Read TopElem.Xml for a WebTutor object while preserving its ID as a string.",
     inputSchema: {
+      project_root: projectRootSchema,
       object_id: external_exports.string().min(1)
     },
     annotations: {
@@ -21734,7 +21737,7 @@ server.registerTool(
       openWorldHint: false
     }
   },
-  async ({ object_id }) => toolResult(await callBridge("get_object_info", { object_id }))
+  async ({ project_root, object_id }) => toolResult(await callBridge("get_object_info", project_root, { object_id }))
 );
 server.registerTool(
   "webtutor_run_agent_file",
@@ -21742,6 +21745,7 @@ server.registerTool(
     title: "Run a WebTutor agent file",
     description: "Synchronously execute an agent file below the configured custom root's agents directory.",
     inputSchema: {
+      project_root: projectRootSchema,
       agent_path: external_exports.string().min(1)
     },
     annotations: {
@@ -21750,7 +21754,7 @@ server.registerTool(
       openWorldHint: false
     }
   },
-  async ({ agent_path }) => toolResult(await callBridge("run_agent_file", { agent_path }))
+  async ({ project_root, agent_path }) => toolResult(await callBridge("run_agent_file", project_root, { agent_path }))
 );
 server.registerTool(
   "webtutor_run_script_file",
@@ -21758,6 +21762,7 @@ server.registerTool(
     title: "Run a WebTutor project script file",
     description: "Synchronously execute a WebTutor script from a path relative to the active project root (for example web/agents/example.js or tools/inspect.js).",
     inputSchema: {
+      project_root: projectRootSchema,
       relative_path: external_exports.string().min(1)
     },
     annotations: {
@@ -21766,7 +21771,7 @@ server.registerTool(
       openWorldHint: false
     }
   },
-  async ({ relative_path }) => toolResult(await callBridge("run_script_file", { relative_path }))
+  async ({ project_root, relative_path }) => toolResult(await callBridge("run_script_file", project_root, { relative_path }))
 );
 var transport = new StdioServerTransport();
 await server.connect(transport);

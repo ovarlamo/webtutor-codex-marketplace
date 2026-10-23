@@ -3,17 +3,29 @@ status: active
 scope: universal-core
 ---
 
-# Использование локального MCP Bridge
+# Use the local MCP Bridge
 
-Используй этот способ только при наличии `webtutor-codex.json` в активном проекте. Ближайшая конфигурация в родительских каталогах относится к этому проекту; не ищи её в соседнем репозитории заказчика.
+Use this route only when the active project contains `webtutor-codex.json`.
+The nearest ancestor configuration belongs to that project; do not look in a
+sibling client repository.
 
-1. Прочитай инструкции текущего проекта и получи необходимое согласование проверок в работающей системе.
-2. Вызови `webtutor_ping`, если подключение или конфигурация ещё не подтверждены.
-3. Используй только поддерживаемые операции:
-   - `webtutor_get_table_info` — метаданные таблицы;
-   - `webtutor_get_object_info` — значение `TopElem.Xml` с передачей идентификатора строкой;
-   - `webtutor_run_agent_file` — согласованный синхронный запуск файла.
-4. Изучи полный ответ с полями `errors`, `logs`, `assertions` и `result`.
-5. Если конфигурация или Bridge недоступны, используй только резервный механизм, указанный в репозитории того же клиента.
+1. Read the current workspace instructions and obtain any required runtime
+   verification approval.
+2. Pass the absolute active workspace root as `project_root` on every Bridge
+   tool call. The MCP process working directory is the installed plugin root
+   and must not be used to infer the client.
+3. Call `webtutor_ping` when connectivity or configuration is not already
+   established.
+4. Use only the supported operation:
+   - `webtutor_get_table_info` for table metadata;
+   - `webtutor_get_object_info` for `TopElem.Xml` with a string ID;
+   - `webtutor_run_agent_file` for approved legacy `agents/` execution;
+   - `webtutor_run_script_file` for approved project-relative execution.
+5. Read the complete `errors`, `logs`, `assertions`, and `result` envelope.
+6. If configuration or Bridge access is unavailable, use only the fallback
+   declared by the same client repository.
 
-`webtutor_run_agent_file` может выполнять бизнес-код и не является операцией только для чтения. При наличии соответствующего серверного агента Bridge загружает его `wvars`, но не запускает рабочие агенты через `tools.start_agent()`.
+`webtutor_run_agent_file` and `webtutor_run_script_file` may execute business
+code and are not read-only. The
+Bridge loads matching server-agent `wvars` when available, but it does not run
+production agents through `tools.start_agent()`.

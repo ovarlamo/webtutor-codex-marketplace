@@ -29,6 +29,12 @@ The command supports `--kind function|object`, `--category`, `--limit`, and `--j
 
 If the required signature or behavior is absent, inspect the linked official source and verify it against the installed WebTutor version. Similar JavaScript APIs are not evidence for SP-XML.
 
+If the helper cannot start because the local sandbox denies access to the
+installed plugin path, search
+`references/core/webtutor-reference/generated/catalog.jsonl` directly with
+`rg`. Treat this only as a discovery fallback: follow the entry's
+`source_url` for any signature or behavior not present in the catalog.
+
 ## Compatibility model
 
 - `references/core/` contains reusable rules and evidence-backed platform knowledge. A `verified_on` field records observed versions; it does not turn a core rule into a client override.

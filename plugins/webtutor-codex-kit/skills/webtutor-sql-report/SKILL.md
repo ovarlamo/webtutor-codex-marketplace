@@ -13,7 +13,8 @@ description: Create, change, review, or verify SQL used by WebTutor agents, remo
 3. Inspect the complete query assembly in WebTutor code, including appended
    `WHERE`, `ORDER BY`, filters, and paging.
 4. For every unknown table, use `webtutor_get_table_info` when the active
-   project has `webtutor-codex.json`; otherwise use the schema-inspection
+   project has `webtutor-codex.json`, passing its absolute root as
+   `project_root`; otherwise use the schema-inspection
    capability declared by that project. Never infer field names or SQL types.
 5. Review the query with
    [query-review-checklist.md](references/query-review-checklist.md).

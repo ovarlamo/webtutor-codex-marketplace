@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "webtutor-codex-kit",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Local WebTutor and SP-XML engineering workflows with a portable MCP server and client-local Bridge configuration.",
   "keywords": [
     "webtutor",

@@ -60,7 +60,8 @@ the active project's `AGENTS.md`. A proportionate first check is:
 1. confirm `AGENTS.md`, `webtutor-codex.json`, and the Bridge are in the active
    client only, and verify the ASP BOM;
 2. start or refresh Codex so it reloads the installed plugin and MCP server;
-3. call `webtutor_ping` in a fresh conversation;
+3. call `webtutor_ping` with the absolute active client `project_root` in a
+   fresh conversation;
 4. if approved, inspect `collaborators` and use object inspection only with an
    ID confirmed for the active client;
 5. report `Verified` and `Not verified` separately.
