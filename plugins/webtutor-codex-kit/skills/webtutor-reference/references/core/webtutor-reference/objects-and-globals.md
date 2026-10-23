@@ -201,6 +201,94 @@ UI-переменные (`ActiveScreen`, `MainScreen`, `FocusItem`, `AllScreens`
 
 Перед использованием найти рабочий файл того же типа исполнения. Нельзя переносить код remote collection в агент без проверки входов и доступного окружения.
 
+### Параметры серверного агента `server_agent`
+
+В карточке агента переменные лежат в `wvars`. По XMD-определению
+[`web_variables_base`](https://github.com/ovarlamo/webtutor-catalog-xmds/blob/main/wtv_general.xmd)
+поле `wvar.value` имеет `TYPE="string"`, а `wvar.type` — отдельный
+**логический тип** из `common.template_field_types`. Тип `foreign_elem`
+сам по себе не определяет, хранится ли одиночный ID или список значений.
+
+В изученной реализации `server_agent.run_agent()` значения копируются в
+параметры потока без преобразования по `wvar.type`:
+
+```javascript
+for (fldWVarElem in TopElem.wvars)
+    oThread.Param.SetProperty(fldWVarElem.name, fldWVarElem.value.Value);
+```
+
+Код агента читает их через контекстный объект `Param`:
+
+```javascript
+var rawId = Param.GetOptProperty("TARGET_ID", undefined);
+if (rawId == undefined || rawId == null || rawId == "")
+    throw Error("Не задан TARGET_ID");
+var targetId = Int(rawId);
+
+var rawDays = Param.GetOptProperty("DAYS_COUNT", undefined);
+if (rawDays == undefined || rawDays == null || rawDays == "")
+    throw Error("Не задан DAYS_COUNT");
+var daysCount = Int(rawDays);
+```
+
+**Формат зависит также от макета карточки агента в Administrator.**
+Одиночный выбор `foreign_elem` может сохранить ID строкой, а
+множественный — JSON-строкой, например
+`[{"__value":"1234567890123456789","comment":""}]`. Обе переменные
+при этом могут иметь одинаковый `wvar.type="foreign_elem"`.
+Это наблюдение по реальной карточке и её макету; универсальный контракт
+произвольных макетов из одного XMD не следует.
+
+Для **необязательного** множественного параметра с подтверждённым форматом
+JSON-массива из элементов `__value` подходит следующий шаблон:
+
+```javascript
+function get_multi_param(code)
+{
+    var result = [];
+    var raw = Param.GetOptProperty(code, undefined);
+    var items;
+    var item;
+    var id;
+
+    if (raw == undefined || raw == null || raw == "")
+        return result;
+
+    items = tools.read_object(String(raw));
+    if (ObjectType(items) != "JsArray")
+        throw Error("Agent parameter " + code + " must be a JSON array");
+
+    for (item in items)
+    {
+        id = item.GetOptProperty("__value", undefined);
+        if (id == undefined || id == null || id == "")
+            throw Error("Missing __value in agent parameter " + code);
+
+        result.push(String(id));
+    }
+    return result;
+}
+```
+
+- Не превращай ошибку разбора JSON или элемент без `__value` в пустой массив:
+  это скрывает неверную конфигурацию агента. Не используй пустой `catch`.
+- Для **обязательного** списка дополнительно проверяй его непустоту после
+  разбора. `[]` и пустое необязательное значение могут быть допустимыми
+  только по контракту конкретного агента.
+- В JSON сохраняй ID как строки (без промежуточного `Real` и без
+  округления внешним JavaScript); при работе с каталогом WebTutor
+  преобразовывай отдельный ID через `OptInt`/`Int` по необходимости.
+- Если макет сериализует одиночное значение или другой формат, не пытайся
+  автоматически применять `get_multi_param`: сначала проверь сохранённый XML.
+- Пример `tools.read_object()` + `ObjectType(...)= "JsArray"` основан на
+  принятой практике и существующем Bridge; граничные случаи должны быть
+  проверены на установленной версии WebTutor.
+
+`OBJECT_ID` и `OBJECTS_ID_STR` при вызове `run_agent()` передаются
+отдельно от `wvars` — через формирование исполняемого кода. Их наличие
+нельзя предполагать при прямом запуске файла через `EvalCodeUrl()`.
+Подробности файлового теста: [test-agent.md](../playbooks/test-agent.md).
+
 ### Параметры пользовательского Web-шаблона
 
 В ASP-файле, который исполняется пользовательским Web-шаблоном, значение

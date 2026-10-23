@@ -15,6 +15,13 @@ separately in `plugins/webtutor-codex-kit/CHANGELOG.md`.
 - Добавлены JSON-карточки трёх типов объектов WebTutor с привязкой к коммиту исходных XMD, системные перечисления, автономный генератор из XMD и локальный поиск по схеме. Новых MCP-инструментов нет.
 
 
+### Changed in 0.2.3
+
+- Release the `server_agents` variable-loading and `Param` knowledge improvements in the Bridge and Codex playbooks.
+- Remove the former `webtutor_run_agent_file` MCP tool and legacy `agents/` and `web/agents/` execution guidance; retain project-relative `web/server_agents/` and diagnostic `tools/` execution with four tools.
+- Update plugin and bundled MCP metadata to `0.2.3` and the separately installed Bridge contract to `1.2.0`.
+
+
 ### Fixed in 0.2.2
 
 - Replace unreliable inherited-CWD client discovery with an explicit absolute

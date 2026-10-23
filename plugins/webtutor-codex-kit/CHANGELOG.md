@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.2.2] - Unreleased
+## [0.2.3] - Unreleased
 
 ### Добавлено — методы WebTutor
 
@@ -13,6 +13,17 @@
 - Добавлены поисковые JSON-карточки `collaborator`, `course` и `active_learning`, сформированные из XMD: поля каталогов и XML-документов, русские названия, связи `FOREIGN-ARRAY` и системные перечисления.
 - В `webtutor-reference` добавлены локальный генератор и скрипт поиска по схеме. Физическую структуру SQL по-прежнему необходимо проверять на целевой установке WebTutor.
 
+
+### Changed
+
+- Standardize server-agent file testing on `web/server_agents/*.js` with `webtutor_run_script_file`; continue supporting diagnostic scripts in `tools/` without automatic `wvars` injection.
+- Remove deprecated `webtutor_run_agent_file`, the Bridge `run_agent_file` action, and legacy `web/agents/` variable loading. The MCP runtime now provides four tools.
+- Document actual `server_agent.wvars` string-value delivery through `Param`, including a JSON multi-select representation selected by the Administrator card layout, validation advice, and the limitations of file-based `EvalCodeUrl` tests.
+- Enable matching `server_agents.code` lookup and stored `wvars` loading for `web/server_agents/` test files; require checking `result.agent_id` to verify card lookup.
+- Increase Bridge interface version to `1.2.0`; replace the separately installed `codex_bridge/api.asp` to use the new action contract.
+
+
+## [0.2.2] - Unreleased
 
 ### Fixed
 
