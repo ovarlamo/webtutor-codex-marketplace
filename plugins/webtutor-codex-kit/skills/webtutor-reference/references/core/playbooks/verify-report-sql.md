@@ -3,15 +3,15 @@ status: active
 scope: universal-core
 ---
 
-# Verify report SQL
+# Проверка SQL отчёта
 
-1. Read the SQL and the code that adds `WHERE`, `ORDER BY`, paging, and parameters.
-2. Inspect every unknown table and field through the repository's read-only schema capability.
-3. Build a temporary complete single `SELECT` without comments or additional statements.
-4. Limit fields and rows to the minimum needed and avoid personal data.
-5. Run it through the repository's read-only SQL capability, preferably from a UTF-8 file for a large query.
-6. Confirm that the server-side string passed to `XQuery()` starts with `sql:`; the diagnostic command normally accepts the bare `SELECT`.
-7. Run the report or remote-collection end-to-end test.
-8. Remove the temporary diagnostic query unless the task requires it as an artifact.
+1. Прочитай SQL-запрос и код, который добавляет `WHERE`, `ORDER BY`, постраничную выборку и параметры.
+2. Проверь все неизвестные таблицы и поля через предусмотренный репозиторием механизм чтения схемы.
+3. Составь временный полный запрос из одного `SELECT` без комментариев и дополнительных операторов.
+4. Ограничь количество полей и строк необходимым минимумом и избегай персональных данных.
+5. Выполни запрос через предусмотренный репозиторием механизм SQL только для чтения; большой запрос желательно запускать из файла UTF-8.
+6. Убедись, что серверная строка, передаваемая в `XQuery()`, начинается с `sql:`; диагностическая команда обычно принимает `SELECT` без этого префикса.
+7. Выполни сквозной тест отчёта или удалённой коллекции.
+8. Удали временный диагностический запрос, если задача не требует сохранять его как отдельный результат.
 
-Do not modify the working query or diagnostic endpoint solely to make the diagnostic command accept it.
+Не изменяй рабочий запрос или диагностическую точку доступа лишь ради того, чтобы диагностическая команда смогла принять запрос.
