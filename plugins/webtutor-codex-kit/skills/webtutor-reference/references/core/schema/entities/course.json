@@ -1,0 +1,1147 @@
+{
+  "schema_version": 1,
+  "name": "course",
+  "title": "Электронный курс",
+  "web_title": "Электронные курсы",
+  "display_field": "name",
+  "source": {
+    "repository": "ovarlamo/webtutor-catalog-xmds",
+    "commit": "90b2514895f20589a3ba7477783e5d2051859ee5"
+  },
+  "document": {
+    "table": "course",
+    "form": "wtv_course.xmd",
+    "fields": [
+      {
+        "path": "desc",
+        "name": "desc",
+        "title": "Описание",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "status",
+        "name": "status",
+        "title": null,
+        "type": "string",
+        "foreign_array": "common.course_test_states",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "win_width",
+        "name": "win_width",
+        "title": "Ширина окна электронного курса",
+        "type": "integer",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "win_height",
+        "name": "win_height",
+        "title": "Высота окна электронного курса",
+        "type": "integer",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "disp_scrolling",
+        "name": "disp_scrolling",
+        "title": "Отображать scrolling",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "resizable",
+        "name": "resizable",
+        "title": "Возможно изменять размер",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "struct_type",
+        "name": "struct_type",
+        "title": null,
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "library_url",
+        "name": "library_url",
+        "title": "Ссылка на файл библиотеки функций",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "parts.part",
+        "name": "part",
+        "title": null,
+        "type": null,
+        "foreign_array": null,
+        "multiple": true,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "parts.part.code",
+        "name": "code",
+        "title": "Код",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "parts.part.name",
+        "name": "name",
+        "title": "Название",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "parts.part.type",
+        "name": "type",
+        "title": "Тип раздела",
+        "type": "string",
+        "foreign_array": "common.course_part_types",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "parts.part.max_score",
+        "name": "max_score",
+        "title": "Максимальный балл",
+        "type": "real",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "parts.part.mastery_score",
+        "name": "mastery_score",
+        "title": "Проходной балл",
+        "type": "real",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "parts.part.mastery_score_relative",
+        "name": "mastery_score_relative",
+        "title": "Относительный проходной балл",
+        "type": "real",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "parts.part.url",
+        "name": "url",
+        "title": "URL",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "parts.part.course_module_id",
+        "name": "course_module_id",
+        "title": "Учебный модуль",
+        "type": "integer",
+        "foreign_array": "course_modules",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "parts.part.parent_part_code",
+        "name": "parent_part_code",
+        "title": "Родительский раздел",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "parts.part.desc",
+        "name": "desc",
+        "title": "Описание",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "parts.part.win_width",
+        "name": "win_width",
+        "title": "Ширина",
+        "type": "integer",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "parts.part.win_height",
+        "name": "win_height",
+        "title": "Высота",
+        "type": "integer",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "parts.part.disp_scrolling",
+        "name": "disp_scrolling",
+        "title": "Отображать scrolling",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "parts.part.resizable",
+        "name": "resizable",
+        "title": "Возможно изменять размер",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "parts.part.is_mandatory",
+        "name": "is_mandatory",
+        "title": "Обязательный раздел",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "parts.part.is_visible",
+        "name": "is_visible",
+        "title": "Видимый раздел",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "parts.part.max_time_allowed",
+        "name": "max_time_allowed",
+        "title": "Максимальное время на модуль",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "parts.part.time_limit_action",
+        "name": "time_limit_action",
+        "title": "Действие по наступлению лимита времени",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "parts.part.set_status_side",
+        "name": "set_status_side",
+        "title": "Установка статуса",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "parts.part.score_factor",
+        "name": "score_factor",
+        "title": "Коэффициент итоговой оценки",
+        "type": "real",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "parts.part.assessment_id",
+        "name": "assessment_id",
+        "title": "Тест",
+        "type": "integer",
+        "foreign_array": "assessments",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "parts.part.attempts_num",
+        "name": "attempts_num",
+        "title": "Количество попыток",
+        "type": "integer",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "parts.part.start_day",
+        "name": "start_day",
+        "title": "День планируемого начала обучения",
+        "type": "integer",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "parts.part.duration_day",
+        "name": "duration_day",
+        "title": "Планируемая продолжительность обучения в днях",
+        "type": "integer",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "parts.part.activity_id",
+        "name": "activity_id",
+        "title": "Учебная активность",
+        "type": "integer",
+        "foreign_array": "activitys",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "parts.part.activity_states.activity_state",
+        "name": "activity_state",
+        "title": null,
+        "type": null,
+        "foreign_array": null,
+        "multiple": true,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "parts.part.activity_states.activity_state.activity_state_id",
+        "name": "activity_state_id",
+        "title": "Статус учебной активности",
+        "type": "integer",
+        "foreign_array": "DefaultDb.GetOptCatalog('activity_states')",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "parts.part.activity_states.activity_state.score",
+        "name": "score",
+        "title": "Баллы",
+        "type": "real",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "parts.part.activity_states.activity_state.state_id",
+        "name": "state_id",
+        "title": "Состояние",
+        "type": "integer",
+        "foreign_array": "common.learning_states",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "parts.part.object_id",
+        "name": "object_id",
+        "title": null,
+        "type": "integer",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "parts.part.cl_module_view",
+        "name": "cl_module_view",
+        "title": "Представление",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "parts.part.completed_parent_parts.completed_parent_part",
+        "name": "completed_parent_part",
+        "title": null,
+        "type": null,
+        "foreign_array": null,
+        "multiple": true,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "parts.part.completed_parent_parts.completed_parent_part.part_code",
+        "name": "part_code",
+        "title": null,
+        "type": "string",
+        "foreign_array": "Parent.Parent.Parent.Parent.parts",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "course_finish_redirect",
+        "name": "course_finish_redirect",
+        "title": null,
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "course_finish_redirect_url",
+        "name": "course_finish_redirect_url",
+        "title": null,
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "base_url",
+        "name": "base_url",
+        "title": "Базовый url",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "view_type",
+        "name": "view_type",
+        "title": "Тип отображения окна курса",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "mastery_score",
+        "name": "mastery_score",
+        "title": "Проходной балл",
+        "type": "real",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "max_score",
+        "name": "max_score",
+        "title": "Максимальный балл",
+        "type": "real",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "score_sum_type",
+        "name": "score_sum_type",
+        "title": "Способ расчета итоговой оценки",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "score_sum_eval",
+        "name": "score_sum_eval",
+        "title": "Формула итоговой оценки",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "yourself_start",
+        "name": "yourself_start",
+        "title": "Разрешить самостоятельное назначение курса",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "finish_without_mastery_score",
+        "name": "finish_without_mastery_score",
+        "title": "Разрешить завершать курс, если не все главы пройдены или не набран проходной балл",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "auto_finish",
+        "name": "auto_finish",
+        "title": "Завершать курс, если пройдены все главы курса или набран проходной балл",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "ignor_location",
+        "name": "ignor_location",
+        "title": "Не использовать локальное расположение данного курса",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "start_after_finish",
+        "name": "start_after_finish",
+        "title": "Возможен запуск завершенного курса без сохранения новых результатов",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "no_url_info",
+        "name": "no_url_info",
+        "title": "Не передавать в адресе запускаемого модуля информацию",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "disp_folder_desc",
+        "name": "disp_folder_desc",
+        "title": "Открывать описание раздела с типом папка",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "duration",
+        "name": "duration",
+        "title": "Продолжительность",
+        "type": "integer",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "no_encoding_core_lesson",
+        "name": "no_encoding_core_lesson",
+        "title": "Не кодировать данные модулей при запуска курса",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "not_use_default_notification",
+        "name": "not_use_default_notification",
+        "title": "Не отправлять стандартные уведомления о назначении",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "default_response_type_id",
+        "name": "default_response_type_id",
+        "title": "Тип отзыва по умолчанию",
+        "type": "integer",
+        "foreign_array": "response_types",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "mandatory_fill_response",
+        "name": "mandatory_fill_response",
+        "title": "Обязательное заполнение отзыва",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "allow_disp_response",
+        "name": "allow_disp_response",
+        "title": "Отображать отзывы",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "cl_course_id",
+        "name": "cl_course_id",
+        "title": "Электронный курс",
+        "type": "integer",
+        "foreign_array": "cl_courses",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "version",
+        "name": "version",
+        "title": null,
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "price",
+        "name": "price",
+        "title": "Стоимость записи на электронный курс",
+        "type": "real",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "pwt_disp",
+        "name": "pwt_disp",
+        "title": "Доступный для Personal WebSoft HCM",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "import_type",
+        "name": "import_type",
+        "title": null,
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "education_org_id",
+        "name": "education_org_id",
+        "title": "Обучающая организация",
+        "type": "integer",
+        "foreign_array": "education_orgs",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "doc_info",
+        "name": "doc_info",
+        "title": "Информация об объекте",
+        "type": "doc_info_base",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "comment",
+        "name": "comment",
+        "title": "Комментарий",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "view.part_index",
+        "name": "part_index",
+        "title": null,
+        "type": "integer",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "view.knowledge_classifier_id",
+        "name": "knowledge_classifier_id",
+        "title": "Классификатор",
+        "type": "integer",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "view.knowledge_sort_type_id",
+        "name": "knowledge_sort_type_id",
+        "title": "Сортировать по",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "get_part_code",
+        "name": "get_part_code",
+        "title": null,
+        "type": null,
+        "foreign_array": null,
+        "multiple": false,
+        "computed": true,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "Width",
+        "name": "Width",
+        "title": null,
+        "type": null,
+        "foreign_array": null,
+        "multiple": false,
+        "computed": true,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "Height",
+        "name": "Height",
+        "title": null,
+        "type": null,
+        "foreign_array": null,
+        "multiple": false,
+        "computed": true,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "DispScrolling",
+        "name": "DispScrolling",
+        "title": null,
+        "type": null,
+        "foreign_array": null,
+        "multiple": false,
+        "computed": true,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "Resizable",
+        "name": "Resizable",
+        "title": null,
+        "type": null,
+        "foreign_array": null,
+        "multiple": false,
+        "computed": true,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "get_workflow_id",
+        "name": "get_workflow_id",
+        "title": null,
+        "type": null,
+        "foreign_array": null,
+        "multiple": false,
+        "computed": true,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "get_pwt_info",
+        "name": "get_pwt_info",
+        "title": null,
+        "type": null,
+        "foreign_array": null,
+        "multiple": false,
+        "computed": true,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "GetPartUrl",
+        "name": "GetPartUrl",
+        "title": null,
+        "type": null,
+        "foreign_array": null,
+        "multiple": false,
+        "computed": true,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "get_info",
+        "name": "get_info",
+        "title": null,
+        "type": null,
+        "foreign_array": null,
+        "multiple": false,
+        "computed": true,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "role_id",
+        "name": "role_id",
+        "title": "Категория",
+        "type": "integer",
+        "foreign_array": "roles",
+        "multiple": true,
+        "computed": false,
+        "indexed_in_xmd": false
+      }
+    ],
+    "inherits": [
+      {
+        "path": "INHERIT",
+        "type": "object_code_name_base"
+      },
+      {
+        "path": "parts.part.view.INHERIT",
+        "type": "view_conditions_base"
+      },
+      {
+        "path": "parts.part.launch.INHERIT",
+        "type": "view_conditions_base"
+      },
+      {
+        "path": "INHERIT",
+        "type": "estimation_levels_base"
+      },
+      {
+        "path": "INHERIT",
+        "type": "course_experts_base"
+      },
+      {
+        "path": "schedule.INHERIT",
+        "type": "ms_week_schedule_base"
+      },
+      {
+        "path": "access.INHERIT",
+        "type": "access_doc_base"
+      },
+      {
+        "path": "INHERIT",
+        "type": "course_settings_base"
+      },
+      {
+        "path": "INHERIT",
+        "type": "catalog_list_base"
+      },
+      {
+        "path": "INHERIT",
+        "type": "file_list_base"
+      },
+      {
+        "path": "INHERIT",
+        "type": "knowledge_parts_base"
+      },
+      {
+        "path": "INHERIT",
+        "type": "knowledge_parts_base_old"
+      },
+      {
+        "path": "INHERIT",
+        "type": "proctoring_base"
+      },
+      {
+        "path": "INHERIT",
+        "type": "game_bonus_base"
+      },
+      {
+        "path": "INHERIT",
+        "type": "custom_elems_base"
+      },
+      {
+        "path": "INHERIT",
+        "type": "admin_access_base"
+      },
+      {
+        "path": "view.filter.INHERIT",
+        "type": "au_ft_filter"
+      },
+      {
+        "path": "view.INHERIT",
+        "type": "desc_base"
+      }
+    ]
+  },
+  "catalog": {
+    "table": "courses",
+    "form": "wtv_courses.xmd",
+    "fields": [
+      {
+        "path": "id",
+        "name": "id",
+        "title": "ID",
+        "type": "integer",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": true
+      },
+      {
+        "path": "code",
+        "name": "code",
+        "title": "Код курса",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": true
+      },
+      {
+        "path": "name",
+        "name": "name",
+        "title": "Название курса",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": true
+      },
+      {
+        "path": "resource_id",
+        "name": "resource_id",
+        "title": "Ресурс базы",
+        "type": "integer",
+        "foreign_array": "resources",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "status",
+        "name": "status",
+        "title": "Статус",
+        "type": "string",
+        "foreign_array": "common.course_test_states",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "price",
+        "name": "price",
+        "title": "Стоимость курса",
+        "type": "real",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "max_score",
+        "name": "max_score",
+        "title": "Максимальный балл",
+        "type": "real",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "yourself_start",
+        "name": "yourself_start",
+        "title": "Может быть назначен самостоятельно",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "duration",
+        "name": "duration",
+        "title": "Продолжительность в днях",
+        "type": "integer",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "role_id",
+        "name": "role_id",
+        "title": "Категория",
+        "type": "integer",
+        "foreign_array": "roles",
+        "multiple": true,
+        "computed": false,
+        "indexed_in_xmd": true
+      },
+      {
+        "path": "person_id",
+        "name": "person_id",
+        "title": "Эксперт курса",
+        "type": "integer",
+        "foreign_array": "collaborators",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": true
+      },
+      {
+        "path": "cl_course_id",
+        "name": "cl_course_id",
+        "title": "Электронный курс",
+        "type": "integer",
+        "foreign_array": "cl_courses",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "education_org_id",
+        "name": "education_org_id",
+        "title": "Обучающая организация",
+        "type": "integer",
+        "foreign_array": "education_orgs",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": true
+      },
+      {
+        "path": "base_url",
+        "name": "base_url",
+        "title": "Базовый url",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "pwt_disp",
+        "name": "pwt_disp",
+        "title": "Отображать в списке Персонального WebSoft HCMa",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "modification_date",
+        "name": "modification_date",
+        "title": "Дата модификации",
+        "type": "date",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "app_instance_id",
+        "name": "app_instance_id",
+        "title": "Код сервера",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "knowledge_parts",
+        "name": "knowledge_parts",
+        "title": "Значения карты знаний",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "tags",
+        "name": "tags",
+        "title": "##'ID тегов'##",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "experts",
+        "name": "experts",
+        "title": "Эксперты",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      }
+    ],
+    "inherits": [
+      {
+        "path": "INHERIT",
+        "type": "access_doc_base"
+      },
+      {
+        "path": "INHERIT",
+        "type": "admin_access_base"
+      }
+    ]
+  }
+}
