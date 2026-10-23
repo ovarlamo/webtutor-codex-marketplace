@@ -2,10 +2,10 @@
 
 ## [0.2.2] - Unreleased
 
-### Added — XMD prototype
+### Добавлено — прототип справочника XMD
 
-- Bundle searchable XMD-derived cards for collaborator, course and active_learning, including catalog/document fields, Russian captions, declared foreign arrays, and system enums.
-- Add a local offline generator and schema search script under webtutor-reference; SQL physical structures still require target-instance verification.
+- Добавлены поисковые JSON-карточки `collaborator`, `course` и `active_learning`, сформированные из XMD: поля каталогов и XML-документов, русские названия, связи `FOREIGN-ARRAY` и системные перечисления.
+- В `webtutor-reference` добавлены локальный генератор и скрипт поиска по схеме. Физическую структуру SQL по-прежнему необходимо проверять на целевой установке WebTutor.
 
 
 ### Fixed
