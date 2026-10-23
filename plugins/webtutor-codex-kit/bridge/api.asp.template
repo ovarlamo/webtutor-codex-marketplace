@@ -98,17 +98,10 @@ function copyAgentWvars(param, agentTopElem)
         param.SetProperty(wvar.name, wvar.value.Value);
 }
 
-function runAgentFile(customRoot, agentPath)
-{
-    var codeUrl = "x-local://wt/web/" + customRoot + "/agents/" + agentPath;
-    return runCodeFile(codeUrl, agentPath, true);
-}
-
 function runScriptFile(customRoot, relativePath)
 {
     var pathParts = String(relativePath).split("/");
-    var loadWvars = pathParts[0] == "web" &&
-        (pathParts[1] == "agents" || pathParts[1] == "server_agents");
+    var loadWvars = pathParts[0] == "web" && pathParts[1] == "server_agents";
     var codeUrl = "x-local://wt/web/" + customRoot + "/" + relativePath;
     return runCodeFile(codeUrl, relativePath, loadWvars);
 }
@@ -170,7 +163,6 @@ function handleRequest(body)
     var customRoot = String(body.GetOptProperty("custom_root", ""));
     var tableName;
     var rawObjectId;
-    var agentPath;
     var relativePath;
 
     if (action == "ping")
@@ -190,16 +182,6 @@ function handleRequest(body)
         if (rawObjectId == "")
             throw new Error("object_id is required");
         return makeResponse(true, [], [], [], getObjectInfo(rawObjectId));
-    }
-
-    if (action == "run_agent_file")
-    {
-        agentPath = String(body.GetOptProperty("agent_path", ""));
-        if (customRoot == "")
-            throw new Error("custom_root is required");
-        if (agentPath == "")
-            throw new Error("agent_path is required");
-        return runAgentFile(customRoot, agentPath);
     }
 
     if (action == "run_script_file")
