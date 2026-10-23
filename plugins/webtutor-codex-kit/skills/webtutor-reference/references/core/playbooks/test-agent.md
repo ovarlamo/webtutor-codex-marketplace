@@ -19,9 +19,7 @@ scope: universal-core
 пути `web/server_agents/<agent_code>.js` вызывай
 `webtutor_run_script_file` с `relative_path` относительно
 `custom_root` и абсолютным `project_root` активного проекта.
-Поддерживается также `web/agents/*.js`. Скрипты из `tools/` исполняются
-без загрузки переменных агента. Исторический `webtutor_run_agent_file`
-остаётся в API для совместимости, но для новых сценариев не рекомендуется.
+Скрипты из `tools/` исполняются без загрузки переменных агента.
 
 Bridge выполняет `EvalCodeUrl()`, а **не** `tools.start_agent()` или
 `server_agent.run_agent()`. При запуске файла в одном из каталогов агентов
