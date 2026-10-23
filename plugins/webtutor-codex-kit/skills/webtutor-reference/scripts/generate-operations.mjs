@@ -97,7 +97,7 @@ function methodsFrom(xml, filename) {
                 throw new Error("Неверная вложенность в " + filename + ": " + tag.name);
             continue;
         }
-        if (stack.length === 1 && stack[0] === "SPXML-INLINE-FORM")
+        if (stack.length === 1 && stack[0] === "SPXML-INLINE-FORM" && !tag.selfClosing)
             namespaces.add(tag.name);
         if (stack.length === 2 && stack[0] === "SPXML-INLINE-FORM") {
             const a = Object.fromEntries(tag.attrs);
