@@ -10,7 +10,8 @@
     "repository": "ovarlamo/webtutor-catalog-xmds",
     "commit": "00ceb394f1b22aabd6b10b17e3791f68e6285e30",
     "file": "wtv_tools.xml",
-    "line": 2701
+    "line": 2701,
+    "webtutor_version": "2025.2.1403"
   },
   "related_objects": [
     "collaborator",
@@ -24,7 +25,7 @@
   ],
   "behavior": [
     "В объектной форме принимает iPersonID, iCourseID и bSendNotification; по умолчанию bSendNotification=true.",
-    "До создания нового назначения ищет existing active_learnings по person_id и course_id (дополнительно по code, если передан sEID); при совпадении возвращает ID существующего назначения.",
+    "До создания нового назначения ищет существующее назначение в active_learnings по person_id и course_id (дополнительно по code, если передан sEID); при совпадении возвращает ID существующего назначения.",
     "При переданном dtLastLearningDate проверяет предыдущие learnings с last_usage_date позже указанной даты; bMissOnlySuccessLearning=true ограничивает эту проверку state_id=4.",
     "При создании формирует и сохраняет документ active_learning; затем может вызвать pay_courses, создать стандартные уведомления и инициирует событие common_activate_course.",
     "Стандартные уведомления создаются только при !courseDoc.not_use_default_notification && bSendNotification.",
