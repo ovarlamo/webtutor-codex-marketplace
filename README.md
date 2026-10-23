@@ -6,7 +6,7 @@ when developing and diagnosing WebTutor/SP-XML solutions.
 ## Current state
 
 This staging tree contains the marketplace and portable local-executor plugin
-`webtutor-codex-kit` version `0.2.0`. The package contains four focused
+`webtutor-codex-kit` version `0.2.3`. The package contains four focused
 WebTutor workflow skills, one setup skill,
 the migrated client-neutral reference core, and a local stdio MCP server for a
 thin WebTutor Bridge. Release readiness still depends on separately approved
