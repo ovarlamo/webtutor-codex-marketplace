@@ -13,15 +13,14 @@ client from the MCP process working directory or search sibling projects.
 After resolving the client configuration, it sends one HTTP request to the
 configured Bridge with a fixed timeout.
 
-The package contains exactly five MCP tools:
+The package contains exactly four MCP tools:
 
 - `webtutor_ping`;
 - `webtutor_get_table_info`;
 - `webtutor_get_object_info`;
-- `webtutor_run_agent_file`;
 - `webtutor_run_script_file`.
 
-All five tools require `project_root`. Object IDs remain string values.
+All four tools require `project_root`. Object IDs remain string values.
 
 The package does not contain:
 
@@ -72,5 +71,4 @@ Each client project owns:
 
 The Bridge returns a common `ok`, `bridge_version`, `errors`, `logs`,
 `assertions`, and `result` envelope. `webtutor_version` is optional until a
-portable automatic resolver is established. Agent-file execution preserves
-legacy `wvars` loading when a server agent with the matching code exists.
+portable automatic resolver is established. Execution of `web/server_agents/*.js` loads saved `wvars` when a server agent with the matching code exists.

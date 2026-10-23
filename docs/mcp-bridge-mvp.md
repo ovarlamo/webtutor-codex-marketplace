@@ -44,7 +44,6 @@ The Bridge accepts JSON POST requests selected by `action`:
 | `ping` | `project_root` at the MCP boundary; none forwarded to the Bridge | Bridge readiness |
 | `get_table_info` | `table_name` | Ordered field names and SQL types |
 | `get_object_info` | string `object_id` | String ID and `TopElem.Xml` |
-| `run_agent_file` | `custom_root`, `agent_path` | Legacy agent execution under `agents/` |
 | `run_script_file` | `custom_root`, `relative_path` | Execute a file relative to the active WebTutor custom root |
 
 Every response contains:
@@ -52,7 +51,7 @@ Every response contains:
 ```json
 {
   "ok": true,
-  "bridge_version": "1.0.0",
+  "bridge_version": "1.2.0",
   "errors": [],
   "logs": [],
   "assertions": [],
@@ -63,13 +62,7 @@ Every response contains:
 `webtutor_version` may be added when a portable automatic resolver is
 established; its absence is not an error.
 
-`run_agent_file` executes synchronously with `EvalCodeUrl()`. Before execution
-it derives the server-agent code from the file name. When a matching
-`server_agents` record exists, its `wvars` are copied into `Param`, preserving
-the compatible behavior of the existing local test harness. The Bridge does
-not call `tools.start_agent()`.
-
-`run_script_file` executes project-relative files, including `web/agents/*.js` and `tools/*.js`. It loads matching `server_agents` WVars only for paths starting with `web/agents/`; diagnostics in `tools/` execute without that lookup. This is for the trusted local WebTutor development instance; path restrictions have not been added. The legacy `run_agent_file` API remains supported.
+`run_script_file` executes project-relative files, including `web/server_agents/*.js` and `tools/*.js`. It loads matching `server_agents` WVars for paths starting with `web/server_agents/`; diagnostics in `tools/` execute without that lookup. Check nonempty `result.agent_id` to confirm that a matching server-agent card was found. Loaded WVars retain their stored string values, including JSON strings for multi-select fields. The editor layout, not `wvar.type` alone, determines the expected format. The Bridge executes code with `EvalCodeUrl()` rather than reproducing `server_agent.run_agent()` lifecycle, `OBJECT_ID`, or `OBJECTS_ID_STR`. This is for the trusted local WebTutor development instance; path restrictions have not been added.
 
 ## Pilot and fallback
 
