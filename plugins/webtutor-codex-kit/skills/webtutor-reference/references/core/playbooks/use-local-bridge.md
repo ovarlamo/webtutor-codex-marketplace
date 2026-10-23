@@ -13,9 +13,8 @@ scope: universal-core
 4. Используй только поддерживаемые операции:
    - `webtutor_get_table_info` — получение метаданных таблицы;
    - `webtutor_get_object_info` — получение `TopElem.Xml` с идентификатором в строковом виде;
-   - `webtutor_run_agent_file` — прежний совместимый интерфейс для `agents/`; не выбирай его для новых тестов;
    - `webtutor_run_script_file` — согласованное выполнение файла по пути относительно проекта.
 5. Изучи полный ответ с полями `errors`, `logs`, `assertions` и `result`.
 6. Если конфигурация или Bridge недоступны, используй только резервный механизм, предусмотренный репозиторием того же клиента.
 
-`webtutor_run_agent_file` и `webtutor_run_script_file` могут выполнять бизнес-код и не являются операциями только для чтения. `webtutor_run_script_file` загружает `wvars` найденной карточки `server_agent` для `web/agents/*.js` и `web/server_agents/*.js`, но не для `tools/*.js`. Проверь возвращённый `result.agent_id`: пустой ID означает, что карточка не найдена и её `wvars` не загружены. Bridge выполняет файл через `EvalCodeUrl()` и не запускает рабочую карточку через `tools.start_agent()`; см. [тестирование агента](test-agent.md).
+`webtutor_run_script_file` может выполнять бизнес-код и не являются операциями только для чтения. `webtutor_run_script_file` загружает `wvars` найденной карточки `server_agent` для `web/server_agents/*.js`, но не для `tools/*.js`. Проверь возвращённый `result.agent_id`: пустой ID означает, что карточка не найдена и её `wvars` не загружены. Bridge выполняет файл через `EvalCodeUrl()` и не запускает рабочую карточку через `tools.start_agent()`; см. [тестирование агента](test-agent.md).
