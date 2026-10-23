@@ -66,8 +66,8 @@ function dictionary(xml) {
     return result;
 }
 
-// XMD may contain multi-line EXPR attributes with '>' inside quotes.
-// Do not split tags at every '>' or treat executable expressions as XML fields.
+// Атрибуты EXPR в XMD могут занимать несколько строк и содержать '>' внутри кавычек.
+// Не разделяйте теги по каждому '>' и не считайте исполняемые выражения XML-полями.
 function* tags(xml) {
     let i = 0;
     while ((i = xml.indexOf("<", i)) !== -1) {
