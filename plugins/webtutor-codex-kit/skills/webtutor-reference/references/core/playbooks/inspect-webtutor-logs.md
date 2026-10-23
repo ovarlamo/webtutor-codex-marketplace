@@ -6,28 +6,28 @@ verified_on:
 source: adapted-project-practice
 ---
 
-# Inspect WebTutor logs
+# Просмотр логов WebTutor
 
-Use logs after reproducing the exact failure when an HTTP handler returns 500 before JSON, the message is too general, or the failure crosses XQuery, SQL, or UniBridge.
+Изучай логи после воспроизведения конкретной ошибки, если HTTP-обработчик возвращает 500 до формирования JSON, сообщение об ошибке слишком общее или сбой затрагивает XQuery, SQL либо UniBridge.
 
-## Standard location and files
+## Стандартное расположение и файлы
 
-Resolve the WebTutor installation root from the current environment. The standard log directory is:
+Определи корневой каталог установки WebTutor по текущему окружению. Стандартный каталог логов:
 
 ```text
 <webtutor_install_root>\Logs
 ```
 
-Typical files are `xhttp_YYYY-MM-DD.log` for HTTP/ASP/SP-XML processing and `spxml_unibridge_YYYY-MM-DD.log` for generated queries, database exceptions, and UniBridge stacks. Select the newest matching file by `LastWriteTime`; do not guess today's filename because failures can cross midnight.
+Обычно используются файлы `xhttp_YYYY-MM-DD.log` для обработки HTTP/ASP/SP-XML и `spxml_unibridge_YYYY-MM-DD.log` для сформированных запросов, ошибок базы данных и стеков UniBridge. Выбирай самый новый подходящий файл по `LastWriteTime`, а не по предполагаемой сегодняшней дате: сбой может произойти около полуночи.
 
-## Procedure
+## Порядок действий
 
-1. Reproduce the original request or test.
-2. Read a small tail from the newest `xhttp_*.log`.
-3. If it mentions XQuery, SQL, UniBridge, or a database error, read the same time window in the newest `spxml_unibridge_*.log`.
-4. Correlate by timestamp and request identifier when present.
-5. Compare the logged query with the code that builds it; a diagnostic wrapper can change query validity.
-6. After a fix, repeat the original request and confirm that the new time window no longer contains the failure.
+1. Воспроизведи исходный запрос или тест.
+2. Прочитай небольшой фрагмент с конца самого нового файла `xhttp_*.log`.
+3. Если там упоминаются XQuery, SQL, UniBridge или ошибка базы данных, изучи тот же временной интервал в самом новом `spxml_unibridge_*.log`.
+4. Сопоставь события по времени и, если есть, идентификатору запроса.
+5. Сравни запрос из лога с кодом, который его формирует: диагностическая обёртка может влиять на корректность запроса.
+6. После исправления повтори исходный запрос и убедись, что в новом временном интервале ошибка больше не появляется.
 
 ```powershell
 $webTutorLogRoot = '<webtutor_install_root>\Logs'
@@ -41,4 +41,4 @@ Get-Content -LiteralPath $latestXhttpLog.FullName -Tail 150 -Encoding UTF8
 Get-Content -LiteralPath $latestUnibridgeLog.FullName -Tail 150 -Encoding UTF8
 ```
 
-Read the minimum needed range. Logs and SQL may contain personal data, parameters, tokens, and service details. A generic `unibridge error` is not a diagnosis without the actual query, underlying exception, or a reproducible test.
+Читай только необходимый фрагмент. Логи и SQL могут содержать персональные данные, параметры, токены и служебную информацию. Общее сообщение `unibridge error` не является диагнозом без реального запроса, исходного исключения или воспроизводимого теста.
