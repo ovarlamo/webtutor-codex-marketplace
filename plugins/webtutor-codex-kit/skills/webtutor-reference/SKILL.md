@@ -35,6 +35,20 @@ installed plugin path, search
 `rg`. Treat this only as a discovery fallback: follow the entry's
 `source_url` for any signature or behavior not present in the catalog.
 
+## Поиск по схеме объектов WebTutor
+
+Для уточнения русских названий, полей каталогов, XML-путей и `FOREIGN-ARRAY` используйте локальный индекс XMD:
+
+```powershell
+node scripts/search-schema.mjs "Дата приема"
+node scripts/search-schema.mjs --entity collaborator
+node scripts/search-schema.mjs --foreign collaborators
+```
+
+Пути к скрипту относительны установленного навыка. JSON-карточки находятся в `references/core/schema/entities/`; `index.json` содержит имена объектов, `enums.json` — значения системных списков. Это **снимок исходных XMD**, а не проверка физической схемы SQL текущей установки. Для SQL сверяйте столбцы с таблицами заказчика.
+
+Обновление снимка по локальному клону исходных XMD: `node scripts/generate-schema.mjs --source <путь-к-XMD-репозиторию>`. Снимок содержит SHA исходного коммита.
+
 ## Compatibility model
 
 - `references/core/` contains reusable rules and evidence-backed platform knowledge. A `verified_on` field records observed versions; it does not turn a core rule into a client override.
