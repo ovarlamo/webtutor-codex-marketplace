@@ -4,16 +4,16 @@ scope: universal-core
 source: adapted-project-practice
 ---
 
-# Active playbooks
+# Рабочие инструкции
 
-- [Test an agent](test-agent.md)
-- [Inspect a table](inspect-table.md)
-- [Inspect an XML object](inspect-xml-object.md)
-- [Inspect a system object](inspect-system-object.md)
-- [Verify report SQL](verify-report-sql.md)
-- [Debug a remote collection](debug-remote-collection.md)
-- [Inspect WebTutor logs](inspect-webtutor-logs.md)
-- [Capture reusable knowledge](capture-knowledge.md)
-- [Use the local MCP Bridge](use-local-bridge.md)
+- [Тестирование агента](test-agent.md)
+- [Исследование таблицы](inspect-table.md)
+- [Исследование XML-объекта](inspect-xml-object.md)
+- [Исследование системного объекта](inspect-system-object.md)
+- [Проверка SQL отчёта](verify-report-sql.md)
+- [Диагностика удалённой коллекции](debug-remote-collection.md)
+- [Просмотр логов WebTutor](inspect-webtutor-logs.md)
+- [Сохранение знаний для повторного использования](capture-knowledge.md)
+- [Работа с локальным MCP Bridge](use-local-bridge.md)
 
-Resolve every command, endpoint, and path through the current repository. The playbooks describe capabilities and stopping conditions; they do not create an endpoint or authorize access to production data.
+Команды, адреса и пути определяй по текущему репозиторию. Эти инструкции описывают доступные возможности и условия остановки работы; они не создают точки доступа и не дают разрешения обращаться к производственным данным.
