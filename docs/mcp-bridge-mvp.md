@@ -69,7 +69,7 @@ it derives the server-agent code from the file name. When a matching
 the compatible behavior of the existing local test harness. The Bridge does
 not call `tools.start_agent()`.
 
-`run_script_file` executes project-relative files, including `web/agents/*.js` and `tools/*.js`. It loads matching `server_agents` WVars only for paths starting with `web/agents/`; diagnostics in `tools/` execute without that lookup. This is for the trusted local WebTutor development instance; path restrictions have not been added. The legacy `run_agent_file` API remains supported.
+`run_script_file` executes project-relative files, including `web/agents/*.js`, `web/server_agents/*.js`, and `tools/*.js`. It loads matching `server_agents` WVars for paths starting with `web/agents/` or `web/server_agents/`; diagnostics in `tools/` execute without that lookup. Check nonempty `result.agent_id` to confirm that a matching server-agent card was found. Loaded WVars retain their stored string values, including JSON strings for multi-select fields. The editor layout, not `wvar.type` alone, determines the expected format. The Bridge executes code with `EvalCodeUrl()` rather than reproducing `server_agent.run_agent()` lifecycle, `OBJECT_ID`, or `OBJECTS_ID_STR`. This is for the trusted local WebTutor development instance; path restrictions have not been added. The legacy `run_agent_file` API remains supported.
 
 ## Pilot and fallback
 
