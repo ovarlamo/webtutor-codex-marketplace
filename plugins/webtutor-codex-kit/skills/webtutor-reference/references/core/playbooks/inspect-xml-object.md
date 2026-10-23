@@ -3,18 +3,14 @@ status: active
 scope: universal-core
 ---
 
-# Inspect an XML object
+# Исследование XML-объекта
 
-When the structure of a concrete WebTutor object is unknown, use
-`webtutor_get_object_info` with the absolute active workspace
-`project_root` if the active project contains `webtutor-codex.json`.
-Otherwise use the repository's read-only
-object-inspection capability. A common fallback command shape is:
+Если структура конкретного объекта WebTutor неизвестна и в активном проекте есть `webtutor-codex.json`, используй `webtutor_get_object_info`, передавая в `project_root` абсолютный путь к корневому каталогу активной рабочей области. В противном случае используй предусмотренный репозиторием механизм исследования объектов только для чтения. Типичный запасной вариант команды:
 
 ```powershell
 npm run get-object-info -- <object_id>
 ```
 
-Discover the actual command from repository instructions; do not assume this script or endpoint exists. Keep `<object_id>` as a string throughout the client and response.
+Найди реальную команду в инструкциях репозитория; не предполагай, что такой скрипт или точка доступа существуют. Сохраняй `<object_id>` как строку при передаче запроса и обработке ответа.
 
-Inspect the returned `TopElem.Xml` for the root name, exact child names, nesting, repeated elements, dynamic fields, and ID representation. Do not copy fields from a different object merely because it belongs to the same catalog. Then apply the [`XmlElem` child-access rules](../webtutor-reference/objects-and-globals.md#получение-дочерних-свойств-xmlelem).
+Изучи возвращённый `TopElem.Xml`: имя корневого элемента, точные имена дочерних элементов, вложенность, повторяющиеся элементы, динамические поля и представление идентификаторов. Не копируй структуру полей из другого объекта только на основании принадлежности к тому же каталогу. Затем применяй [правила обращения к дочерним элементам `XmlElem`](../webtutor-reference/objects-and-globals.md#получение-дочерних-свойств-xmlelem).
