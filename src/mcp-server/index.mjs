@@ -211,28 +211,10 @@ server.registerTool(
 );
 
 server.registerTool(
-  "webtutor_run_agent_file",
-  {
-    title: "Run a WebTutor agent file",
-    description: "Synchronously execute an agent file below the configured custom root's agents directory.",
-    inputSchema: {
-      project_root: projectRootSchema,
-      agent_path: z.string().min(1)
-    },
-    annotations: {
-      readOnlyHint: false,
-      destructiveHint: true,
-      openWorldHint: false
-    }
-  },
-  async ({ project_root, agent_path }) => toolResult(await callBridge("run_agent_file", project_root, { agent_path }))
-);
-
-server.registerTool(
   "webtutor_run_script_file",
   {
     title: "Run a WebTutor project script file",
-    description: "Synchronously execute a WebTutor script from a path relative to the active project root (for example web/agents/example.js or tools/inspect.js).",
+    description: "Synchronously execute a WebTutor script from a path relative to the active project root (for example web/server_agents/example.js or tools/inspect.js).",
     inputSchema: {
       project_root: projectRootSchema,
       relative_path: z.string().min(1)
