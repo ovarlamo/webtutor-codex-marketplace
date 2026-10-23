@@ -4,23 +4,23 @@ scope: universal-core
 source: adapted-project-practice
 ---
 
-# Capture reusable knowledge
+# Сохранение знаний для повторного использования
 
-Propose a knowledge update only when the behavior is non-obvious, the cause is established, the solution is reproducible, and the finding is likely to recur.
+Предлагай дополнение базы знаний только тогда, когда поведение неочевидно, причина установлена, решение воспроизводимо, а ситуация с высокой вероятностью повторится.
 
-Report before recording:
+Прежде чем сохранять знание, сообщи:
 
-- symptom;
-- established cause;
-- working solution;
-- evidence;
-- execution context and verified version boundaries.
+- симптом;
+- установленную причину;
+- работающее решение;
+- подтверждающие данные;
+- контекст выполнения и границы версий, на которых поведение проверено.
 
-Classify the destination:
+Определи место хранения:
 
-- portable platform fact or safety rule → plugin core;
-- behavior materially coupled to a WebTutor/UniBridge/runtime combination → version profile;
-- domain rule, client route, endpoint, credential, object ID, schema snapshot, or local command → repository overlay;
-- unresolved observation → explicit hypothesis or question, not a fact.
+- переносимый факт о платформе или правило безопасности → общая база плагина;
+- поведение, существенно зависящее от сочетания версий WebTutor/UniBridge/среды выполнения → профиль версии;
+- предметное правило, маршрут клиента, точка доступа, учётные данные, идентификатор объекта, снимок схемы или локальная команда → дополнительные материалы репозитория клиента;
+- наблюдение без установленной причины → явно обозначенная гипотеза или вопрос, а не факт.
 
-Do not write a durable fact without the authorization required by the current repository. Keep one canonical statement and link to it instead of duplicating it.
+Не сохраняй утверждение как установленный факт без разрешения, предусмотренного правилами текущего репозитория. Храни одно основное описание факта и ссылайся на него вместо дублирования.
