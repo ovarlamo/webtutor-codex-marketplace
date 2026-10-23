@@ -1,73 +1,41 @@
-# WebTutor Codex Marketplace
+# WebTutor Codex Marketplace — инструкции
 
-## Scope
+## Назначение
 
-This repository packages reusable, client-neutral Codex skills and a
-self-contained WebTutor reference core. Keep the plugin portable while
-requiring a local Codex executor for repository, terminal, and
-WebTutor-instance access.
+Репозиторий содержит универсальные навыки Codex и самостоятельную справочную базу WebTutor. Плагин должен оставаться переносимым; для доступа к репозиторию, терминалу и установленному WebTutor требуется локальный исполнитель Codex.
 
-## Boundaries
+## Границы ответственности
 
-- Keep client names, client-owned object IDs, endpoints, credentials, domain
-  knowledge, and business tests out of the marketplace and plugin. Public
-  catalog or documentation identifiers may be packaged when their source and
-  purpose are explicit.
-- Keep version-specific evidence explicit. A note may be part of the shared
-  core while retaining a narrow `verified_on` value; never generalize that
-  evidence to other WebTutor versions without a new verification.
-- Keep client repositories responsible for their own `AGENTS.md`, local
-  `webtutor-codex.json`, copied WebTutor Bridge, test commands, domain/project
-  documentation, and optional WebTutor version or project overlays. The
-  packaged reference core must remain usable without a repository-local
-  WebTutor reference.
-- Load a version profile only when the active WebTutor version exactly matches
-  that profile. If the version is unknown, continue with the universal core,
-  do not load a profile, and keep version-specific claims explicitly
-  unverified.
-- Version `0.2.x` includes one local stdio MCP server and one manually copied
-  WebTutor Bridge. Do not add registered apps, lifecycle hooks, automatic
-  client setup, authentication, or additional MCP tools without a separately
-  approved scope change.
-- Do not use undocumented WebTutor APIs or infer SP-XML behavior from
-  JavaScript semantics.
-- Use ASCII names for every file and directory shipped in the plugin.
-- If a future template creates executable WebTutor agent code, write it as
-  UTF-8 with BOM and verify the leading bytes are `EF BB BF`.
+- Не помещать в marketplace и плагин имена заказчиков, их идентификаторы объектов, адреса, учётные данные, предметную информацию и бизнес-тесты. Публичные идентификаторы из каталогов или документации допустимы при указании источника и назначения.
+- Сохранять точные границы подтверждения сведений по версиям. Наличие заметки в общей базе не расширяет область действия её `verified_on`.
+- Хранить `AGENTS.md`, `webtutor-codex.json`, копию Bridge, тестовые команды, предметную документацию и дополнительные материалы конкретной версии в клиентском репозитории. Универсальная база должна работать и без локального справочника.
+- Загружать профиль версии только при точном совпадении с установленной версией WebTutor. Если версия неизвестна, использовать общую базу, не подключая профиль, и отмечать непроверенные утверждения.
+- В ветке `0.2.x` предусмотрены локальный stdio MCP-сервер и вручную устанавливаемый Bridge. Не добавлять приложения, обработчики жизненного цикла, автоматическую настройку клиента, аутентификацию и дополнительные MCP-инструменты без отдельного согласования.
+- Не использовать недокументированные WebTutor API и не выводить поведение SP-XML по аналогии с JavaScript.
+- Использовать ASCII в именах файлов и каталогов плагина.
+- Если шаблон создаёт исполняемый код агента WebTutor, сохранять его в UTF-8 с BOM; проверять первые байты `EF BB BF`.
 
-## Package contract
+## Состав пакета
 
-- The portable manifest is
-  `plugins/webtutor-codex-kit/plugin.json`.
-- The portable MCP manifest is `plugins/webtutor-codex-kit/mcp.json`.
-- The packaged MCP runtime is
-  `plugins/webtutor-codex-kit/server/index.mjs`.
-- The local marketplace catalog is `.agents/plugins/marketplace.json`.
-- The plugin identity is `webtutor-codex-kit` and follows semantic versioning.
-- The catalog source is `./plugins/webtutor-codex-kit`, resolved from the
-  marketplace root.
-- `extensions.com.openai.requires_local_executor` must remain `true`.
-- Packaged skills live only under
-  `plugins/webtutor-codex-kit/skills/<skill-name>/`.
-- Skill-local references use paths below the owning skill. Optional project
-  overlays and domain/project documents are workspace-root capabilities, not
-  required dependencies and not links relative to the installed plugin cache.
+- Манифест плагина: `plugins/webtutor-codex-kit/plugin.json`.
+- Манифест MCP: `plugins/webtutor-codex-kit/mcp.json`.
+- Исполняемый MCP-сервер: `plugins/webtutor-codex-kit/server/index.mjs`.
+- Каталог локального marketplace: `.agents/plugins/marketplace.json`.
+- Имя плагина: `webtutor-codex-kit`; версия следует семантическому версионированию.
+- Источник в каталоге: `./plugins/webtutor-codex-kit`, относительно корня marketplace.
+- `extensions.com.openai.requires_local_executor` должен оставаться `true`.
+- Навыки плагина размещаются только в `plugins/webtutor-codex-kit/skills/<skill-name>/`.
+- Ссылки на материалы внутри навыка должны вести в его собственный каталог. Дополнительные материалы проекта и версии относятся к корню рабочей области, не являются обязательными зависимостями и не должны ссылаться через относительные переходы в кеш установленного плагина.
 
-## Change workflow
+## Порядок изменений
 
-1. Read `docs/migration-roadmap.md` and the affected plugin documentation.
-2. State the exact files and observable success criteria before writing.
-3. Make the smallest scoped change. Do not change client repositories as a
-   side effect of marketplace work.
-4. Propose the validation commands and obtain approval before running them.
-5. Record behavior-affecting changes in both applicable changelogs.
-6. Do not mark `0.2.0` release-ready until `npm run validate:release` and the
-   approved activation/boundary evaluations pass in a fresh conversation.
+1. Перед изменениями прочитать `docs/migration-roadmap.md` и относящуюся к задаче документацию плагина.
+2. Заранее указать точные файлы и проверяемые критерии успеха.
+3. Вносить минимальные изменения по задаче. Не менять клиентские репозитории попутно.
+4. Предложить команды проверки и получить разрешение до их запуска.
+5. Изменения поведения отражать в обоих относящихся к ним журналах изменений.
+6. Не считать выпуск готовым без `npm run validate:release` и согласованных проверок активации, границ и изоляции в новой беседе Codex.
 
-## Verification contract
+## Проверка
 
-Static validation alone does not prove that Codex discovers or activates the
-skills. A release requires an approved local-marketplace installation check,
-a fresh Codex conversation, activation and negative cases, and isolation
-checks in at least two client repositories. Report completed checks separately
-from checks that were not run.
+Статическая проверка не доказывает, что Codex обнаруживает и запускает навыки. Перед выпуском требуется согласованная проверка установки marketplace, новая беседа Codex, проверки активации и неактивации, а также изоляции как минимум двух клиентских проектов. Отдельно сообщать, что проверено, а что нет.
