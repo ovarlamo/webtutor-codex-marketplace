@@ -107,7 +107,8 @@ function runAgentFile(customRoot, agentPath)
 function runScriptFile(customRoot, relativePath)
 {
     var pathParts = String(relativePath).split("/");
-    var loadWvars = pathParts[0] == "web" && pathParts[1] == "agents";
+    var loadWvars = pathParts[0] == "web" &&
+        (pathParts[1] == "agents" || pathParts[1] == "server_agents");
     var codeUrl = "x-local://wt/web/" + customRoot + "/" + relativePath;
     return runCodeFile(codeUrl, relativePath, loadWvars);
 }
