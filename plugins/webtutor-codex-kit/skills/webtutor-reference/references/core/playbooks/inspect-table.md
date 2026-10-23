@@ -3,16 +3,12 @@ status: active
 scope: universal-core
 ---
 
-# Inspect a SQL table
+# Исследование SQL-таблицы
 
-When the active project contains `webtutor-codex.json`, prefer
-`webtutor_get_table_info` with the absolute active workspace
-`project_root`. Otherwise use the repository-declared read-only
-schema command before writing SQL when fields or types are unknown. A common
-fallback capability shape is:
+Если в активном проекте есть `webtutor-codex.json`, предпочитай `webtutor_get_table_info`, передавая в `project_root` абсолютный путь к корневому каталогу активной рабочей области. В противном случае, если поля или их типы неизвестны, перед написанием SQL используй предусмотренную репозиторием команду чтения схемы базы данных. Типичный запасной вариант:
 
 ```powershell
 npm run get-table-info -- table <table_name>
 ```
 
-Do not assume this exact script exists; discover it from repository instructions or package scripts. Request only metadata. Persist a schema snapshot in the client repository only when it will be reused, and record its command, source installation, and verification date. Never place client schema snapshots in plugin core.
+Не предполагай, что именно такой скрипт существует: найди реальную команду в инструкциях репозитория или в его пакетных скриптах. Запрашивай только метаданные. Сохраняй снимок схемы в репозитории клиента лишь тогда, когда он понадобится повторно, указывая команду, исходную установку WebTutor и дату проверки. Никогда не помещай снимки схем конкретного клиента в общую базу плагина.
