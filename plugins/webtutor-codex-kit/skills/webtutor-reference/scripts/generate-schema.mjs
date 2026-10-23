@@ -7,21 +7,22 @@ const schemaDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..
 const repository = "ovarlamo/webtutor-catalog-xmds";
 
 function args(argv) {
-    const opts = { source: "", revision: "", objects: ["collaborator", "course", "active_learning"] };
+    const opts = { source: "", revision: "", webtutorVersion: "", objects: ["collaborator", "course", "active_learning"] };
     for (let i = 0; i < argv.length; i += 1) {
         const key = argv[i];
         if (key === "--help") {
-            console.log("node scripts/generate-schema.mjs --source <путь-к-webtutor-catalog-xmds> [--revision <commit>] [--objects name,name]");
+            console.log("node scripts/generate-schema.mjs --source <путь-к-webtutor-catalog-xmds> [--revision <commit>] --webtutor-version <версия> [--objects name,name]");
             process.exit(0);
         }
-        if (!["--source", "--revision", "--objects"].includes(key) || !argv[i + 1])
+        if (!["--source", "--revision", "--webtutor-version", "--objects"].includes(key) || !argv[i + 1])
             throw new Error("Неизвестный параметр или отсутствует значение: " + key);
         const value = argv[++i];
         if (key === "--source") opts.source = path.resolve(value);
         if (key === "--revision") opts.revision = value;
+        if (key === "--webtutor-version") opts.webtutorVersion = value;
         if (key === "--objects") opts.objects = value.split(",").map(x => x.trim()).filter(Boolean);
     }
-    if (!opts.source || !opts.objects.length)
+    if (!opts.source || !opts.objects.length || !opts.webtutorVersion)
         throw new Error("Укажите --source и хотя бы один объект");
     if (opts.objects.some(x => !/^[a-z][a-z0-9_]*$/.test(x)))
         throw new Error("Недопустимое имя объекта");
@@ -173,7 +174,7 @@ async function main() {
             display_field: child(item[1], "disp_name")
         });
 
-    const source = { repository, commit: options.revision };
+    const source = { repository, commit: options.revision, webtutor_version: options.webtutorVersion };
     const entities = [], enums = new Set(), warnings = [];
     await fs.mkdir(path.join(schemaDir, "entities"), { recursive: true });
     for (const name of options.objects) {
