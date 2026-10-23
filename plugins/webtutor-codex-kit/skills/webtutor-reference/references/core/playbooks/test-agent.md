@@ -3,16 +3,14 @@ status: active
 scope: universal-core
 ---
 
-# Test a WebTutor agent
+# Тестирование агента WebTutor
 
-1. Read the client repository's instructions and package scripts.
-2. Identify the exact registered or file-based agent test and its execution mode.
-3. State observable success criteria and obtain any verification approval required by the repository.
-4. If `webtutor-codex.json` exists and synchronous file execution is intended,
-   use `webtutor_run_agent_file`; otherwise run the repository-declared test
-   without changing its endpoint.
-5. On failure, inspect the complete JSON response, including `errors`, logs, assertions, and result.
-6. Change only the in-scope agent or dependency, then rerun the same test.
-7. Treat a queued/background start as incomplete until the repository-defined logs, data, or `last_run_date` prove completion.
+1. Прочитай инструкции и пакетные скрипты клиентского репозитория.
+2. Определи конкретный тест зарегистрированного агента или агента, запускаемого из файла, и способ его выполнения.
+3. Укажи наблюдаемые критерии успеха и получи согласование проверок, если этого требуют правила репозитория.
+4. Если существует `webtutor-codex.json` и требуется синхронный запуск файла, используй `webtutor_run_agent_file`; иначе выполняй тест, предусмотренный репозиторием, без изменения его точки доступа.
+5. При ошибке изучи полный JSON-ответ, включая `errors`, логи, результаты проверок и результат выполнения.
+6. Изменяй только агента или зависимость в пределах задачи, затем повтори тот же тест.
+7. Считай фоновый или поставленный в очередь запуск незавершённым, пока логи, данные или `last_run_date`, предусмотренные репозиторием, не подтвердят завершение.
 
-A repository may expose `npm run test:wt-agent` or a more specific `test:*`, but plugin core does not assume either exists. Registered-agent IDs, `script_path`, `env`, base URL, custom web root, and diagnostic endpoint are client capabilities that must come from the repository. Keep IDs as strings and do not switch a production agent's code source merely to test it.
+Репозиторий может предоставлять команду `npm run test:wt-agent` или более специализированную `test:*`, но общая база плагина не предполагает их наличия. Идентификаторы зарегистрированных агентов, `script_path`, `env`, базовый URL, корень пользовательского веб-каталога и диагностическая точка доступа должны определяться из клиентского репозитория. Сохраняй идентификаторы в строковом виде и не меняй источник кода рабочего агента исключительно ради тестирования.
