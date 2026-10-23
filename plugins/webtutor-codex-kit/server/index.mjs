@@ -21556,8 +21556,8 @@ var StdioServerTransport = class {
 
 // src/mcp-server/index.mjs
 var SERVER_NAME = "webtutor-codex-kit";
-var SERVER_VERSION = "0.2.2";
-var BRIDGE_VERSION = "1.1.0";
+var SERVER_VERSION = "0.2.3";
+var BRIDGE_VERSION = "1.2.0";
 var CONFIG_FILE = "webtutor-codex.json";
 var REQUEST_TIMEOUT_MS = 1e4;
 async function fileExists(filePath) {
