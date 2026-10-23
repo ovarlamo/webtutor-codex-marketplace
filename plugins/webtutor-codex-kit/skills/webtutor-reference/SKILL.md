@@ -47,7 +47,13 @@ node scripts/search-schema.mjs --foreign collaborators
 
 Пути к скрипту относительны установленного навыка. JSON-карточки находятся в `references/core/schema/entities/`; `index.json` содержит имена объектов, `enums.json` — значения системных списков. Это **снимок исходных XMD**, а не проверка физической схемы SQL текущей установки. Для SQL сверяйте столбцы с таблицами заказчика.
 
-Обновление снимка по локальному клону исходных XMD: `node scripts/generate-schema.mjs --source <путь-к-XMD-репозиторию>`. Снимок содержит SHA исходного коммита.
+Обновление снимка по локальному клону исходных XMD: `node scripts/generate-schema.mjs --source <путь-к-XMD-репозиторию> --webtutor-version 2025.2.1403`. Снимок содержит SHA исходного коммита.
+
+## Поиск методов WebTutor
+
+В `references/core/operations/index.json` находятся имена и параметры методов из `wtv_tools.xml`, `wtv_tools_web.xml` и `ms_tools.xml`. Карточки с изученным поведением находятся в `references/core/operations/tools/`. Для поиска используйте `node scripts/search-operations.mjs "назначить курс"` либо точное имя метода. Все эти сведения извлечены из исходников WebTutor **2025.2.1403**; другие версии требуют отдельной проверки. SHA коммита источника сохранён отдельно.
+
+Для обновления: `node scripts/generate-operations.mjs --source <путь-к-XMD-репозиторию> --webtutor-version 2025.2.1403`.
 
 ## Compatibility model
 
