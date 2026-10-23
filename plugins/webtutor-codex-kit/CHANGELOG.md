@@ -2,6 +2,12 @@
 
 ## [0.2.2] - Unreleased
 
+### Added — XMD prototype
+
+- Bundle searchable XMD-derived cards for collaborator, course and active_learning, including catalog/document fields, Russian captions, declared foreign arrays, and system enums.
+- Add a local offline generator and schema search script under webtutor-reference; SQL physical structures still require target-instance verification.
+
+
 ### Fixed
 
 - Require an explicit absolute `project_root` on every MCP tool call instead
