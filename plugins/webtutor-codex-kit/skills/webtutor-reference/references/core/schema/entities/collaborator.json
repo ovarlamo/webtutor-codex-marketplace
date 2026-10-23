@@ -6,7 +6,8 @@
   "display_field": "fullname",
   "source": {
     "repository": "ovarlamo/webtutor-catalog-xmds",
-    "commit": "90b2514895f20589a3ba7477783e5d2051859ee5"
+    "commit": "90b2514895f20589a3ba7477783e5d2051859ee5",
+    "webtutor_version": "2025.2.1403"
   },
   "document": {
     "table": "collaborator",
