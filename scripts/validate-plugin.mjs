@@ -9,7 +9,7 @@ const errors = [];
 const warnings = [];
 
 const expectedPluginName = "webtutor-codex-kit";
-const expectedVersion = "0.2.2";
+const expectedVersion = "0.2.3";
 const expectedSourcePath = "./plugins/webtutor-codex-kit";
 const expectedSkills = [
   "setup",
