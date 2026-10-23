@@ -5,6 +5,16 @@ separately in `plugins/webtutor-codex-kit/CHANGELOG.md`.
 
 ## [Unreleased]
 
+### Добавлено — справочник операций WebTutor
+
+- Проиндексированы 688 методов из трёх XML-библиотек WebTutor 2025.2.1403; добавлены две карточки операций, генератор и поиск по назначению метода. Версия WebTutor и SHA исходников сохраняются раздельно.
+
+
+### Добавлено — прототип справочника XMD
+
+- Добавлены JSON-карточки трёх типов объектов WebTutor с привязкой к коммиту исходных XMD, системные перечисления, автономный генератор из XMD и локальный поиск по схеме. Новых MCP-инструментов нет.
+
+
 ### Changed in 0.2.3
 
 - Release the `server_agents` variable-loading and `Param` knowledge improvements in the Bridge and Codex playbooks.

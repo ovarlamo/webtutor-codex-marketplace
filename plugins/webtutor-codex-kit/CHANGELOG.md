@@ -2,6 +2,18 @@
 
 ## [0.2.3] - Unreleased
 
+### Добавлено — методы WebTutor
+
+- Поисковый индекс 688 методов из `wtv_tools.xml`, `wtv_tools_web.xml` и `ms_tools.xml`, а также карточки `tools.activate_course_to_person` и `tools.create_notification`.
+- Скрипты `generate-operations.mjs` и `search-operations.mjs`. При генерации схем и методов версия WebTutor указывается явно параметром `--webtutor-version`; существующий снимок помечен `2025.2.1403`.
+
+
+### Добавлено — прототип справочника XMD
+
+- Добавлены поисковые JSON-карточки `collaborator`, `course` и `active_learning`, сформированные из XMD: поля каталогов и XML-документов, русские названия, связи `FOREIGN-ARRAY` и системные перечисления.
+- В `webtutor-reference` добавлены локальный генератор и скрипт поиска по схеме. Физическую структуру SQL по-прежнему необходимо проверять на целевой установке WebTutor.
+
+
 ### Changed
 
 - Standardize server-agent file testing on `web/server_agents/*.js` with `webtutor_run_script_file`; continue supporting diagnostic scripts in `tools/` without automatic `wvars` injection.

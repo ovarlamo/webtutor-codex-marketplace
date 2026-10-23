@@ -1,0 +1,40 @@
+{
+  "name": "tools.activate_course_to_person",
+  "title": "Назначить электронный курс сотруднику",
+  "keywords": [
+    "назначить курс",
+    "назначение обучения",
+    "электронный курс сотруднику"
+  ],
+  "source": {
+    "repository": "ovarlamo/webtutor-catalog-xmds",
+    "commit": "00ceb394f1b22aabd6b10b17e3791f68e6285e30",
+    "file": "wtv_tools.xml",
+    "line": 2701,
+    "webtutor_version": "2025.2.1403"
+  },
+  "related_objects": [
+    "collaborator",
+    "course",
+    "active_learning",
+    "learning"
+  ],
+  "usage": [
+    "tools.activate_course_to_person(person_id, course_id)",
+    "tools.activate_course_to_person({ iPersonID: person_id, iCourseID: course_id, bSendNotification: false })"
+  ],
+  "behavior": [
+    "В объектной форме принимает iPersonID, iCourseID и bSendNotification; по умолчанию bSendNotification=true.",
+    "До создания нового назначения ищет существующее назначение в active_learnings по person_id и course_id (дополнительно по code, если передан sEID); при совпадении возвращает ID существующего назначения.",
+    "При переданном dtLastLearningDate проверяет предыдущие learnings с last_usage_date позже указанной даты; bMissOnlySuccessLearning=true ограничивает эту проверку state_id=4.",
+    "При создании формирует и сохраняет документ active_learning; затем может вызвать pay_courses, создать стандартные уведомления и инициирует событие common_activate_course.",
+    "Стандартные уведомления создаются только при !courseDoc.not_use_default_notification && bSendNotification.",
+    "Возвращает ID для найденного active_learning или подходящего learning, null при bSkipDismissed и уволенном сотруднике, а при новом назначении — объект docLearning."
+  ],
+  "caveats": [
+    "Проверка предыдущего результата по last_usage_date не доказывает, что это дата завершения курса.",
+    "Возвращаемое значение имеет несколько типов; не следует без проверки обращаться к DocID.",
+    "Данные основаны на реализации XML-библиотеки и пока не проверены исполнением на целевой версии WebTutor."
+  ],
+  "evidence": "source-code-inspected"
+}

@@ -1,0 +1,842 @@
+{
+  "schema_version": 1,
+  "name": "active_learning",
+  "title": "Незаконченный электронный курс",
+  "web_title": "Незаконченные электронные курсы",
+  "display_field": "person_fullname",
+  "source": {
+    "repository": "ovarlamo/webtutor-catalog-xmds",
+    "commit": "90b2514895f20589a3ba7477783e5d2051859ee5",
+    "webtutor_version": "2025.2.1403"
+  },
+  "document": {
+    "table": "active_learning",
+    "form": "wtv_active_learning.xmd",
+    "fields": [
+      {
+        "path": "code",
+        "name": "code",
+        "title": "Код",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "name",
+        "name": "name",
+        "title": "Название",
+        "type": null,
+        "foreign_array": null,
+        "multiple": false,
+        "computed": true,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "course_id",
+        "name": "course_id",
+        "title": "Электронный курс",
+        "type": "integer",
+        "foreign_array": "courses",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "course_name",
+        "name": "course_name",
+        "title": "Название курса",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "course_code",
+        "name": "course_code",
+        "title": "Код курса",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "person_id",
+        "name": "person_id",
+        "title": "Сотрудник",
+        "type": "integer",
+        "foreign_array": "collaborators",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "person_current_state",
+        "name": "person_current_state",
+        "title": "Текущее состояние сотрудника",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "event_id",
+        "name": "event_id",
+        "title": "Мероприятие",
+        "type": "integer",
+        "foreign_array": "DefaultDb.GetOptCatalog('events')",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "event_name",
+        "name": "event_name",
+        "title": "Название мероприятия",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "event_start_date",
+        "name": "event_start_date",
+        "title": "Дата начала мероприятия",
+        "type": "date",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "group_id",
+        "name": "group_id",
+        "title": "Группа",
+        "type": "integer",
+        "foreign_array": "groups",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "start_usage_date",
+        "name": "start_usage_date",
+        "title": "Дата активации",
+        "type": "date",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "start_learning_date",
+        "name": "start_learning_date",
+        "title": "Дата начала обучения",
+        "type": "date",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "is_self_enrolled",
+        "name": "is_self_enrolled",
+        "title": "Назначен самостоятельно",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "duration",
+        "name": "duration",
+        "title": "Продолжительность",
+        "type": "integer",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "max_end_date",
+        "name": "max_end_date",
+        "title": "Дата планир. завершения",
+        "type": "date",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "attempts_num",
+        "name": "attempts_num",
+        "title": "Количество попыток",
+        "type": "integer",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "base_url",
+        "name": "base_url",
+        "title": "Базовый url",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "education_plan_id",
+        "name": "education_plan_id",
+        "title": "План обучения",
+        "type": "integer",
+        "foreign_array": "education_plans",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "parts.part",
+        "name": "part",
+        "title": null,
+        "type": null,
+        "foreign_array": null,
+        "multiple": true,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "parts.part.is_mandatory",
+        "name": "is_mandatory",
+        "title": "Обязательный раздел",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "parts.part.score_factor",
+        "name": "score_factor",
+        "title": "Коэффициент итоговой оценки",
+        "type": "real",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "parts.part.dynamic_status",
+        "name": "dynamic_status",
+        "title": null,
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "events.event",
+        "name": "event",
+        "title": null,
+        "type": null,
+        "foreign_array": null,
+        "multiple": true,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "events.event.event_id",
+        "name": "event_id",
+        "title": "Мероприятие",
+        "type": "integer",
+        "foreign_array": "events",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "events.event.score",
+        "name": "score",
+        "title": "Баллы",
+        "type": "real",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "last_usage_part_code",
+        "name": "last_usage_part_code",
+        "title": "Код раздела последнего посещения",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "last_usage_date",
+        "name": "last_usage_date",
+        "title": "Дата последнего посещ.",
+        "type": "date",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "score_sum_eval",
+        "name": "score_sum_eval",
+        "title": "Формула итоговой оценки",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "score",
+        "name": "score",
+        "title": "Баллы",
+        "type": "real",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "calc_score",
+        "name": "calc_score",
+        "title": "Баллы",
+        "type": null,
+        "foreign_array": null,
+        "multiple": false,
+        "computed": true,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "state_id",
+        "name": "state_id",
+        "title": "Состояние",
+        "type": "integer",
+        "foreign_array": "common.learning_states",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "time",
+        "name": "time",
+        "title": "Время модулей",
+        "type": "integer",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "calc_max_end_date",
+        "name": "calc_max_end_date",
+        "title": null,
+        "type": null,
+        "foreign_array": null,
+        "multiple": false,
+        "computed": true,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "no_encoding_core_lesson",
+        "name": "no_encoding_core_lesson",
+        "title": "Не кодировать данные курса",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "logging",
+        "name": "logging",
+        "title": "Логгирование прохождения курса",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "commenting",
+        "name": "commenting",
+        "title": "Комментирование",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "use_proctoring",
+        "name": "use_proctoring",
+        "title": "##'Использовать прокторинг'##",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "device_disp_type",
+        "name": "device_disp_type",
+        "title": "Тип устройства",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "comment",
+        "name": "comment",
+        "title": "Комментарий",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "doc_info",
+        "name": "doc_info",
+        "title": "Об объекте",
+        "type": "doc_info_base",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "view.old_course_id",
+        "name": "old_course_id",
+        "title": null,
+        "type": "integer",
+        "foreign_array": "courses",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "view.old_person_id",
+        "name": "old_person_id",
+        "title": null,
+        "type": "integer",
+        "foreign_array": "collaborators",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "view.never_saved",
+        "name": "never_saved",
+        "title": null,
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "view.part_index",
+        "name": "part_index",
+        "title": null,
+        "type": "integer",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "view.course_object",
+        "name": "course_object",
+        "title": null,
+        "type": "variant",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "view.result_tab_selector",
+        "name": "result_tab_selector",
+        "title": null,
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "complete_course",
+        "name": "complete_course",
+        "title": null,
+        "type": null,
+        "foreign_array": null,
+        "multiple": false,
+        "computed": true,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "update_add_data",
+        "name": "update_add_data",
+        "title": null,
+        "type": null,
+        "foreign_array": null,
+        "multiple": false,
+        "computed": true,
+        "indexed_in_xmd": false
+      }
+    ],
+    "inherits": [
+      {
+        "path": "INHERIT",
+        "type": "person_filling_base"
+      },
+      {
+        "path": "INHERIT",
+        "type": "admin_access_base"
+      },
+      {
+        "path": "parts.part.INHERIT",
+        "type": "learning_part_base"
+      },
+      {
+        "path": "parts.part.INHERIT",
+        "type": "learning_current_state_base"
+      },
+      {
+        "path": "INHERIT",
+        "type": "custom_elems_base"
+      }
+    ]
+  },
+  "catalog": {
+    "table": "active_learnings",
+    "form": "wtv_active_learnings.xmd",
+    "fields": [
+      {
+        "path": "id",
+        "name": "id",
+        "title": "ID",
+        "type": "integer",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": true
+      },
+      {
+        "path": "code",
+        "name": "code",
+        "title": "Код",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "course_id",
+        "name": "course_id",
+        "title": "Электронный курс",
+        "type": "integer",
+        "foreign_array": "courses",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": true
+      },
+      {
+        "path": "course_name",
+        "name": "course_name",
+        "title": "Название курса",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "person_id",
+        "name": "person_id",
+        "title": "Сотрудник",
+        "type": "integer",
+        "foreign_array": "collaborators",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": true
+      },
+      {
+        "path": "person_fullname",
+        "name": "person_fullname",
+        "title": "ФИО сотрудника",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": true
+      },
+      {
+        "path": "person_position_name",
+        "name": "person_position_name",
+        "title": "Должность",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "person_org_name",
+        "name": "person_org_name",
+        "title": "Организация",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": true
+      },
+      {
+        "path": "person_subdivision_name",
+        "name": "person_subdivision_name",
+        "title": "Подразделение",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "person_instance_id",
+        "name": "person_instance_id",
+        "title": "Код сервера сотрудника",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "person_current_state",
+        "name": "person_current_state",
+        "title": "Текущее состояние сотрудника",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": true
+      },
+      {
+        "path": "event_id",
+        "name": "event_id",
+        "title": "Мероприятие",
+        "type": "integer",
+        "foreign_array": "events",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "event_name",
+        "name": "event_name",
+        "title": "Название мероприятия",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": true
+      },
+      {
+        "path": "event_start_date",
+        "name": "event_start_date",
+        "title": "Дата начала мероприятия",
+        "type": "date",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "group_id",
+        "name": "group_id",
+        "title": "Группа",
+        "type": "integer",
+        "foreign_array": "groups",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": true
+      },
+      {
+        "path": "start_usage_date",
+        "name": "start_usage_date",
+        "title": "Дата активации",
+        "type": "date",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": true
+      },
+      {
+        "path": "start_learning_date",
+        "name": "start_learning_date",
+        "title": "Дата начала обучения",
+        "type": "date",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": true
+      },
+      {
+        "path": "last_usage_date",
+        "name": "last_usage_date",
+        "title": "Дата последнего посещ.",
+        "type": "date",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": true
+      },
+      {
+        "path": "last_usage_part_code",
+        "name": "last_usage_part_code",
+        "title": "Название последней просмотренной части курса",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "max_end_date",
+        "name": "max_end_date",
+        "title": "Дата планир. завершения",
+        "type": "date",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": true
+      },
+      {
+        "path": "score",
+        "name": "score",
+        "title": "Баллы",
+        "type": "real",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": true
+      },
+      {
+        "path": "state_id",
+        "name": "state_id",
+        "title": "Состояние",
+        "type": "integer",
+        "foreign_array": "common.learning_states",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": true
+      },
+      {
+        "path": "time",
+        "name": "time",
+        "title": "Время модулей",
+        "type": "integer",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "education_plan_id",
+        "name": "education_plan_id",
+        "title": "План обучения",
+        "type": "integer",
+        "foreign_array": "education_plans",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "creation_date",
+        "name": "creation_date",
+        "title": "Дата создания",
+        "type": "date",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": true
+      },
+      {
+        "path": "creation_user_id",
+        "name": "creation_user_id",
+        "title": "Пользователь",
+        "type": "integer",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "modification_date",
+        "name": "modification_date",
+        "title": "Дата модификации",
+        "type": "date",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": true
+      },
+      {
+        "path": "modification_user_id",
+        "name": "modification_user_id",
+        "title": "Пользователь",
+        "type": "integer",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "app_instance_id",
+        "name": "app_instance_id",
+        "title": "Код сервера",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "use_proctoring",
+        "name": "use_proctoring",
+        "title": "##'Использовать прокторинг'##",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      }
+    ],
+    "inherits": [
+      {
+        "path": "INHERIT",
+        "type": "admin_access_base"
+      }
+    ]
+  }
+}
