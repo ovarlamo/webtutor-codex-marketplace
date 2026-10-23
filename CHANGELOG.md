@@ -5,6 +5,11 @@ separately in `plugins/webtutor-codex-kit/CHANGELOG.md`.
 
 ## [Unreleased]
 
+### Added — XMD prototype
+
+- Add source-pinned JSON cards for three WebTutor object types, common enumerations, an offline XMD generator, and a local schema search helper. No new MCP tools.
+
+
 ### Fixed in 0.2.2
 
 - Replace unreliable inherited-CWD client discovery with an explicit absolute
