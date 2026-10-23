@@ -51,7 +51,7 @@ Every response contains:
 ```json
 {
   "ok": true,
-  "bridge_version": "1.0.0",
+  "bridge_version": "1.2.0",
   "errors": [],
   "logs": [],
   "assertions": [],
