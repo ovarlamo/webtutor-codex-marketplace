@@ -1,0 +1,1788 @@
+{
+  "schema_version": 1,
+  "name": "collaborator",
+  "title": "Сотрудник",
+  "web_title": "Сотрудники",
+  "display_field": "fullname",
+  "source": {
+    "repository": "ovarlamo/webtutor-catalog-xmds",
+    "commit": "90b2514895f20589a3ba7477783e5d2051859ee5"
+  },
+  "document": {
+    "table": "collaborator",
+    "form": "wtv_collaborator.xmd",
+    "fields": [
+      {
+        "path": "id",
+        "name": "id",
+        "title": "ID",
+        "type": "integer",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "code",
+        "name": "code",
+        "title": "Код",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "eid",
+        "name": "eid",
+        "title": "Внешний ID",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "name",
+        "name": "name",
+        "title": "ФИО",
+        "type": null,
+        "foreign_array": null,
+        "multiple": false,
+        "computed": true,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "position_id",
+        "name": "position_id",
+        "title": "Должность",
+        "type": "integer",
+        "foreign_array": "positions",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "position_name",
+        "name": "position_name",
+        "title": "Название должности",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "position_parent_id",
+        "name": "position_parent_id",
+        "title": "Подразделение",
+        "type": "integer",
+        "foreign_array": "subdivisions",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "position_parent_name",
+        "name": "position_parent_name",
+        "title": "Название подразделения",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "org_id",
+        "name": "org_id",
+        "title": "Организация",
+        "type": "integer",
+        "foreign_array": "orgs",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "org_name",
+        "name": "org_name",
+        "title": "Название организации",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "change_password",
+        "name": "change_password",
+        "title": "Сменить пароль при первом входе",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "is_candidate",
+        "name": "is_candidate",
+        "title": "Является кандидатом",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "is_outstaff",
+        "name": "is_outstaff",
+        "title": "Является временным",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "candidate_status_type_id",
+        "name": "candidate_status_type_id",
+        "title": "Статус кандидата",
+        "type": "integer",
+        "foreign_array": "candidate_status_types",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "candidate_id",
+        "name": "candidate_id",
+        "title": "Кандидат",
+        "type": "integer",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "is_dismiss",
+        "name": "is_dismiss",
+        "title": "Является уволенным",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "hire_date",
+        "name": "hire_date",
+        "title": "Дата приема",
+        "type": "date",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "dismiss_date",
+        "name": "dismiss_date",
+        "title": "Дата увольнения",
+        "type": "date",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "position_date",
+        "name": "position_date",
+        "title": "Дата вступления в должность",
+        "type": "date",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "in_request_black_list",
+        "name": "in_request_black_list",
+        "title": "В \"черном списке\" на подачу заявок",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "request_black_list_data",
+        "name": "request_black_list_data",
+        "title": "Дата включения в \"черный список\"",
+        "type": "date",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "request_black_list_comment",
+        "name": "request_black_list_comment",
+        "title": "Комментарий включения в \"черный список\"",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "place_id",
+        "name": "place_id",
+        "title": "Расположение",
+        "type": "integer",
+        "foreign_array": "places",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "region_id",
+        "name": "region_id",
+        "title": "Регион",
+        "type": "integer",
+        "foreign_array": "regions",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "cost_center_id",
+        "name": "cost_center_id",
+        "title": "Должность",
+        "type": "integer",
+        "foreign_array": "cost_centers",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "lng_id",
+        "name": "lng_id",
+        "title": "Язык веб интерфейса",
+        "type": "string",
+        "foreign_array": "tools.get_list_lngs()",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "location_id",
+        "name": "location_id",
+        "title": "Расположение файлов учебных материалов",
+        "type": "string",
+        "foreign_array": "lists.locations",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "pict_url",
+        "name": "pict_url",
+        "title": "URL к файлу фотографии",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "access_time_start",
+        "name": "access_time_start",
+        "title": "Время доступа с",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "access_time_end",
+        "name": "access_time_end",
+        "title": "Время доступа по",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "is_time_access",
+        "name": "is_time_access",
+        "title": null,
+        "type": null,
+        "foreign_array": null,
+        "multiple": false,
+        "computed": true,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "desc",
+        "name": "desc",
+        "title": "Описание",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "disp_empty_fields",
+        "name": "disp_empty_fields",
+        "title": "Отображать незаполненные поля",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "disp_personal_info",
+        "name": "disp_personal_info",
+        "title": "Отображать контактную информацию и фото",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "disp_login",
+        "name": "disp_login",
+        "title": "Отображать логин",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "disp_sex",
+        "name": "disp_sex",
+        "title": "Отображать пол",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "disp_desc",
+        "name": "disp_desc",
+        "title": "Отображать описание",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "disp_files",
+        "name": "disp_files",
+        "title": "Отображать файлы",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "disp_birthdate",
+        "name": "disp_birthdate",
+        "title": "Отображать дату рождения",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "disp_birthdate_year",
+        "name": "disp_birthdate_year",
+        "title": "Отображать год рождения",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "disp_resume",
+        "name": "disp_resume",
+        "title": "Отображать резюме",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "allow_personal_chat_request",
+        "name": "allow_personal_chat_request",
+        "title": "Разрешить приглашение пользователя к общению",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "personal_chat_confirmation_required",
+        "name": "personal_chat_confirmation_required",
+        "title": "Для общения в персональном чате требуется подтверждение",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "development_potential_id",
+        "name": "development_potential_id",
+        "title": null,
+        "type": "integer",
+        "foreign_array": "development_potentials",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "efficiency_estimation_id",
+        "name": "efficiency_estimation_id",
+        "title": "Оценка эффективности",
+        "type": "integer",
+        "foreign_array": "efficiency_estimations",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "web_enter_date",
+        "name": "web_enter_date",
+        "title": "Дата первого входа на портал",
+        "type": "date",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "category_id",
+        "name": "category_id",
+        "title": "Категория",
+        "type": "string",
+        "foreign_array": "categorys",
+        "multiple": true,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "change_logs.change_log",
+        "name": "change_log",
+        "title": null,
+        "type": null,
+        "foreign_array": null,
+        "multiple": true,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "change_logs.change_log.id",
+        "name": "id",
+        "title": "ID",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "change_logs.change_log.position_id",
+        "name": "position_id",
+        "title": "Должность",
+        "type": "integer",
+        "foreign_array": "positions",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "change_logs.change_log.position_name",
+        "name": "position_name",
+        "title": "Название должности",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "change_logs.change_log.position_parent_id",
+        "name": "position_parent_id",
+        "title": "Подразделение",
+        "type": "integer",
+        "foreign_array": "subdivisions",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "change_logs.change_log.position_parent_name",
+        "name": "position_parent_name",
+        "title": "Название подразделения",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "change_logs.change_log.org_id",
+        "name": "org_id",
+        "title": "Организация",
+        "type": "integer",
+        "foreign_array": "orgs",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "change_logs.change_log.org_name",
+        "name": "org_name",
+        "title": "Название организации",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "change_logs.change_log.date",
+        "name": "date",
+        "title": "Дата",
+        "type": "date",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "change_logs.change_log.comment",
+        "name": "comment",
+        "title": "Комментарий",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "change_logs.change_log.start_date",
+        "name": "start_date",
+        "title": "Дата начала",
+        "type": "date",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "change_logs.change_log.finish_date",
+        "name": "finish_date",
+        "title": "Дата завершения",
+        "type": "date",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "change_logs.change_log.working_days",
+        "name": "working_days",
+        "title": "Общее время отработки в днях",
+        "type": "integer",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "change_logs.change_log.working_hours",
+        "name": "working_hours",
+        "title": "Общее время отработки в часах",
+        "type": "integer",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "change_logs.change_log.rate",
+        "name": "rate",
+        "title": "Ставка",
+        "type": "real",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "change_logs.change_log.rate_percent",
+        "name": "rate_percent",
+        "title": "Процент ставки",
+        "type": "real",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "current_state",
+        "name": "current_state",
+        "title": "Текущее состояние",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "history_states.history_state",
+        "name": "history_state",
+        "title": null,
+        "type": null,
+        "foreign_array": null,
+        "multiple": true,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "history_states.history_state.id",
+        "name": "id",
+        "title": "ID",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "history_states.history_state.state_id",
+        "name": "state_id",
+        "title": "Состояние",
+        "type": "string",
+        "foreign_array": "lists.person_states",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "history_states.history_state.start_date",
+        "name": "start_date",
+        "title": "Дата начала",
+        "type": "date",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "history_states.history_state.finish_date",
+        "name": "finish_date",
+        "title": "Дата завершения",
+        "type": "date",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "history_states.history_state.comment",
+        "name": "comment",
+        "title": "Комментарий",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "personal_config.avatar_filename",
+        "name": "avatar_filename",
+        "title": "URL аватара (относительно [Server]/wt/web/avatars)",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "personal_config.nick",
+        "name": "nick",
+        "title": "Псевдоним",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "personal_config.status",
+        "name": "status",
+        "title": "Статус",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "personal_config.default_info_type",
+        "name": "default_info_type",
+        "title": "Как отображать автора",
+        "type": "string",
+        "foreign_array": "common.forum_person_info_types",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "doc_info",
+        "name": "doc_info",
+        "title": null,
+        "type": "doc_info_base",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "last_import_date",
+        "name": "last_import_date",
+        "title": "Дата последнего импорта",
+        "type": "date",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "custom_params.custom_param",
+        "name": "custom_param",
+        "title": "Параметр",
+        "type": null,
+        "foreign_array": null,
+        "multiple": true,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "custom_params.custom_param.name",
+        "name": "name",
+        "title": "Название",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "custom_params.custom_param.value",
+        "name": "value",
+        "title": "Значение",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "level_id",
+        "name": "level_id",
+        "title": "Уровень",
+        "type": "integer",
+        "foreign_array": "levels",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "comp_ben.salary",
+        "name": "salary",
+        "title": "Зарплата",
+        "type": "integer",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "comp_ben.currency_type_id",
+        "name": "currency_type_id",
+        "title": "Валюта",
+        "type": "string",
+        "foreign_array": "lists.currency_types",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "comp_ben.payment_period",
+        "name": "payment_period",
+        "title": "Период выплаты",
+        "type": "string",
+        "foreign_array": "common.perioditys",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "comp_ben.comment",
+        "name": "comment",
+        "title": "Комментарий",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "comp_ben.payment_types.payment_type",
+        "name": "payment_type",
+        "title": null,
+        "type": null,
+        "foreign_array": null,
+        "multiple": true,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "comp_ben.payment_types.payment_type.payment_type_id",
+        "name": "payment_type_id",
+        "title": "Тип выплат",
+        "type": "integer",
+        "foreign_array": "DefaultDb.GetOptCatalog( 'payment_types' )",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "comp_ben.payment_types.payment_type.max_value",
+        "name": "max_value",
+        "title": "Максимальное значение",
+        "type": "real",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "comp_ben.payment_types.payment_type.comment",
+        "name": "comment",
+        "title": "Комментарий",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "gdpr",
+        "name": "gdpr",
+        "title": "GDPR",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "view.card.is_preview",
+        "name": "is_preview",
+        "title": null,
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "view.is_admin",
+        "name": "is_admin",
+        "title": null,
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "view.user_id",
+        "name": "user_id",
+        "title": null,
+        "type": "integer",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "view.position_array",
+        "name": "position_array",
+        "title": null,
+        "type": "variant",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "view.position_doc_ref",
+        "name": "position_doc_ref",
+        "title": null,
+        "type": "variant",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "view.never_saved",
+        "name": "never_saved",
+        "title": null,
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "view.knowledge_classifier_id",
+        "name": "knowledge_classifier_id",
+        "title": "Классификатор",
+        "type": "integer",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "view.knowledge_sort_type_id",
+        "name": "knowledge_sort_type_id",
+        "title": "Сортировать по",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "view.disp_access",
+        "name": "disp_access",
+        "title": null,
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "last_data.web_banned",
+        "name": "web_banned",
+        "title": "Временно запрещен доступ на портал",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "last_data.login",
+        "name": "login",
+        "title": "Логин",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "last_data.password",
+        "name": "password",
+        "title": "Пароль",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "last_data.access_role",
+        "name": "access_role",
+        "title": "Роль доступа",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "last_data.is_arm_admin",
+        "name": "is_arm_admin",
+        "title": "Является пользователем интерфейса администратора",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "last_data.in_request_black_list",
+        "name": "in_request_black_list",
+        "title": "В \"черном списке\" на подачу заявок",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "last_data.position_id",
+        "name": "position_id",
+        "title": "Должность",
+        "type": "integer",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "last_data.pict_url",
+        "name": "pict_url",
+        "title": "URL к файлу фотографии",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "last_data.avatar_filename",
+        "name": "avatar_filename",
+        "title": "URL аватара (относительно [Server]/wt/web/avatars)",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "clear_cur_position",
+        "name": "clear_cur_position",
+        "title": null,
+        "type": null,
+        "foreign_array": null,
+        "multiple": false,
+        "computed": true,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "rows",
+        "name": "rows",
+        "title": null,
+        "type": "variant",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "row_disp_elem",
+        "name": "row_disp_elem",
+        "title": null,
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "row_list_field",
+        "name": "row_list_field",
+        "title": null,
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "row_key_field",
+        "name": "row_key_field",
+        "title": null,
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "list_variant",
+        "name": "list_variant",
+        "title": null,
+        "type": "variant",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "start_action",
+        "name": "start_action",
+        "title": null,
+        "type": null,
+        "foreign_array": null,
+        "multiple": false,
+        "computed": true,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "set_basic_position",
+        "name": "set_basic_position",
+        "title": null,
+        "type": null,
+        "foreign_array": null,
+        "multiple": false,
+        "computed": true,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "get_courses",
+        "name": "get_courses",
+        "title": null,
+        "type": null,
+        "foreign_array": null,
+        "multiple": false,
+        "computed": true,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "get_tests",
+        "name": "get_tests",
+        "title": null,
+        "type": null,
+        "foreign_array": null,
+        "multiple": false,
+        "computed": true,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "assign_course",
+        "name": "assign_course",
+        "title": null,
+        "type": null,
+        "foreign_array": null,
+        "multiple": false,
+        "computed": true,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "assign_test",
+        "name": "assign_test",
+        "title": null,
+        "type": null,
+        "foreign_array": null,
+        "multiple": false,
+        "computed": true,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "get_info",
+        "name": "get_info",
+        "title": null,
+        "type": null,
+        "foreign_array": null,
+        "multiple": false,
+        "computed": true,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "get_events",
+        "name": "get_events",
+        "title": null,
+        "type": null,
+        "foreign_array": null,
+        "multiple": false,
+        "computed": true,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "get_groups",
+        "name": "get_groups",
+        "title": null,
+        "type": null,
+        "foreign_array": null,
+        "multiple": false,
+        "computed": true,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "get_event_results",
+        "name": "get_event_results",
+        "title": null,
+        "type": null,
+        "foreign_array": null,
+        "multiple": false,
+        "computed": true,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "update_info",
+        "name": "update_info",
+        "title": null,
+        "type": null,
+        "foreign_array": null,
+        "multiple": false,
+        "computed": true,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "clear_subs_fields",
+        "name": "clear_subs_fields",
+        "title": null,
+        "type": null,
+        "foreign_array": null,
+        "multiple": false,
+        "computed": true,
+        "indexed_in_xmd": false
+      }
+    ],
+    "inherits": [
+      {
+        "path": "INHERIT",
+        "type": "person_base"
+      },
+      {
+        "path": "INHERIT",
+        "type": "passport_data_base"
+      },
+      {
+        "path": "access.INHERIT",
+        "type": "access_base"
+      },
+      {
+        "path": "INHERIT",
+        "type": "file_list_base"
+      },
+      {
+        "path": "INHERIT",
+        "type": "func_managers_base"
+      },
+      {
+        "path": "INHERIT",
+        "type": "path_subs_base"
+      },
+      {
+        "path": "INHERIT",
+        "type": "knowledge_parts_base"
+      },
+      {
+        "path": "INHERIT",
+        "type": "knowledge_parts_base_old"
+      },
+      {
+        "path": "change_logs.change_log.INHERIT",
+        "type": "custom_elems_base"
+      },
+      {
+        "path": "INHERIT",
+        "type": "custom_elems_base"
+      },
+      {
+        "path": "INHERIT",
+        "type": "person_object_links_base"
+      },
+      {
+        "path": "view.filter.INHERIT",
+        "type": "au_ft_filter"
+      },
+      {
+        "path": "view.INHERIT",
+        "type": "desc_base"
+      }
+    ]
+  },
+  "catalog": {
+    "table": "collaborators",
+    "form": "wtv_collaborators.xmd",
+    "fields": [
+      {
+        "path": "id",
+        "name": "id",
+        "title": "ID",
+        "type": "integer",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": true
+      },
+      {
+        "path": "code",
+        "name": "code",
+        "title": "Код",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": true
+      },
+      {
+        "path": "fullname",
+        "name": "fullname",
+        "title": "ФИО",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": true
+      },
+      {
+        "path": "login",
+        "name": "login",
+        "title": "Логин",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": true
+      },
+      {
+        "path": "short_login",
+        "name": "short_login",
+        "title": "Логин без домена",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": true
+      },
+      {
+        "path": "lowercase_login",
+        "name": "lowercase_login",
+        "title": "Логин в нижнем регистре",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": true
+      },
+      {
+        "path": "email",
+        "name": "email",
+        "title": "Email",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": true
+      },
+      {
+        "path": "phone",
+        "name": "phone",
+        "title": "Телефон",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "mobile_phone",
+        "name": "mobile_phone",
+        "title": "Мобильный телефон",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "birth_date",
+        "name": "birth_date",
+        "title": "Дата рождения",
+        "type": "date",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "sex",
+        "name": "sex",
+        "title": "Пол",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "pict_url",
+        "name": "pict_url",
+        "title": "URL к файлу фотографии",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "position_id",
+        "name": "position_id",
+        "title": "Должность",
+        "type": "integer",
+        "foreign_array": "positions",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": true
+      },
+      {
+        "path": "position_name",
+        "name": "position_name",
+        "title": "Название должности",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": true
+      },
+      {
+        "path": "position_parent_id",
+        "name": "position_parent_id",
+        "title": "Подразделение",
+        "type": "integer",
+        "foreign_array": "subdivisions",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": true
+      },
+      {
+        "path": "position_parent_name",
+        "name": "position_parent_name",
+        "title": "Название подразделения",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": true
+      },
+      {
+        "path": "org_id",
+        "name": "org_id",
+        "title": "Организация",
+        "type": "integer",
+        "foreign_array": "orgs",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": true
+      },
+      {
+        "path": "org_name",
+        "name": "org_name",
+        "title": "Название организации",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": true
+      },
+      {
+        "path": "place_id",
+        "name": "place_id",
+        "title": "Расположение",
+        "type": "integer",
+        "foreign_array": "places",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "region_id",
+        "name": "region_id",
+        "title": "Регион",
+        "type": "integer",
+        "foreign_array": "regions",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "category_id",
+        "name": "category_id",
+        "title": "Категория",
+        "type": "string",
+        "foreign_array": "categorys",
+        "multiple": true,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "web_banned",
+        "name": "web_banned",
+        "title": "Запрещен доступ на портал",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "is_arm_admin",
+        "name": "is_arm_admin",
+        "title": "Является пользователем интерфейса администратора",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "is_content_admin",
+        "name": "is_content_admin",
+        "title": "Является редактором контента",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "role_id",
+        "name": "role_id",
+        "title": "Роль",
+        "type": "string",
+        "foreign_array": "access_roles",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "is_candidate",
+        "name": "is_candidate",
+        "title": "Является кандидатом",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "candidate_status_type_id",
+        "name": "candidate_status_type_id",
+        "title": "Статус кандидата",
+        "type": "integer",
+        "foreign_array": "candidate_status_types",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "candidate_id",
+        "name": "candidate_id",
+        "title": "Кандидат",
+        "type": "integer",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "is_outstaff",
+        "name": "is_outstaff",
+        "title": "Является временным",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "is_dismiss",
+        "name": "is_dismiss",
+        "title": "Является уволенным",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "position_date",
+        "name": "position_date",
+        "title": "Дата вступления в должность",
+        "type": "date",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "hire_date",
+        "name": "hire_date",
+        "title": "Дата приема",
+        "type": "date",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": true
+      },
+      {
+        "path": "dismiss_date",
+        "name": "dismiss_date",
+        "title": "Дата увольнения",
+        "type": "date",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "in_request_black_list",
+        "name": "in_request_black_list",
+        "title": "В \"черном списке\" на подачу заявок",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "allow_personal_chat_request",
+        "name": "allow_personal_chat_request",
+        "title": "Разрешить приглашение пользователя к общению",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "level_id",
+        "name": "level_id",
+        "title": "Уровень",
+        "type": "integer",
+        "foreign_array": "levels",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "birth_date_rest_days_num",
+        "name": "birth_date_rest_days_num",
+        "title": null,
+        "type": null,
+        "foreign_array": null,
+        "multiple": false,
+        "computed": true,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "knowledge_parts",
+        "name": "knowledge_parts",
+        "title": "Значения карты знаний",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "tags",
+        "name": "tags",
+        "title": "##'ID тегов'##",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "experts",
+        "name": "experts",
+        "title": "Эксперты",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "person_object_profile_id",
+        "name": "person_object_profile_id",
+        "title": null,
+        "type": "integer",
+        "foreign_array": "person_object_profiles",
+        "multiple": true,
+        "computed": false,
+        "indexed_in_xmd": true
+      },
+      {
+        "path": "current_state",
+        "name": "current_state",
+        "title": "Текущее состояние",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": true
+      },
+      {
+        "path": "development_potential_id",
+        "name": "development_potential_id",
+        "title": "Потенциал развития",
+        "type": "integer",
+        "foreign_array": "development_potentials",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": true
+      },
+      {
+        "path": "efficiency_estimation_id",
+        "name": "efficiency_estimation_id",
+        "title": "Оценка эффективности",
+        "type": "integer",
+        "foreign_array": "efficiency_estimations",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": true
+      },
+      {
+        "path": "modification_date",
+        "name": "modification_date",
+        "title": "Дата модификации",
+        "type": "date",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": true
+      },
+      {
+        "path": "app_instance_id",
+        "name": "app_instance_id",
+        "title": "Код сервера",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": true
+      }
+    ],
+    "inherits": []
+  }
+}
