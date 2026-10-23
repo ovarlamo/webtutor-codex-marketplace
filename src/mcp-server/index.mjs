@@ -5,8 +5,8 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { z } from "zod";
 
 const SERVER_NAME = "webtutor-codex-kit";
-const SERVER_VERSION = "0.2.2";
-const BRIDGE_VERSION = "1.1.0";
+const SERVER_VERSION = "0.2.3";
+const BRIDGE_VERSION = "1.2.0";
 const CONFIG_FILE = "webtutor-codex.json";
 const REQUEST_TIMEOUT_MS = 10000;
 
