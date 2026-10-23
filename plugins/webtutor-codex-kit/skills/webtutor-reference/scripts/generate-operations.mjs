@@ -8,21 +8,22 @@ const sourceRepository = "ovarlamo/webtutor-catalog-xmds";
 const defaultFiles = ["wtv_tools.xml", "wtv_tools_web.xml", "ms_tools.xml"];
 
 function options(argv) {
-    const opts = { source: "", revision: "", files: defaultFiles };
+    const opts = { source: "", revision: "", webtutorVersion: "", files: defaultFiles };
     for (let i = 0; i < argv.length; i++) {
         const key = argv[i];
         if (key === "--help") {
-            console.log("node scripts/generate-operations.mjs --source <путь-к-репозиторию-XMD> [--revision <SHA>] [--files file1.xml,file2.xml]");
+            console.log("node scripts/generate-operations.mjs --source <путь-к-репозиторию-XMD> [--revision <SHA>] --webtutor-version <версия> [--files file1.xml,file2.xml]");
             process.exit(0);
         }
-        if (!["--source", "--revision", "--files"].includes(key) || !argv[i + 1])
+        if (!["--source", "--revision", "--webtutor-version", "--files"].includes(key) || !argv[i + 1])
             throw new Error("Неизвестный параметр или отсутствует значение: " + key);
         const value = argv[++i];
         if (key === "--source") opts.source = path.resolve(value);
         if (key === "--revision") opts.revision = value;
+        if (key === "--webtutor-version") opts.webtutorVersion = value;
         if (key === "--files") opts.files = value.split(",").map(x => x.trim()).filter(Boolean);
     }
-    if (!opts.source || !opts.files.length)
+    if (!opts.source || !opts.files.length || !opts.webtutorVersion)
         throw new Error("Укажите --source и хотя бы один XML-файл");
     if (opts.files.some(x => !/^[a-zA-Z_][a-zA-Z0-9_]*\.xml$/.test(x)))
         throw new Error("Недопустимое имя XML-файла");
@@ -136,7 +137,7 @@ async function main() {
     }
     const index = {
         schema_version: 1,
-        source: { repository: sourceRepository, commit: opts.revision },
+        source: { repository: sourceRepository, commit: opts.revision, webtutor_version: opts.webtutorVersion },
         libraries: opts.files,
         declaration_kind: "PROPERTY=1 и EXPR в SPXML-INLINE-FORM",
         methods: entries
