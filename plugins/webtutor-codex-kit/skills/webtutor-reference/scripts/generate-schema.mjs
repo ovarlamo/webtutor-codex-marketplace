@@ -199,17 +199,17 @@ async function main() {
         cards.push({ name, data });
         entities.push({ ...def, document: name, catalog: name + "s", file: "entities/" + name + ".json" });
     }
+    const values = {};
+    for (const name of [...enums].sort()) {
+        try { values[name] = enumEntries(common, name); }
+        catch { warnings.push("Не найдено перечисление common." + name); }
+    }
     if (warnings.length) throw new Error("Генерация отменена без записи файлов: " + warnings.join("; "));
     await fs.mkdir(path.join(schemaDir, "entities"), { recursive: true });
     for (const { name, data } of cards)
         await fs.writeFile(path.join(schemaDir, "entities", name + ".json"), JSON.stringify(data, null, 2) + "\n");
     await fs.writeFile(path.join(schemaDir, "index.json"),
         JSON.stringify({ schema_version: 1, source, entities }, null, 2) + "\n");
-    const values = {};
-    for (const name of [...enums].sort()) {
-        try { values[name] = enumEntries(common, name); }
-        catch { warnings.push("Не найдено перечисление common." + name); }
-    }
     await fs.writeFile(path.join(schemaDir, "enums.json"),
         JSON.stringify({ schema_version: 1, source, values }, null, 2) + "\n");
     console.log("Создано карточек: " + entities.length + "; перечислений: " + Object.keys(values).length);
