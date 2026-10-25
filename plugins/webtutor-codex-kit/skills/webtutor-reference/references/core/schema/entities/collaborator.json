@@ -1,13 +1,14 @@
 {
   "schema_version": 1,
   "name": "collaborator",
-  "title": "Сотрудник",
-  "web_title": "Сотрудники",
+  "title": "i18n.t( 'sotrudnik' )",
+  "web_title": "i18n.t( 'sotrudniki' )",
   "display_field": "fullname",
   "source": {
-    "repository": "ovarlamo/webtutor-catalog-xmds",
-    "commit": "90b2514895f20589a3ba7477783e5d2051859ee5",
-    "webtutor_version": "2025.2.1403"
+    "repository": "ovarlamo/websoft-hcm",
+    "commit": "8a9b90b3b281b2015564ecdbcb126219c791346e",
+    "webtutor_version": "2025.2.1403",
+    "root": "WebSoftServer/wtv"
   },
   "document": {
     "table": "collaborator",
@@ -51,6 +52,16 @@
         "foreign_array": null,
         "multiple": false,
         "computed": true,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "snils",
+        "name": "snils",
+        "title": "##'Снилс'##",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
         "indexed_in_xmd": false
       },
       {
@@ -259,6 +270,16 @@
         "title": "Должность",
         "type": "integer",
         "foreign_array": "cost_centers",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "provider_legal_id",
+        "name": "provider_legal_id",
+        "title": null,
+        "type": "string",
+        "foreign_array": null,
         "multiple": false,
         "computed": false,
         "indexed_in_xmd": false
@@ -704,6 +725,36 @@
         "indexed_in_xmd": false
       },
       {
+        "path": "history_states.history_state.object_id",
+        "name": "object_id",
+        "title": "Объект",
+        "type": "integer",
+        "foreign_array": "DefaultDb.GetOptCatalog( object_type + 's' )",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "history_states.history_state.object_type",
+        "name": "object_type",
+        "title": "Тип объекта",
+        "type": "string",
+        "foreign_array": "common.exchange_object_types",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "history_states.history_state.event_code",
+        "name": "event_code",
+        "title": "Код кадрового события",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
         "path": "history_states.history_state.comment",
         "name": "comment",
         "title": "Комментарий",
@@ -806,9 +857,19 @@
       {
         "path": "level_id",
         "name": "level_id",
-        "title": "Уровень",
+        "title": "##'Уровень компетентности'##",
         "type": "integer",
         "foreign_array": "levels",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "grade_id",
+        "name": "grade_id",
+        "title": "Грейд",
+        "type": "integer",
+        "foreign_array": "grades",
         "multiple": false,
         "computed": false,
         "indexed_in_xmd": false
@@ -817,7 +878,7 @@
         "path": "comp_ben.salary",
         "name": "salary",
         "title": "Зарплата",
-        "type": "integer",
+        "type": "real",
         "foreign_array": null,
         "multiple": false,
         "computed": false,
@@ -904,6 +965,26 @@
         "indexed_in_xmd": false
       },
       {
+        "path": "consent_kedo",
+        "name": "consent_kedo",
+        "title": "##'Согласие на КЭДО'##",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "consent_kedo_date",
+        "name": "consent_kedo_date",
+        "title": "##'Дата согласия на КЭДО'##",
+        "type": "date",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
         "path": "view.card.is_preview",
         "name": "is_preview",
         "title": null,
@@ -941,6 +1022,16 @@
         "foreign_array": null,
         "multiple": false,
         "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "view.get_position_array",
+        "name": "get_position_array",
+        "title": null,
+        "type": null,
+        "foreign_array": null,
+        "multiple": false,
+        "computed": true,
         "indexed_in_xmd": false
       },
       {
@@ -994,6 +1085,26 @@
         "indexed_in_xmd": false
       },
       {
+        "path": "view.disp_auth",
+        "name": "disp_auth",
+        "title": null,
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "view.drop_pers_hier_entry",
+        "name": "drop_pers_hier_entry",
+        "title": null,
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
         "path": "last_data.web_banned",
         "name": "web_banned",
         "title": "Временно запрещен доступ на портал",
@@ -1037,6 +1148,26 @@
         "path": "last_data.is_arm_admin",
         "name": "is_arm_admin",
         "title": "Является пользователем интерфейса администратора",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "last_data.is_application_admin",
+        "name": "is_application_admin",
+        "title": "##'Является пользователем приложений'##",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "last_data.is_content_admin",
+        "name": "is_content_admin",
+        "title": "##'Является редактором контента'##",
         "type": "bool",
         "foreign_array": null,
         "multiple": false,
@@ -1564,6 +1695,16 @@
         "indexed_in_xmd": false
       },
       {
+        "path": "is_application_admin",
+        "name": "is_application_admin",
+        "title": "Является пользователем приложений",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
         "path": "role_id",
         "name": "role_id",
         "title": "Роль",
@@ -1676,9 +1817,19 @@
       {
         "path": "level_id",
         "name": "level_id",
-        "title": "Уровень",
+        "title": "##'Уровень компетентности'##",
         "type": "integer",
         "foreign_array": "levels",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "grade_id",
+        "name": "grade_id",
+        "title": "Грейд",
+        "type": "integer",
+        "foreign_array": "grades",
         "multiple": false,
         "computed": false,
         "indexed_in_xmd": false
@@ -1744,6 +1895,16 @@
         "indexed_in_xmd": true
       },
       {
+        "path": "next_state_date",
+        "name": "next_state_date",
+        "title": "##'Дата следующего изменения статуса сотрудника'##",
+        "type": "date",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": true
+      },
+      {
         "path": "development_potential_id",
         "name": "development_potential_id",
         "title": "Потенциал развития",
@@ -1762,6 +1923,76 @@
         "multiple": false,
         "computed": false,
         "indexed_in_xmd": true
+      },
+      {
+        "path": "consent_kedo",
+        "name": "consent_kedo",
+        "title": "##'Согласие на КЭДО'##",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "consent_kedo_date",
+        "name": "consent_kedo_date",
+        "title": "##'Дата согласия на КЭДО'##",
+        "type": "date",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "provider_legal_id",
+        "name": "provider_legal_id",
+        "title": "##'Код юридического лица'##",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "snils",
+        "name": "snils",
+        "title": "##'Снилс'##",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "cost_center_id",
+        "name": "cost_center_id",
+        "title": "Центр затрат",
+        "type": "integer",
+        "foreign_array": "cost_centers",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": true
+      },
+      {
+        "path": "disp_birthdate",
+        "name": "disp_birthdate",
+        "title": "Отображать дату рождения",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "disp_birthdate_year",
+        "name": "disp_birthdate_year",
+        "title": "Отображать год рождения",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
       },
       {
         "path": "modification_date",

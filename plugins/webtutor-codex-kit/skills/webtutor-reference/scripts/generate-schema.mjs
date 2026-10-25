@@ -4,14 +4,14 @@ import { fileURLToPath } from "node:url";
 import { execFileSync } from "node:child_process";
 
 const schemaDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../references/core/schema");
-const repository = "ovarlamo/webtutor-catalog-xmds";
+const repository = "ovarlamo/websoft-hcm";
 
 function args(argv) {
     const opts = { source: "", revision: "", webtutorVersion: "", objects: ["collaborator", "course", "active_learning"] };
     for (let i = 0; i < argv.length; i += 1) {
         const key = argv[i];
         if (key === "--help") {
-            console.log("node scripts/generate-schema.mjs --source <путь-к-webtutor-catalog-xmds> [--revision <commit>] --webtutor-version <версия> [--objects name,name]");
+            console.log("node scripts/generate-schema.mjs --source <путь-к-websoft-hcm> [--revision <commit>] --webtutor-version <версия> [--objects name,name]");
             process.exit(0);
         }
         if (!["--source", "--revision", "--webtutor-version", "--objects"].includes(key) || !argv[i + 1])
@@ -162,8 +162,9 @@ function enumEntries(common, enumName) {
 
 async function main() {
     const options = args(process.argv.slice(2));
-    const read = name => fs.readFile(path.join(options.source, name), "utf8");
-    const [common, constXml] = await Promise.all([read("wtv_common.xml"), read("text_const.xml")]);
+    const read = name => fs.readFile(path.join(options.source, "WebSoftServer", "wtv", name), "utf8");
+    const common = await read("wtv_common.xml");
+    const constXml = await fs.readFile(path.join(options.source, "WebSoftServer", "lngs", "russian", "const.xml"), "utf8");
     const constants = dictionary(constXml);
     const definitions = new Map();
     for (const item of section(common, "exchange_object_types").matchAll(/<exchange_object_type>([\s\S]*?)<\/exchange_object_type>/g))
@@ -174,9 +175,9 @@ async function main() {
             display_field: child(item[1], "disp_name")
         });
 
-    const source = { repository, commit: options.revision, webtutor_version: options.webtutorVersion };
+    const source = { repository, commit: options.revision, webtutor_version: options.webtutorVersion, root: "WebSoftServer/wtv" };
     const entities = [], enums = new Set(), warnings = [];
-    await fs.mkdir(path.join(schemaDir, "entities"), { recursive: true });
+    const cards = [];
     for (const name of options.objects) {
         const def = definitions.get(name);
         if (!def) throw new Error("Тип отсутствует в wtv_common.xml: " + name);
@@ -195,16 +196,36 @@ async function main() {
             document: { table: name, form: docFile, fields: document.fields, inherits: document.inherits },
             catalog: { table: name + "s", form: catFile, fields: catalog.fields, inherits: catalog.inherits }
         };
-        await fs.writeFile(path.join(schemaDir, "entities", name + ".json"), JSON.stringify(data, null, 2) + "\n");
+        cards.push({ name, data });
         entities.push({ ...def, document: name, catalog: name + "s", file: "entities/" + name + ".json" });
     }
-    await fs.writeFile(path.join(schemaDir, "index.json"),
-        JSON.stringify({ schema_version: 1, source, entities }, null, 2) + "\n");
     const values = {};
     for (const name of [...enums].sort()) {
         try { values[name] = enumEntries(common, name); }
         catch { warnings.push("Не найдено перечисление common." + name); }
     }
+    // Не допускаем исчезновения ранее разрешённых названий при неполных константах.
+    for (const { name, data } of cards) {
+        let previous;
+        try {
+            previous = JSON.parse(await fs.readFile(path.join(schemaDir, "entities", name + ".json"), "utf8"));
+        } catch (error) {
+            if (error.code !== "ENOENT") throw error;
+            continue;
+        }
+        for (const kind of ["document", "catalog"]) {
+            const titles = new Map((previous[kind]?.fields ?? []).map(field => [field.path, field.title]));
+            for (const field of data[kind].fields) {
+                if (field.title === null && titles.get(field.path))
+                    throw new Error("Генерация отменена: исчезает название " + name + "." + kind + "." + field.path);
+            }
+        }
+    }
+    await fs.mkdir(path.join(schemaDir, "entities"), { recursive: true });
+    for (const { name, data } of cards)
+        await fs.writeFile(path.join(schemaDir, "entities", name + ".json"), JSON.stringify(data, null, 2) + "\n");
+    await fs.writeFile(path.join(schemaDir, "index.json"),
+        JSON.stringify({ schema_version: 1, source, entities }, null, 2) + "\n");
     await fs.writeFile(path.join(schemaDir, "enums.json"),
         JSON.stringify({ schema_version: 1, source, values }, null, 2) + "\n");
     console.log("Создано карточек: " + entities.length + "; перечислений: " + Object.keys(values).length);

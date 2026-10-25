@@ -4,7 +4,7 @@ import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
 const destination = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../references/core/operations");
-const sourceRepository = "ovarlamo/webtutor-catalog-xmds";
+const sourceRepository = "ovarlamo/websoft-hcm";
 const defaultFiles = ["wtv_tools.xml", "wtv_tools_web.xml", "ms_tools.xml"];
 
 function options(argv) {
@@ -12,7 +12,7 @@ function options(argv) {
     for (let i = 0; i < argv.length; i++) {
         const key = argv[i];
         if (key === "--help") {
-            console.log("node scripts/generate-operations.mjs --source <путь-к-репозиторию-XMD> [--revision <SHA>] --webtutor-version <версия> [--files file1.xml,file2.xml]");
+            console.log("node scripts/generate-operations.mjs --source <путь-к-websoft-hcm> [--revision <SHA>] --webtutor-version <версия> [--files file1.xml,file2.xml]");
             process.exit(0);
         }
         if (!["--source", "--revision", "--webtutor-version", "--files"].includes(key) || !argv[i + 1])
@@ -126,7 +126,7 @@ async function main() {
     const opts = options(process.argv.slice(2));
     const entries = [];
     for (const file of opts.files) {
-        const xml = await fs.readFile(path.join(opts.source, file), "utf8");
+        const xml = await fs.readFile(path.join(opts.source, "WebSoftServer", "wtv", file), "utf8");
         entries.push(...methodsFrom(xml, file));
     }
     entries.sort((a, b) => a.name.localeCompare(b.name, "en"));
@@ -137,7 +137,7 @@ async function main() {
     }
     const index = {
         schema_version: 1,
-        source: { repository: sourceRepository, commit: opts.revision, webtutor_version: opts.webtutorVersion },
+        source: { repository: sourceRepository, commit: opts.revision, webtutor_version: opts.webtutorVersion, root: "WebSoftServer/wtv" },
         libraries: opts.files,
         declaration_kind: "PROPERTY=1 и EXPR в SPXML-INLINE-FORM",
         methods: entries

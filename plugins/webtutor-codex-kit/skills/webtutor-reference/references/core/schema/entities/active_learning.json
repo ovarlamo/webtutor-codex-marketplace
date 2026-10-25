@@ -1,18 +1,29 @@
 {
   "schema_version": 1,
   "name": "active_learning",
-  "title": "Незаконченный электронный курс",
-  "web_title": "Незаконченные электронные курсы",
+  "title": "i18n.t( 'nezakonchennyye' )",
+  "web_title": "i18n.t( 'nezakonchennyee' )",
   "display_field": "person_fullname",
   "source": {
-    "repository": "ovarlamo/webtutor-catalog-xmds",
-    "commit": "90b2514895f20589a3ba7477783e5d2051859ee5",
-    "webtutor_version": "2025.2.1403"
+    "repository": "ovarlamo/websoft-hcm",
+    "commit": "8a9b90b3b281b2015564ecdbcb126219c791346e",
+    "webtutor_version": "2025.2.1403",
+    "root": "WebSoftServer/wtv"
   },
   "document": {
     "table": "active_learning",
     "form": "wtv_active_learning.xmd",
     "fields": [
+      {
+        "path": "id",
+        "name": "id",
+        "title": "ID",
+        "type": "integer",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
       {
         "path": "code",
         "name": "code",
@@ -294,6 +305,16 @@
         "indexed_in_xmd": false
       },
       {
+        "path": "max_score",
+        "name": "max_score",
+        "title": "Максимальный балл",
+        "type": "real",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
         "path": "score_sum_eval",
         "name": "score_sum_eval",
         "title": "Формула итоговой оценки",
@@ -317,6 +338,16 @@
         "path": "calc_score",
         "name": "calc_score",
         "title": "Баллы",
+        "type": null,
+        "foreign_array": null,
+        "multiple": false,
+        "computed": true,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "calc_state",
+        "name": "calc_state",
+        "title": null,
         "type": null,
         "foreign_array": null,
         "multiple": false,
@@ -379,6 +410,16 @@
         "title": "Комментирование",
         "type": "bool",
         "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "proctor_prefer_id",
+        "name": "proctor_prefer_id",
+        "title": "'Предпочтительный проктор'",
+        "type": "integer",
+        "foreign_array": "collaborators",
         "multiple": false,
         "computed": false,
         "indexed_in_xmd": false
@@ -569,7 +610,7 @@
         "foreign_array": null,
         "multiple": false,
         "computed": false,
-        "indexed_in_xmd": false
+        "indexed_in_xmd": true
       },
       {
         "path": "person_id",
@@ -732,6 +773,16 @@
         "indexed_in_xmd": true
       },
       {
+        "path": "max_score",
+        "name": "max_score",
+        "title": "Максимальный балл",
+        "type": "real",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
         "path": "score",
         "name": "score",
         "title": "Баллы",
@@ -767,6 +818,16 @@
         "title": "План обучения",
         "type": "integer",
         "foreign_array": "education_plans",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "is_self_enrolled",
+        "name": "is_self_enrolled",
+        "title": "Назначен самостоятельно",
+        "type": "bool",
+        "foreign_array": null,
         "multiple": false,
         "computed": false,
         "indexed_in_xmd": false
@@ -817,6 +878,16 @@
         "title": "Код сервера",
         "type": "string",
         "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "proctor_prefer_id",
+        "name": "proctor_prefer_id",
+        "title": "'Предпочтительный проктор'",
+        "type": "integer",
+        "foreign_array": "collaborators",
         "multiple": false,
         "computed": false,
         "indexed_in_xmd": false

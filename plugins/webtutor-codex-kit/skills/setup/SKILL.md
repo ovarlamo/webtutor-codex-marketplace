@@ -43,6 +43,16 @@ After the `AGENTS.md` proposal is resolved:
    }
    ```
 
+Для исследования версионных исходников можно дополнительно указать необязательный путь к локальному клону `websoft-hcm` в том же JSON-файле:
+
+```json
+{
+  "webtutor_sources_path": "D:\\Repos\\websoft-hcm"
+}
+```
+
+Это **только пример дополнительного поля**, а не замена обязательных `base_url`, `custom_root` и `bridge_url` из примера выше. Используйте лишь подтверждённый пользователем абсолютный путь и не добавляйте его автоматически. Codex читает это поле как инструкцию для поиска исходников; MCP-сервер и Bridge его не используют. Не копируйте значение из другого клиентского проекта.
+
 2. Copy the packaged `bridge/api.asp.template` to
    `<project-root>/codex_bridge/api.asp`. Do not edit the packaged template.
 3. Preserve UTF-8 with BOM for the copied ASP file and verify its first three
