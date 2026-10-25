@@ -4,14 +4,14 @@ import { fileURLToPath } from "node:url";
 import { execFileSync } from "node:child_process";
 
 const schemaDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../references/core/schema");
-const repository = "ovarlamo/webtutor-catalog-xmds";
+const repository = "ovarlamo/websoft-hcm";
 
 function args(argv) {
     const opts = { source: "", revision: "", webtutorVersion: "", objects: ["collaborator", "course", "active_learning"] };
     for (let i = 0; i < argv.length; i += 1) {
         const key = argv[i];
         if (key === "--help") {
-            console.log("node scripts/generate-schema.mjs --source <путь-к-webtutor-catalog-xmds> [--revision <commit>] --webtutor-version <версия> [--objects name,name]");
+            console.log("node scripts/generate-schema.mjs --source <путь-к-websoft-hcm> [--revision <commit>] --webtutor-version <версия> [--objects name,name]");
             process.exit(0);
         }
         if (!["--source", "--revision", "--webtutor-version", "--objects"].includes(key) || !argv[i + 1])
@@ -162,9 +162,12 @@ function enumEntries(common, enumName) {
 
 async function main() {
     const options = args(process.argv.slice(2));
-    const read = name => fs.readFile(path.join(options.source, name), "utf8");
-    const [common, constXml] = await Promise.all([read("wtv_common.xml"), read("text_const.xml")]);
-    const constants = dictionary(constXml);
+    const read = name => fs.readFile(path.join(options.source, "WebSoftServer", "wtv", name), "utf8");
+    const common = await read("wtv_common.xml");
+    let constXml = null;
+    try { constXml = await read("text_const.xml"); }
+    catch (error) { if (error.code !== "ENOENT") throw error; }
+    const constants = constXml === null ? new Map() : dictionary(constXml);
     const definitions = new Map();
     for (const item of section(common, "exchange_object_types").matchAll(/<exchange_object_type>([\s\S]*?)<\/exchange_object_type>/g))
         definitions.set(child(item[1], "name"), {
@@ -174,8 +177,9 @@ async function main() {
             display_field: child(item[1], "disp_name")
         });
 
-    const source = { repository, commit: options.revision, webtutor_version: options.webtutorVersion };
+    const source = { repository, commit: options.revision, webtutor_version: options.webtutorVersion, root: "WebSoftServer/wtv" };
     const entities = [], enums = new Set(), warnings = [];
+    if (constXml === null) warnings.push("Нет text_const.xml: названия const= остаются неразрешёнными");
     await fs.mkdir(path.join(schemaDir, "entities"), { recursive: true });
     for (const name of options.objects) {
         const def = definitions.get(name);
