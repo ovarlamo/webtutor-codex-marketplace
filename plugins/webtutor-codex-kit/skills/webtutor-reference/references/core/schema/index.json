@@ -1,15 +1,16 @@
 {
   "schema_version": 1,
   "source": {
-    "repository": "ovarlamo/webtutor-catalog-xmds",
-    "commit": "90b2514895f20589a3ba7477783e5d2051859ee5",
-    "webtutor_version": "2025.2.1403"
+    "repository": "ovarlamo/websoft-hcm",
+    "commit": "8a9b90b3b281b2015564ecdbcb126219c791346e",
+    "webtutor_version": "2025.2.1403",
+    "root": "WebSoftServer/wtv"
   },
   "entities": [
     {
       "name": "collaborator",
-      "title": "Сотрудник",
-      "web_title": "Сотрудники",
+      "title": "i18n.t( 'sotrudnik' )",
+      "web_title": "i18n.t( 'sotrudniki' )",
       "display_field": "fullname",
       "document": "collaborator",
       "catalog": "collaborators",
@@ -17,8 +18,8 @@
     },
     {
       "name": "course",
-      "title": "Электронный курс",
-      "web_title": "Электронные курсы",
+      "title": "i18n.t( 'elektronnyykurs' )",
+      "web_title": "i18n.t( 'elektronnyekur' )",
       "display_field": "name",
       "document": "course",
       "catalog": "courses",
@@ -26,8 +27,8 @@
     },
     {
       "name": "active_learning",
-      "title": "Незаконченный электронный курс",
-      "web_title": "Незаконченные электронные курсы",
+      "title": "i18n.t( 'nezakonchennyye' )",
+      "web_title": "i18n.t( 'nezakonchennyee' )",
       "display_field": "person_fullname",
       "document": "active_learning",
       "catalog": "active_learnings",
