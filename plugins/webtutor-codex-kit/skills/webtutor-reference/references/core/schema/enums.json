@@ -1,139 +1,141 @@
 {
   "schema_version": 1,
   "source": {
-    "repository": "ovarlamo/webtutor-catalog-xmds",
-    "commit": "90b2514895f20589a3ba7477783e5d2051859ee5",
-    "webtutor_version": "2025.2.1403"
+    "repository": "ovarlamo/websoft-hcm",
+    "commit": "8a9b90b3b281b2015564ecdbcb126219c791346e",
+    "webtutor_version": "2025.2.1403",
+    "root": "WebSoftServer/wtv"
   },
   "values": {
     "course_part_types": [
       {
         "id": "lesson",
-        "name": "Модуль"
+        "name": "i18n.t( 'modul' )"
       },
       {
         "id": "test",
-        "name": "Тест"
+        "name": "i18n.t( 'test_3' )"
       },
       {
         "id": "folder",
-        "name": "Папка"
+        "name": "i18n.t( 'papka_1' )"
       },
       {
         "id": "inline",
-        "name": "Текст/Файл"
+        "name": "i18n.t( 'tekstfayl' )"
       },
       {
         "id": "activity",
-        "name": "Учебная активность"
+        "name": "i18n.t( 'uchebnayaaktivno_1' )"
       },
       {
         "id": "library_material",
-        "name": "Материал библиотеки"
+        "name": "i18n.t( 'materialbiblio_3' )"
       },
       {
         "id": "resource",
-        "name": "Ресурс базы"
+        "name": "i18n.t( 'resursbazy_2' )"
       },
       {
         "id": "cl_module",
-        "name": "Модуль CourseLab"
+        "name": "i18n.t( 'modulcourselab_2' )"
       },
       {
         "id": "learning_task",
-        "name": "Задание"
+        "name": "i18n.t( 'zadanie_3' )"
       }
     ],
     "course_test_states": [
       {
         "id": "publish",
-        "name": "Открытый"
+        "name": "i18n.t( 'otkrytyy' )"
       },
       {
         "id": "project",
-        "name": "Проект"
+        "name": "i18n.t( 'proekt_5' )"
       },
       {
         "id": "secret",
-        "name": "Скрытый"
+        "name": "i18n.t( 'skrytyy_1' )"
       },
       {
         "id": "archive",
-        "name": "Архивный"
+        "name": "i18n.t( 'arhivnyy' )"
       }
     ],
+    "exchange_object_types": [],
     "forum_person_info_types": [
       {
         "id": "realname",
-        "name": "ФИО"
+        "name": "i18n.t( 'fio' )"
       },
       {
         "id": "nick",
-        "name": "Ник"
+        "name": "i18n.t( 'nik' )"
       },
       {
         "id": "anonymous",
-        "name": "Анонимный"
+        "name": "i18n.t( 'anonimnyy' )"
       }
     ],
     "learning_states": [
       {
         "id": "0",
-        "name": "Назначен"
+        "name": "i18n.t( 'naznachen' )"
       },
       {
         "id": "1",
-        "name": "В процессе"
+        "name": "i18n.t( 'vprocesse' )"
       },
       {
         "id": "2",
-        "name": "Завершен"
+        "name": "i18n.t( 'zavershen' )"
       },
       {
         "id": "3",
-        "name": "Не пройден"
+        "name": "i18n.t( 'neproyden' )"
       },
       {
         "id": "4",
-        "name": "Пройден"
+        "name": "i18n.t( 'proyden' )"
       },
       {
         "id": "5",
-        "name": "Просмотрен"
+        "name": "i18n.t( 'prosmotren' )"
       }
     ],
     "perioditys": [
       {
         "id": "minute",
-        "name": "Минута"
+        "name": "i18n.t( 'minuta' )"
       },
       {
         "id": "hour",
-        "name": "Час"
+        "name": "i18n.t( 'chas' )"
       },
       {
         "id": "day",
-        "name": "День"
+        "name": "i18n.t( 'den' )"
       },
       {
         "id": "week",
-        "name": "Неделя"
+        "name": "i18n.t( 'nedelya' )"
       },
       {
         "id": "month",
-        "name": "Месяц"
+        "name": "i18n.t( 'mesyac' )"
       },
       {
         "id": "quarter",
-        "name": "Квартал"
+        "name": "i18n.t( 'kvartal' )"
       },
       {
         "id": "halfyear",
-        "name": "Полугодие"
+        "name": "i18n.t( 'polugodie' )"
       },
       {
         "id": "year",
-        "name": "Год"
+        "name": "i18n.t( 'god' )"
       }
     ]
   }
