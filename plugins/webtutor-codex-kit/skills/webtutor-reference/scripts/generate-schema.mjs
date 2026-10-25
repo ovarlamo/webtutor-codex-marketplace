@@ -204,7 +204,23 @@ async function main() {
         try { values[name] = enumEntries(common, name); }
         catch { warnings.push("Не найдено перечисление common." + name); }
     }
-    if (warnings.length) throw new Error("Генерация отменена без записи файлов: " + warnings.join("; "));
+    // Не допускаем исчезновения ранее разрешённых названий при неполных константах.
+    for (const { name, data } of cards) {
+        let previous;
+        try {
+            previous = JSON.parse(await fs.readFile(path.join(schemaDir, "entities", name + ".json"), "utf8"));
+        } catch (error) {
+            if (error.code !== "ENOENT") throw error;
+            continue;
+        }
+        for (const kind of ["document", "catalog"]) {
+            const titles = new Map((previous[kind]?.fields ?? []).map(field => [field.path, field.title]));
+            for (const field of data[kind].fields) {
+                if (field.title === null && titles.get(field.path))
+                    throw new Error("Генерация отменена: исчезает название " + name + "." + kind + "." + field.path);
+            }
+        }
+    }
     await fs.mkdir(path.join(schemaDir, "entities"), { recursive: true });
     for (const { name, data } of cards)
         await fs.writeFile(path.join(schemaDir, "entities", name + ".json"), JSON.stringify(data, null, 2) + "\n");
