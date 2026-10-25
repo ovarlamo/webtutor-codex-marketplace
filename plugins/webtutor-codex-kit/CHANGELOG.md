@@ -2,6 +2,13 @@
 
 ## [0.2.3] - Unreleased
 
+### Изменено — источник справочников WebTutor
+
+- `generate-schema.mjs` и `generate-operations.mjs` читают исходники из клона `ovarlamo/websoft-hcm` по версии, выбранной оператором.
+- `generate-schema.mjs` использует `WebSoftServer/lngs/russian/const.xml` и не перезаписывает индекс при отсутствующих названиях или системных перечислениях.
+- `webtutor-reference/SKILL.md` описывает выбор ветки, исследование исходников и безопасное сравнение генерации с базовым индексом `2025.2.1403`.
+
+
 ### Добавлено — методы WebTutor
 
 - Поисковый индекс 688 методов из `wtv_tools.xml`, `wtv_tools_web.xml` и `ms_tools.xml`, а также карточки `tools.activate_course_to_person` и `tools.create_notification`.
