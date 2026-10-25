@@ -1,13 +1,14 @@
 {
   "schema_version": 1,
   "name": "course",
-  "title": "Электронный курс",
-  "web_title": "Электронные курсы",
+  "title": "i18n.t( 'elektronnyykurs' )",
+  "web_title": "i18n.t( 'elektronnyekur' )",
   "display_field": "name",
   "source": {
-    "repository": "ovarlamo/webtutor-catalog-xmds",
-    "commit": "90b2514895f20589a3ba7477783e5d2051859ee5",
-    "webtutor_version": "2025.2.1403"
+    "repository": "ovarlamo/websoft-hcm",
+    "commit": "8a9b90b3b281b2015564ecdbcb126219c791346e",
+    "webtutor_version": "2025.2.1403",
+    "root": "WebSoftServer/wtv"
   },
   "document": {
     "table": "course",
@@ -56,7 +57,7 @@
       {
         "path": "disp_scrolling",
         "name": "disp_scrolling",
-        "title": "Отображать scrolling",
+        "title": "Отображать скроллбар",
         "type": "bool",
         "foreign_array": null,
         "multiple": false,
@@ -434,6 +435,16 @@
         "indexed_in_xmd": false
       },
       {
+        "path": "parts.part.cl_module_protocol",
+        "name": "cl_module_protocol",
+        "title": "Протокол",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
         "path": "course_finish_redirect",
         "name": "course_finish_redirect",
         "title": null,
@@ -466,7 +477,7 @@
       {
         "path": "view_type",
         "name": "view_type",
-        "title": "Тип отображения окна курса",
+        "title": "Тип плеера курсов",
         "type": "string",
         "foreign_array": null,
         "multiple": false,
@@ -537,6 +548,16 @@
         "path": "auto_finish",
         "name": "auto_finish",
         "title": "Завершать курс, если пройдены все главы курса или набран проходной балл",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "ignore_failed_for_finish",
+        "name": "ignore_failed_for_finish",
+        "title": "Учитывать статус failed от курса для его завершения",
         "type": "bool",
         "foreign_array": null,
         "multiple": false,
@@ -994,6 +1015,16 @@
         "indexed_in_xmd": false
       },
       {
+        "path": "mastery_score",
+        "name": "mastery_score",
+        "title": "Проходной балл",
+        "type": "real",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
         "path": "max_score",
         "name": "max_score",
         "title": "Максимальный балл",
@@ -1074,6 +1105,36 @@
         "indexed_in_xmd": false
       },
       {
+        "path": "default_response_type_id",
+        "name": "default_response_type_id",
+        "title": "Тип отзыва по умолчанию",
+        "type": "integer",
+        "foreign_array": "response_types",
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "mandatory_fill_response",
+        "name": "mandatory_fill_response",
+        "title": "Обязательное заполнение отзыва",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "allow_disp_response",
+        "name": "allow_disp_response",
+        "title": "Отображать отзывы",
+        "type": "bool",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
         "path": "pwt_disp",
         "name": "pwt_disp",
         "title": "Отображать в списке Персонального WebSoft HCMa",
@@ -1084,9 +1145,29 @@
         "indexed_in_xmd": false
       },
       {
+        "path": "view_type",
+        "name": "view_type",
+        "title": "Тип плеера курсов",
+        "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
         "path": "modification_date",
         "name": "modification_date",
         "title": "Дата модификации",
+        "type": "date",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "creation_date",
+        "name": "creation_date",
+        "title": "Дата создания",
         "type": "date",
         "foreign_array": null,
         "multiple": false,
@@ -1128,6 +1209,16 @@
         "name": "experts",
         "title": "Эксперты",
         "type": "string",
+        "foreign_array": null,
+        "multiple": false,
+        "computed": false,
+        "indexed_in_xmd": false
+      },
+      {
+        "path": "use_proctoring",
+        "name": "use_proctoring",
+        "title": "Использовать прокторинг",
+        "type": "bool",
         "foreign_array": null,
         "multiple": false,
         "computed": false,
