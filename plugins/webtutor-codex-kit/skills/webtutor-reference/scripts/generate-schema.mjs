@@ -164,10 +164,8 @@ async function main() {
     const options = args(process.argv.slice(2));
     const read = name => fs.readFile(path.join(options.source, "WebSoftServer", "wtv", name), "utf8");
     const common = await read("wtv_common.xml");
-    let constXml = null;
-    try { constXml = await read("text_const.xml"); }
-    catch (error) { if (error.code !== "ENOENT") throw error; }
-    const constants = constXml === null ? new Map() : dictionary(constXml);
+    const constXml = await fs.readFile(path.join(options.source, "WebSoftServer", "lngs", "russian", "const.xml"), "utf8");
+    const constants = dictionary(constXml);
     const definitions = new Map();
     for (const item of section(common, "exchange_object_types").matchAll(/<exchange_object_type>([\s\S]*?)<\/exchange_object_type>/g))
         definitions.set(child(item[1], "name"), {
@@ -179,8 +177,7 @@ async function main() {
 
     const source = { repository, commit: options.revision, webtutor_version: options.webtutorVersion, root: "WebSoftServer/wtv" };
     const entities = [], enums = new Set(), warnings = [];
-    if (constXml === null) warnings.push("Нет text_const.xml: названия const= остаются неразрешёнными");
-    await fs.mkdir(path.join(schemaDir, "entities"), { recursive: true });
+    const cards = [];
     for (const name of options.objects) {
         const def = definitions.get(name);
         if (!def) throw new Error("Тип отсутствует в wtv_common.xml: " + name);
@@ -199,9 +196,13 @@ async function main() {
             document: { table: name, form: docFile, fields: document.fields, inherits: document.inherits },
             catalog: { table: name + "s", form: catFile, fields: catalog.fields, inherits: catalog.inherits }
         };
-        await fs.writeFile(path.join(schemaDir, "entities", name + ".json"), JSON.stringify(data, null, 2) + "\n");
+        cards.push({ name, data });
         entities.push({ ...def, document: name, catalog: name + "s", file: "entities/" + name + ".json" });
     }
+    if (warnings.length) throw new Error("Генерация отменена без записи файлов: " + warnings.join("; "));
+    await fs.mkdir(path.join(schemaDir, "entities"), { recursive: true });
+    for (const { name, data } of cards)
+        await fs.writeFile(path.join(schemaDir, "entities", name + ".json"), JSON.stringify(data, null, 2) + "\n");
     await fs.writeFile(path.join(schemaDir, "index.json"),
         JSON.stringify({ schema_version: 1, source, entities }, null, 2) + "\n");
     const values = {};
